@@ -1,0 +1,1054 @@
+instance_idx,condition,generator,judge,has_nle,has_xai,has_metrics,WeekEndDate,Prediction,TrueValue,PctError,true_bucket,predicted_bucket,correct,confidence,reasoning,raw_response,Duration_s,retries
+4,Baseline,none,gpt,False,False,False,2009-11-09 00:00:00,175.4420166015625,208.2009833333333,-15.734299717174318,large,medium,0,3,"The prediction of 175.44 is within the range of recent lags, but given the variability in past consumption and the absence of holidays, a medium error is likely due to potential fluctuations in energy use not captured by the model.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 3,
+  ""reasoning"": ""The prediction of 175.44 is within the range of recent lags, but given the variability in past consumption and the absence of holidays, a medium error is likely due to potential fluctuations in energy use not captured by the model.""
+}
+```",4.22,0
+4,Baseline,none,deepseek,False,False,False,2009-11-09 00:00:00,175.4420166015625,208.2009833333333,-15.734299717174318,large,medium,0,3,"The prediction is within the historical range but differs from the most recent value by about 5%, and given the observed variability in the lags, the error is likely between 5% and 15%.","{  ""error_bucket"": ""medium"",
+  ""confidence"": 3,
+  ""reasoning"": ""The prediction is within the historical range but differs from the most recent value by about 5%, and given the observed variability in the lags, the error is likely between 5% and 15%.""
+}",68.76,0
+4,X,none,gpt,False,True,False,2009-11-09 00:00:00,175.4420166015625,208.2009833333333,-15.734299717174318,large,medium,0,4,"The prediction of 175.44 is close to the base value of 177.366, and the SHAP values indicate that the most influential features have moderate impacts, suggesting a reasonable prediction; however, the variability in recent lags and the absence of holidays could introduce some error, likely in the medium range.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The prediction of 175.44 is close to the base value of 177.366, and the SHAP values indicate that the most influential features have moderate impacts, suggesting a reasonable prediction; however, the variability in recent lags and the absence of holidays could introduce some error, likely in the medium range.""
+}
+```",2.35,0
+4,X,none,deepseek,False,True,False,2009-11-09 00:00:00,175.4420166015625,208.2009833333333,-15.734299717174318,large,medium,0,3,"The prediction deviates from the most recent lag by approximately 5%, and considering the variability in lags and SHAP contributions, the absolute percentage error is likely within the 5-15% range.","{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 3,
+  ""reasoning"": ""The prediction deviates from the most recent lag by approximately 5%, and considering the variability in lags and SHAP contributions, the absolute percentage error is likely within the 5-15% range.""
+}",99.05,0
+4,T,none,gpt,False,False,True,2009-11-09 00:00:00,175.4420166015625,208.2009833333333,-15.734299717174318,large,medium,0,4,"The model has a reasonable R² of 0.686, indicating a good fit, but the MAE of 20.550 suggests a moderate error relative to the prediction of 175.44, likely placing the error in the medium range.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model has a reasonable R² of 0.686, indicating a good fit, but the MAE of 20.550 suggests a moderate error relative to the prediction of 175.44, likely placing the error in the medium range.""
+}
+```",2.71,0
+4,T,none,deepseek,False,False,True,2009-11-09 00:00:00,175.4420166015625,208.2009833333333,-15.734299717174318,large,medium,0,3,"The model's MAE of 20.55 kWh corresponds to an average absolute percentage error around 11-12% given typical consumption, which falls in the medium error range.","{  ""error_bucket"": ""medium"",
+  ""confidence"": 3,
+  ""reasoning"": ""The model's MAE of 20.55 kWh corresponds to an average absolute percentage error around 11-12% given typical consumption, which falls in the medium error range.""
+}",51.13,0
+4,X+T,none,gpt,False,True,True,2009-11-09 00:00:00,175.4420166015625,208.2009833333333,-15.734299717174318,large,medium,0,4,"The model has a reasonable R² of 0.686, indicating a good fit, but the MAE of 20.550 suggests moderate errors; the prediction of 175.44 is close to the base value of 177.366, but the SHAP values show significant positive and negative contributions, indicating potential for medium error.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model has a reasonable R² of 0.686, indicating a good fit, but the MAE of 20.550 suggests moderate errors; the prediction of 175.44 is close to the base value of 177.366, but the SHAP values show significant positive and negative contributions, indicating potential for medium error.""
+}
+```",3.17,0
+4,X+T,none,deepseek,False,True,True,2009-11-09 00:00:00,175.4420166015625,208.2009833333333,-15.734299717174318,large,medium,0,3,"The model's MAE of 20.55 corresponds to an average absolute percentage error of about 11.7% for this prediction, which falls in the medium bucket, and there is no indication that this instance is an outlier.","{  ""error_bucket"": ""medium"",
+  ""confidence"": 3,
+  ""reasoning"": ""The model's MAE of 20.55 corresponds to an average absolute percentage error of about 11.7% for this prediction, which falls in the medium bucket, and there is no indication that this instance is an outlier.""
+}",92.47,0
+4,E+X+T,gpt,gpt,True,True,True,2009-11-09 00:00:00,175.4420166015625,208.2009833333333,-15.734299717174318,large,medium,0,4,"The model has a reasonable R² of 0.686, but the MAE of 20.55 suggests a potential error of around 11.7% relative to the prediction of 175.44, placing it in the medium error bucket.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model has a reasonable R² of 0.686, but the MAE of 20.55 suggests a potential error of around 11.7% relative to the prediction of 175.44, placing it in the medium error bucket.""
+}
+```",3.03,0
+4,E+X+T,gpt,deepseek,True,True,True,2009-11-09 00:00:00,175.4420166015625,208.2009833333333,-15.734299717174318,large,medium,0,3,"Based on the model's MAE of 20.55 kWh relative to the prediction of 175.44 kWh, the estimated absolute percentage error is approximately 11.7%, which falls within the medium error bucket.","{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 3,
+  ""reasoning"": ""Based on the model's MAE of 20.55 kWh relative to the prediction of 175.44 kWh, the estimated absolute percentage error is approximately 11.7%, which falls within the medium error bucket.""
+}",50.49,0
+4,E+X+T,deepseek,gpt,True,True,True,2009-11-09 00:00:00,175.4420166015625,208.2009833333333,-15.734299717174318,large,medium,0,4,"The model's MAE suggests a typical error range of 20.5 kWh, and the prediction is close to the expected value, but the SHAP values indicate significant adjustments, suggesting a moderate error likelihood.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model's MAE suggests a typical error range of 20.5 kWh, and the prediction is close to the expected value, but the SHAP values indicate significant adjustments, suggesting a moderate error likelihood.""
+}
+```",2.9,0
+4,E+X+T,deepseek,deepseek,True,True,True,2009-11-09 00:00:00,175.4420166015625,208.2009833333333,-15.734299717174318,large,medium,0,4,"The model's MAE of 20.55 kWh corresponds to an approximate 11.7% error for this prediction of 175.44, placing it in the medium error bucket.","{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model's MAE of 20.55 kWh corresponds to an approximate 11.7% error for this prediction of 175.44, placing it in the medium error bucket.""
+}",43.61,0
+10,Baseline,none,gpt,False,False,False,2009-12-21 00:00:00,240.49972534179688,203.00573333333327,18.4694251698295,large,medium,0,3,"The prediction of 240.50 is within a reasonable range of the recent lags, but the variability in past consumption suggests a moderate error is possible.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 3,
+  ""reasoning"": ""The prediction of 240.50 is within a reasonable range of the recent lags, but the variability in past consumption suggests a moderate error is possible.""
+}
+```",4.19,0
+10,Baseline,none,deepseek,False,False,False,2009-12-21 00:00:00,240.49972534179688,203.00573333333327,18.4694251698295,large,medium,0,3,"The prediction is moderately higher than recent lags and reflects seasonal adjustment for week 52, but actual consumption could vary due to unobserved factors, leading to an error likely in the 5-15% range.","{  ""error_bucket"": ""medium"",
+  ""confidence"": 3,
+  ""reasoning"": ""The prediction is moderately higher than recent lags and reflects seasonal adjustment for week 52, but actual consumption could vary due to unobserved factors, leading to an error likely in the 5-15% range.""
+}",65.22,0
+10,X,none,gpt,False,True,False,2009-12-21 00:00:00,240.49972534179688,203.00573333333327,18.4694251698295,large,medium,0,4,"The prediction of 240.50 is significantly influenced by recent high consumption weeks (lag_1 and lag_4) and the week of the year, which suggests a seasonal pattern; however, the prediction is notably higher than most recent lags, indicating a moderate risk of overestimation, likely leading to a medium error range.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The prediction of 240.50 is significantly influenced by recent high consumption weeks (lag_1 and lag_4) and the week of the year, which suggests a seasonal pattern; however, the prediction is notably higher than most recent lags, indicating a moderate risk of overestimation, likely leading to a medium error range.""
+}
+```",3.26,0
+10,X,none,deepseek,False,True,False,2009-12-21 00:00:00,240.49972534179688,203.00573333333327,18.4694251698295,large,medium,0,3,"The prediction of 240.50 kWh is about 7.7% higher than the most recent lag_1 value of 223.38 kWh, which typically corresponds to a medium error range in time series forecasting.","{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 3,
+  ""reasoning"": ""The prediction of 240.50 kWh is about 7.7% higher than the most recent lag_1 value of 223.38 kWh, which typically corresponds to a medium error range in time series forecasting.""
+}",106.69,0
+10,T,none,gpt,False,False,True,2009-12-21 00:00:00,240.49972534179688,203.00573333333327,18.4694251698295,large,medium,0,4,"The model has a reasonable R² of 0.686, indicating a good fit, but the MAE of 20.550 suggests that the prediction error could be around 8.5% of the prediction value (240.50), placing it in the medium error bucket.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model has a reasonable R² of 0.686, indicating a good fit, but the MAE of 20.550 suggests that the prediction error could be around 8.5% of the prediction value (240.50), placing it in the medium error bucket.""
+}
+```",2.66,0
+10,T,none,deepseek,False,False,True,2009-12-21 00:00:00,240.49972534179688,203.00573333333327,18.4694251698295,large,medium,0,4,"The model's MAE (20.55) suggests typical absolute errors around 8-9% of the predicted 240.50 kWh, aligning with medium error range based on average performance and lagged consumption context.","{  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model's MAE (20.55) suggests typical absolute errors around 8-9% of the predicted 240.50 kWh, aligning with medium error range based on average performance and lagged consumption context.""
+}",24.26,0
+10,X+T,none,gpt,False,True,True,2009-12-21 00:00:00,240.49972534179688,203.00573333333327,18.4694251698295,large,medium,0,4,"The model has a relatively high R² of 0.686, indicating a good fit, but the MAE of 20.550 suggests moderate errors; the prediction of 240.50 is influenced by significant positive SHAP values from lag_1 and weekofyear, which could lead to a moderate error given the variability in past consumption values.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model has a relatively high R² of 0.686, indicating a good fit, but the MAE of 20.550 suggests moderate errors; the prediction of 240.50 is influenced by significant positive SHAP values from lag_1 and weekofyear, which could lead to a moderate error given the variability in past consumption values.""
+}
+```",2.91,0
+10,X+T,none,deepseek,False,True,True,2009-12-21 00:00:00,240.49972534179688,203.00573333333327,18.4694251698295,large,medium,0,3,"Based on the model's MAE of 20.55 and the prediction of 240.50, the expected absolute percentage error is approximately 8.5%, which falls into the medium error bucket.","{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 3,
+  ""reasoning"": ""Based on the model's MAE of 20.55 and the prediction of 240.50, the expected absolute percentage error is approximately 8.5%, which falls into the medium error bucket.""
+}",77.47,0
+10,E+X+T,gpt,gpt,True,True,True,2009-12-21 00:00:00,240.49972534179688,203.00573333333327,18.4694251698295,large,medium,0,4,"The model has a reasonable R² of 0.686 and the prediction is strongly influenced by recent consumption and seasonal factors, but the MAE of 20.550 suggests a moderate error range, likely placing the prediction in the medium error bucket.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model has a reasonable R² of 0.686 and the prediction is strongly influenced by recent consumption and seasonal factors, but the MAE of 20.550 suggests a moderate error range, likely placing the prediction in the medium error bucket.""
+}
+```",2.76,0
+10,E+X+T,gpt,deepseek,True,True,True,2009-12-21 00:00:00,240.49972534179688,203.00573333333327,18.4694251698295,large,medium,0,3,"The model's MAE of 20.55 kWh indicates a typical absolute error that, relative to the prediction of 240.50 kWh, corresponds to a likely absolute percentage error between 5% and 15%.","{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 3,
+  ""reasoning"": ""The model's MAE of 20.55 kWh indicates a typical absolute error that, relative to the prediction of 240.50 kWh, corresponds to a likely absolute percentage error between 5% and 15%.""
+}",92.02,0
+10,E+X+T,deepseek,gpt,True,True,True,2009-12-21 00:00:00,240.49972534179688,203.00573333333327,18.4694251698295,large,medium,0,4,"The model's MAE and RMSE suggest a typical error range of ±20-25 kWh, and given the prediction is 240.50 kWh, this aligns with a medium error bucket of 5-15%.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model's MAE and RMSE suggest a typical error range of ±20-25 kWh, and given the prediction is 240.50 kWh, this aligns with a medium error bucket of 5-15%.""
+}
+```",2.6,0
+10,E+X+T,deepseek,deepseek,True,True,True,2009-12-21 00:00:00,240.49972534179688,203.00573333333327,18.4694251698295,large,medium,0,4,"The model's MAE of ~20.55 kWh translates to ~8.5% error relative to the 240.50 kWh prediction, falling squarely in the medium bucket (5-15%).","{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model's MAE of ~20.55 kWh translates to ~8.5% error relative to the 240.50 kWh prediction, falling squarely in the medium bucket (5-15%).""
+}",17.71,0
+29,Baseline,none,gpt,False,False,False,2010-05-03 00:00:00,180.59356689453125,154.34199999999998,17.008699443140085,large,medium,0,3,"The prediction of 180.59 is within the range of recent lags, but given the variability in past consumption and the presence of a holiday, a medium error is likely due to potential fluctuations in energy use.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 3,
+  ""reasoning"": ""The prediction of 180.59 is within the range of recent lags, but given the variability in past consumption and the presence of a holiday, a medium error is likely due to potential fluctuations in energy use.""
+}
+```",2.73,0
+29,Baseline,none,deepseek,False,False,False,2010-05-03 00:00:00,180.59356689453125,154.34199999999998,17.008699443140085,large,medium,0,3,"The prediction is within the range of recent lag values and considers seasonal and holiday factors, but typical forecasting errors for energy consumption with such models often fall in the 5-15% range.","{  ""error_bucket"": ""medium"",
+  ""confidence"": 3,
+  ""reasoning"": ""The prediction is within the range of recent lag values and considers seasonal and holiday factors, but typical forecasting errors for energy consumption with such models often fall in the 5-15% range.""
+}",56.22,0
+29,X,none,gpt,False,True,False,2010-05-03 00:00:00,180.59356689453125,154.34199999999998,17.008699443140085,large,medium,0,3,"The prediction of 180.59 is close to the base value of 177.366, and the SHAP values indicate a balanced influence of features, but the variability in lag values suggests potential for moderate error.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 3,
+  ""reasoning"": ""The prediction of 180.59 is close to the base value of 177.366, and the SHAP values indicate a balanced influence of features, but the variability in lag values suggests potential for moderate error.""
+}
+```",2.62,0
+29,X,none,deepseek,False,True,False,2010-05-03 00:00:00,180.59356689453125,154.34199999999998,17.008699443140085,large,medium,0,3,"Prediction (180.59) is between recent lags (169.98–189.16), suggesting moderate variability, with potential error ~5-15% if actual aligns with adjacent lags.","{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 3,
+  ""reasoning"": ""Prediction (180.59) is between recent lags (169.98–189.16), suggesting moderate variability, with potential error ~5-15% if actual aligns with adjacent lags.""
+}",34.51,0
+29,T,none,gpt,False,False,True,2010-05-03 00:00:00,180.59356689453125,154.34199999999998,17.008699443140085,large,medium,0,4,"The model has a reasonable R² of 0.686, indicating a good fit, and the prediction is within the range of recent lags, suggesting a medium error is likely given the MAE and RMSE values.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model has a reasonable R² of 0.686, indicating a good fit, and the prediction is within the range of recent lags, suggesting a medium error is likely given the MAE and RMSE values.""
+}
+```",3.07,0
+29,T,none,deepseek,False,False,True,2010-05-03 00:00:00,180.59356689453125,154.34199999999998,17.008699443140085,large,medium,0,4,"The model's MAE of ~20.55 kWh suggests a typical absolute error around 11-12% relative to this prediction (180.59 kWh), aligning with the medium bucket (5%-15%).","{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model's MAE of ~20.55 kWh suggests a typical absolute error around 11-12% relative to this prediction (180.59 kWh), aligning with the medium bucket (5%-15%).""
+}",21.27,0
+29,X+T,none,gpt,False,True,True,2010-05-03 00:00:00,180.59356689453125,154.34199999999998,17.008699443140085,large,medium,0,4,"The model's R² of 0.686 indicates a reasonable fit, and the prediction is close to the base value with SHAP values suggesting moderate influence from recent lags, but the MAE and RMSE suggest some variability, leading to a medium error expectation.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model's R² of 0.686 indicates a reasonable fit, and the prediction is close to the base value with SHAP values suggesting moderate influence from recent lags, but the MAE and RMSE suggest some variability, leading to a medium error expectation.""
+}
+```",2.63,0
+29,X+T,none,deepseek,False,True,True,2010-05-03 00:00:00,180.59356689453125,154.34199999999998,17.008699443140085,large,medium,0,3,"The model's MAE of 20.55 kWh corresponds to an approximate 11.4% error for this prediction, placing it in the medium error bucket.","{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 3,
+  ""reasoning"": ""The model's MAE of 20.55 kWh corresponds to an approximate 11.4% error for this prediction, placing it in the medium error bucket.""
+}",62.47,0
+29,E+X+T,gpt,gpt,True,True,True,2010-05-03 00:00:00,180.59356689453125,154.34199999999998,17.008699443140085,large,medium,0,4,"The model's R² of 0.686 indicates a reasonable fit, but the MAE of 20.550 suggests moderate prediction errors, likely placing the error in the medium range given the prediction context and feature influences.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model's R² of 0.686 indicates a reasonable fit, but the MAE of 20.550 suggests moderate prediction errors, likely placing the error in the medium range given the prediction context and feature influences.""
+}
+```",2.58,0
+29,E+X+T,gpt,deepseek,True,True,True,2010-05-03 00:00:00,180.59356689453125,154.34199999999998,17.008699443140085,large,medium,0,4,"The model's MAE (20.55) and prediction magnitude (~180 kWh) suggest a typical absolute percentage error around ~11-14% (medium range), supported by moderate R² (0.686) and feature contributions aligning with baseline trends.","{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model's MAE (20.55) and prediction magnitude (~180 kWh) suggest a typical absolute percentage error around ~11-14% (medium range), supported by moderate R² (0.686) and feature contributions aligning with baseline trends.""
+}",28.61,0
+29,E+X+T,deepseek,gpt,True,True,True,2010-05-03 00:00:00,180.59356689453125,154.34199999999998,17.008699443140085,large,medium,0,4,"The model's average error (MAE) is 20.550 kWh, which is about 11.4% of the prediction (180.59 kWh), placing it in the medium error bucket; the model's R² of 0.686 indicates moderate accuracy, supporting this classification.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model's average error (MAE) is 20.550 kWh, which is about 11.4% of the prediction (180.59 kWh), placing it in the medium error bucket; the model's R² of 0.686 indicates moderate accuracy, supporting this classification.""
+}
+```",33.06,0
+29,E+X+T,deepseek,deepseek,True,True,True,2010-05-03 00:00:00,180.59356689453125,154.34199999999998,17.008699443140085,large,medium,0,4,"The model's MAE of ~21 kWh for a prediction of 180.59 kWh results in an ~11.6% error, falling within the medium (5-15%) bucket based on average performance, though individual errors may vary.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model's MAE of ~21 kWh for a prediction of 180.59 kWh results in an ~11.6% error, falling within the medium (5-15%) bucket based on average performance, though individual errors may vary.""
+}
+```",14.96,0
+56,Baseline,none,gpt,False,False,False,2010-11-08 00:00:00,157.11070251464844,201.33963333333327,-21.967324607897954,large,medium,0,3,"The prediction of 157.11 is lower than most of the lag values, suggesting a potential underestimation, but the proximity to lag_7 and lag_6 indicates a moderate error likely within the medium range.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 3,
+  ""reasoning"": ""The prediction of 157.11 is lower than most of the lag values, suggesting a potential underestimation, but the proximity to lag_7 and lag_6 indicates a moderate error likely within the medium range.""
+}
+```",32.77,0
+56,Baseline,none,deepseek,False,False,False,2010-11-08 00:00:00,157.11070251464844,201.33963333333327,-21.967324607897954,large,small,0,3,"The prediction (157.11) is close to recent lagged values (lag_1=164.77, lag_7=151.74), suggesting moderate stability, and a 4.6% error relative to lag_1 would fall just below the 5% threshold.","{
+  ""error_bucket"": ""small"",
+  ""confidence"": 3,
+  ""reasoning"": ""The prediction (157.11) is close to recent lagged values (lag_1=164.77, lag_7=151.74), suggesting moderate stability, and a 4.6% error relative to lag_1 would fall just below the 5% threshold.""
+}",55.91,0
+56,X,none,gpt,False,True,False,2010-11-08 00:00:00,157.11070251464844,201.33963333333327,-21.967324607897954,large,medium,0,4,"The prediction of 157.11 is significantly lower than most recent lags, especially lag_1 (164.77), and the SHAP base value (177.366), suggesting a moderate underestimation, likely resulting in a medium error.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The prediction of 157.11 is significantly lower than most recent lags, especially lag_1 (164.77), and the SHAP base value (177.366), suggesting a moderate underestimation, likely resulting in a medium error.""
+}
+```",32.65,0
+56,X,none,deepseek,False,True,False,2010-11-08 00:00:00,157.11070251464844,201.33963333333327,-21.967324607897954,large,medium,0,3,"The SHAP analysis shows significant negative contributions from recent lags, but actual consumption may align closer to the base value (177.37) due to unseasoned factors, leading to an absolute error around ~10-12%.","{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 3,
+  ""reasoning"": ""The SHAP analysis shows significant negative contributions from recent lags, but actual consumption may align closer to the base value (177.37) due to unseasoned factors, leading to an absolute error around ~10-12%.""
+}",66.56,0
+56,T,none,gpt,False,False,True,2010-11-08 00:00:00,157.11070251464844,201.33963333333327,-21.967324607897954,large,medium,0,4,"The prediction of 157.11 is close to the recent lag values, particularly lag_6 and lag_7, suggesting a reasonable estimate; however, the model's MAE and RMSE indicate moderate errors, placing the likely error in the medium bucket.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The prediction of 157.11 is close to the recent lag values, particularly lag_6 and lag_7, suggesting a reasonable estimate; however, the model's MAE and RMSE indicate moderate errors, placing the likely error in the medium bucket.""
+}
+```",32.09,0
+56,T,none,deepseek,False,False,True,2010-11-08 00:00:00,157.11070251464844,201.33963333333327,-21.967324607897954,large,medium,0,4,"The model's MAE of 20.55 kWh translates to ~13% error relative to the prediction of 157.11 kWh, falling into the medium bucket (5-15%).","{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model's MAE of 20.55 kWh translates to ~13% error relative to the prediction of 157.11 kWh, falling into the medium bucket (5-15%).""
+}",21.35,0
+56,X+T,none,gpt,False,True,True,2010-11-08 00:00:00,157.11070251464844,201.33963333333327,-21.967324607897954,large,medium,0,4,"The prediction of 157.11 is lower than most recent lags, and SHAP values indicate negative contributions from significant lags, suggesting a moderate deviation from the expected base value of 177.366.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The prediction of 157.11 is lower than most recent lags, and SHAP values indicate negative contributions from significant lags, suggesting a moderate deviation from the expected base value of 177.366.""
+}
+```",33.01,0
+56,X+T,none,deepseek,False,True,True,2010-11-08 00:00:00,157.11070251464844,201.33963333333327,-21.967324607897954,large,medium,0,4,"The model's MAE (20.55) suggests a typical absolute error around ~13% of the prediction (157.11), aligning with medium error, and SHAP analysis indicates mixed but moderate influences from lagged features.","{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model's MAE (20.55) suggests a typical absolute error around ~13% of the prediction (157.11), aligning with medium error, and SHAP analysis indicates mixed but moderate influences from lagged features.""
+}",38.01,0
+56,E+X+T,gpt,gpt,True,True,True,2010-11-08 00:00:00,157.11070251464844,201.33963333333327,-21.967324607897954,large,medium,0,4,"The model's MAE and RMSE suggest an average error of 20 to 25 units, which is about 13% to 16% of the prediction value, indicating a medium error bucket.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model's MAE and RMSE suggest an average error of 20 to 25 units, which is about 13% to 16% of the prediction value, indicating a medium error bucket.""
+}
+```",32.47,0
+56,E+X+T,gpt,deepseek,True,True,True,2010-11-08 00:00:00,157.11070251464844,201.33963333333327,-21.967324607897954,large,medium,0,4,"The model's MAE of ~20.55 kWh corresponds to ~11.6% error relative to the baseline (177.366), aligning with medium bucket (5-15%) errors.","{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model's MAE of ~20.55 kWh corresponds to ~11.6% error relative to the baseline (177.366), aligning with medium bucket (5-15%) errors.""
+}",21.19,0
+56,E+X+T,deepseek,gpt,True,True,True,2010-11-08 00:00:00,157.11070251464844,201.33963333333327,-21.967324607897954,large,medium,0,4,"The model's MAE and RMSE suggest a typical error range of ±20-25 kWh, which translates to an approximate 13-16% error relative to the prediction of 157.11 kWh, placing it in the medium error bucket.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model's MAE and RMSE suggest a typical error range of ±20-25 kWh, which translates to an approximate 13-16% error relative to the prediction of 157.11 kWh, placing it in the medium error bucket.""
+}
+```",32.77,0
+56,E+X+T,deepseek,deepseek,True,True,True,2010-11-08 00:00:00,157.11070251464844,201.33963333333327,-21.967324607897954,large,medium,0,3,"The model's MAE (20.55) suggests an average error around ~13% of the predicted value (157.11), aligning with the medium bucket (5%-15%).","{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 3,
+  ""reasoning"": ""The model's MAE (20.55) suggests an average error around ~13% of the predicted value (157.11), aligning with the medium bucket (5%-15%).""
+}",52.76,0
+55,Baseline,none,gpt,False,False,False,2010-11-01 00:00:00,182.55816650390625,164.77066666666667,10.79530731839784,medium,medium,1,3,"The prediction of 182.56 is within the range of recent lags, but the variability in past weeks and the presence of a holiday suggest moderate uncertainty, leading to a medium error likelihood.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 3,
+  ""reasoning"": ""The prediction of 182.56 is within the range of recent lags, but the variability in past weeks and the presence of a holiday suggest moderate uncertainty, leading to a medium error likelihood.""
+}
+```",63.22,0
+55,Baseline,none,deepseek,False,False,False,2010-11-01 00:00:00,182.55816650390625,164.77066666666667,10.79530731839784,medium,medium,1,3,"Recent lags show a downward trend, but seasonal/week 44 patterns might increase consumption, leading to moderate error due to conflicting signals.","{  ""error_bucket"": ""medium"",
+  ""confidence"": 3,
+  ""reasoning"": ""Recent lags show a downward trend, but seasonal/week 44 patterns might increase consumption, leading to moderate error due to conflicting signals.""
+}",25.93,0
+55,X,none,gpt,False,True,False,2010-11-01 00:00:00,182.55816650390625,164.77066666666667,10.79530731839784,medium,medium,1,4,"The prediction of 182.56 is close to the base SHAP value of 177.366, and the SHAP contributions suggest minor adjustments, indicating a moderate deviation from recent consumption patterns, likely resulting in a medium error.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The prediction of 182.56 is close to the base SHAP value of 177.366, and the SHAP contributions suggest minor adjustments, indicating a moderate deviation from recent consumption patterns, likely resulting in a medium error.""
+}
+```",31.74,0
+55,X,none,deepseek,False,True,False,2010-11-01 00:00:00,182.55816650390625,164.77066666666667,10.79530731839784,medium,medium,1,3,"The prediction integrates conflicting lag impacts (e.g., lag_1 strongly increases, lag_6 strongly decreases) and seasonal context, but energy consumption variability in this domain often leads to moderate errors.","{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 3,
+  ""reasoning"": ""The prediction integrates conflicting lag impacts (e.g., lag_1 strongly increases, lag_6 strongly decreases) and seasonal context, but energy consumption variability in this domain often leads to moderate errors.""
+}",37.35,0
+55,T,none,gpt,False,False,True,2010-11-01 00:00:00,182.55816650390625,164.77066666666667,10.79530731839784,medium,medium,1,4,"The prediction of 182.56 is within the range of recent lags, but the model's MAE suggests a typical error around 20.55, which is approximately 11% of the prediction value, indicating a medium error bucket.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The prediction of 182.56 is within the range of recent lags, but the model's MAE suggests a typical error around 20.55, which is approximately 11% of the prediction value, indicating a medium error bucket.""
+}
+```",32.51,0
+55,T,none,deepseek,False,False,True,2010-11-01 00:00:00,182.55816650390625,164.77066666666667,10.79530731839784,medium,medium,1,3,"The model's MAE of 20.55 relative to typical consumption around 180-200 suggests an absolute percentage error around 10%, which falls in the medium range.","{  ""error_bucket"": ""medium"",
+  ""confidence"": 3,
+  ""reasoning"": ""The model's MAE of 20.55 relative to typical consumption around 180-200 suggests an absolute percentage error around 10%, which falls in the medium range.""
+}",50.12,0
+55,X+T,none,gpt,False,True,True,2010-11-01 00:00:00,182.55816650390625,164.77066666666667,10.79530731839784,medium,medium,1,4,"The prediction of 182.56 is close to the expected SHAP base value of 177.366, and the model has a relatively good R² of 0.686, suggesting moderate accuracy; however, the MAE of 20.550 indicates potential for medium error magnitude.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The prediction of 182.56 is close to the expected SHAP base value of 177.366, and the model has a relatively good R² of 0.686, suggesting moderate accuracy; however, the MAE of 20.550 indicates potential for medium error magnitude.""
+}
+```",31.96,0
+55,X+T,none,deepseek,False,True,True,2010-11-01 00:00:00,182.55816650390625,164.77066666666667,10.79530731839784,medium,medium,1,3,"Based on the model's mean absolute error of 20.55 kWh, which corresponds to approximately 11% of the prediction, the error is likely within the medium range.","{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 3,
+  ""reasoning"": ""Based on the model's mean absolute error of 20.55 kWh, which corresponds to approximately 11% of the prediction, the error is likely within the medium range.""
+}",119.24,0
+55,E+X+T,gpt,gpt,True,True,True,2010-11-01 00:00:00,182.55816650390625,164.77066666666667,10.79530731839784,medium,medium,1,4,"The model's MAE of 20.550 suggests a typical error around 11% for this prediction, given the target value is close to the prediction and recent lags are influential.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model's MAE of 20.550 suggests a typical error around 11% for this prediction, given the target value is close to the prediction and recent lags are influential.""
+}
+```",31.84,0
+55,E+X+T,gpt,deepseek,True,True,True,2010-11-01 00:00:00,182.55816650390625,164.77066666666667,10.79530731839784,medium,medium,1,4,"The model's MAE (20.55) translates to ~11.25% error relative to the prediction (182.56), aligning with the medium bucket, and no extreme feature anomalies suggest significant deviation from typical performance.","{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model's MAE (20.55) translates to ~11.25% error relative to the prediction (182.56), aligning with the medium bucket, and no extreme feature anomalies suggest significant deviation from typical performance.""
+}",24.15,0
+55,E+X+T,deepseek,gpt,True,True,True,2010-11-01 00:00:00,182.55816650390625,164.77066666666667,10.79530731839784,medium,medium,1,4,"The model's MAE and RMSE suggest typical errors around 20-25 kWh, which is about 11-14% of the prediction, indicating a medium error bucket.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model's MAE and RMSE suggest typical errors around 20-25 kWh, which is about 11-14% of the prediction, indicating a medium error bucket.""
+}
+```",32.45,0
+55,E+X+T,deepseek,deepseek,True,True,True,2010-11-01 00:00:00,182.55816650390625,164.77066666666667,10.79530731839784,medium,medium,1,4,"The model's MAE of ~20.5 kWh translates to ~11.2% error relative to the predicted value, falling squarely in the medium bucket (5-15%).","{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model's MAE of ~20.5 kWh translates to ~11.2% error relative to the predicted value, falling squarely in the medium bucket (5-15%).""
+}",12.86,0
+25,Baseline,none,gpt,False,False,False,2010-04-05 00:00:00,210.51416015625,196.34673333333333,7.2155144027096965,medium,medium,1,3,"The prediction of 210.51 is close to the recent lags, especially lag_1 and lag_3, but the variability in past weeks and the presence of a holiday suggest moderate uncertainty, leading to a medium error expectation.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 3,
+  ""reasoning"": ""The prediction of 210.51 is close to the recent lags, especially lag_1 and lag_3, but the variability in past weeks and the presence of a holiday suggest moderate uncertainty, leading to a medium error expectation.""
+}
+```",32.48,0
+25,Baseline,none,deepseek,False,False,False,2010-04-05 00:00:00,210.51416015625,196.34673333333333,7.2155144027096965,medium,medium,1,3,"The prediction is close to recent lag values, but variability in historical consumption and potential holiday effects suggest a moderate error likely between 5% and 15%.","{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 3,
+  ""reasoning"": ""The prediction is close to recent lag values, but variability in historical consumption and potential holiday effects suggest a moderate error likely between 5% and 15%.""
+}",78.44,0
+25,X,none,gpt,False,True,False,2010-04-05 00:00:00,210.51416015625,196.34673333333333,7.2155144027096965,medium,medium,1,3,"The prediction of 210.51 is close to the recent lag values, especially lag_1, and the SHAP values suggest a reasonable contribution from these features, but the variability in past weeks and the influence of holidays could introduce moderate error.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 3,
+  ""reasoning"": ""The prediction of 210.51 is close to the recent lag values, especially lag_1, and the SHAP values suggest a reasonable contribution from these features, but the variability in past weeks and the influence of holidays could introduce moderate error.""
+}
+```",62.94,0
+25,X,none,deepseek,False,True,False,2010-04-05 00:00:00,210.51416015625,196.34673333333333,7.2155144027096965,medium,medium,1,3,"The prediction (210.5) is influenced by recent consumption volatility (lags ranging 137-229) and seasonal/weekly patterns, suggesting moderate uncertainty given mixed historical trends.","{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 3,
+  ""reasoning"": ""The prediction (210.5) is influenced by recent consumption volatility (lags ranging 137-229) and seasonal/weekly patterns, suggesting moderate uncertainty given mixed historical trends.""
+}",25.58,0
+25,T,none,gpt,False,False,True,2010-04-05 00:00:00,210.51416015625,196.34673333333333,7.2155144027096965,medium,medium,1,4,"The model has a reasonable R² of 0.686, indicating a good fit, but the MAE of 20.550 suggests a moderate level of error relative to the prediction of 210.51, likely placing the error in the medium range.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model has a reasonable R² of 0.686, indicating a good fit, but the MAE of 20.550 suggests a moderate level of error relative to the prediction of 210.51, likely placing the error in the medium range.""
+}
+```",2.23,0
+25,T,none,deepseek,False,False,True,2010-04-05 00:00:00,210.51416015625,196.34673333333333,7.2155144027096965,medium,medium,1,3,"The model's MAE of 20.55 corresponds to roughly 10% error for typical consumption levels, and the prediction of 210.51 is within the range of recent lag values, suggesting an error likely in the medium bucket.","{  ""error_bucket"": ""medium"",
+  ""confidence"": 3,
+  ""reasoning"": ""The model's MAE of 20.55 corresponds to roughly 10% error for typical consumption levels, and the prediction of 210.51 is within the range of recent lag values, suggesting an error likely in the medium bucket.""
+}",51.3,0
+25,X+T,none,gpt,False,True,True,2010-04-05 00:00:00,210.51416015625,196.34673333333333,7.2155144027096965,medium,medium,1,4,"The model has a reasonable R² of 0.686, indicating a good fit, but the MAE of 20.550 suggests moderate errors; given the prediction of 210.51 and the SHAP base value of 177.366, the prediction is likely moderately accurate, falling into the medium error bucket.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model has a reasonable R² of 0.686, indicating a good fit, but the MAE of 20.550 suggests moderate errors; given the prediction of 210.51 and the SHAP base value of 177.366, the prediction is likely moderately accurate, falling into the medium error bucket.""
+}
+```",32.14,0
+25,X+T,none,deepseek,False,True,True,2010-04-05 00:00:00,210.51416015625,196.34673333333333,7.2155144027096965,medium,medium,1,4,"The model's MAE of ~20.55 suggests an average absolute error around 10% if actual values are near 200 kWh, and SHAP/lag patterns indicate the prediction aligns with recent consumption trends, supporting a medium error range.","{  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model's MAE of ~20.55 suggests an average absolute error around 10% if actual values are near 200 kWh, and SHAP/lag patterns indicate the prediction aligns with recent consumption trends, supporting a medium error range.""
+}",47.9,0
+25,E+X+T,gpt,gpt,True,True,True,2010-04-05 00:00:00,210.51416015625,196.34673333333333,7.2155144027096965,medium,medium,1,4,"The model's performance metrics indicate moderate accuracy, and the prediction is close to recent consumption values, but variability in past data suggests a medium error is likely.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model's performance metrics indicate moderate accuracy, and the prediction is close to recent consumption values, but variability in past data suggests a medium error is likely.""
+}
+```",32.14,0
+25,E+X+T,gpt,deepseek,True,True,True,2010-04-05 00:00:00,210.51416015625,196.34673333333333,7.2155144027096965,medium,medium,1,4,"The model's MAE of ~20.55 suggests typical errors around 9-10% of a ~200 kWh baseline, aligning with medium error range.","{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model's MAE of ~20.55 suggests typical errors around 9-10% of a ~200 kWh baseline, aligning with medium error range.""
+}",38.83,0
+25,E+X+T,deepseek,gpt,True,True,True,2010-04-05 00:00:00,210.51416015625,196.34673333333333,7.2155144027096965,medium,medium,1,4,"The model has a reasonable R² of 0.686 and typical errors around ±20.6 kWh (MAE), suggesting a medium error range is likely given the prediction context and feature influences.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model has a reasonable R² of 0.686 and typical errors around ±20.6 kWh (MAE), suggesting a medium error range is likely given the prediction context and feature influences.""
+}
+```",32.23,0
+25,E+X+T,deepseek,deepseek,True,True,True,2010-04-05 00:00:00,210.51416015625,196.34673333333333,7.2155144027096965,medium,medium,1,4,"Model's MAE (20.55 kWh) translates to ~9.76% error relative to prediction value (210.51 kWh), falling squarely in medium range [5%,15%), with RMSE suggesting some larger outliers but MAE being primary reliability indicator.","{  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""Model's MAE (20.55 kWh) translates to ~9.76% error relative to prediction value (210.51 kWh), falling squarely in medium range [5%,15%), with RMSE suggesting some larger outliers but MAE being primary reliability indicator.""
+}",24.66,0
+19,Baseline,none,gpt,False,False,False,2010-02-22 00:00:00,209.96017456054688,229.4187,-8.481664938147206,medium,medium,1,3,"The prediction of 209.96 is lower than most of the recent lags, suggesting a potential underestimation, but the absence of holidays and the week of the year might justify a lower consumption; thus, a medium error is likely.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 3,
+  ""reasoning"": ""The prediction of 209.96 is lower than most of the recent lags, suggesting a potential underestimation, but the absence of holidays and the week of the year might justify a lower consumption; thus, a medium error is likely.""
+}
+```",32.23,0
+19,Baseline,none,deepseek,False,False,False,2010-02-22 00:00:00,209.96017456054688,229.4187,-8.481664938147206,medium,medium,1,3,"The prediction shows an 8.5% drop from lag_1 (229.48 kWh), but energy consumption in week 8 (winter) may not decrease sharply, leading to a moderate error.","{  ""error_bucket"": ""medium"",
+  ""confidence"": 3,
+  ""reasoning"": ""The prediction shows an 8.5% drop from lag_1 (229.48 kWh), but energy consumption in week 8 (winter) may not decrease sharply, leading to a moderate error.""
+}",23.82,0
+19,X,none,gpt,False,True,False,2010-02-22 00:00:00,209.96017456054688,229.4187,-8.481664938147206,medium,medium,1,3,"The prediction of 209.96 is influenced by recent high consumption values, especially lag_1, which is significantly lower than the prediction, suggesting a potential overestimation; however, the SHAP values indicate a balanced contribution from various lags, leading to a moderate error expectation.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 3,
+  ""reasoning"": ""The prediction of 209.96 is influenced by recent high consumption values, especially lag_1, which is significantly lower than the prediction, suggesting a potential overestimation; however, the SHAP values indicate a balanced contribution from various lags, leading to a moderate error expectation.""
+}
+```",32.6,0
+19,X,none,deepseek,False,True,False,2010-02-22 00:00:00,209.96017456054688,229.4187,-8.481664938147206,medium,medium,1,3,"The prediction is based on historical lags and seasonal features, but energy consumption can be volatile due to unobserved factors like temperature, leading to a typical error in the 5-15% range.","{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 3,
+  ""reasoning"": ""The prediction is based on historical lags and seasonal features, but energy consumption can be volatile due to unobserved factors like temperature, leading to a typical error in the 5-15% range.""
+}",49.09,0
+19,T,none,gpt,False,False,True,2010-02-22 00:00:00,209.96017456054688,229.4187,-8.481664938147206,medium,medium,1,4,"The model has a reasonable R² of 0.686, indicating a good fit, but the prediction of 209.96 is lower than most recent lags, suggesting a potential underestimation; the MAE of 20.550 suggests a medium error range relative to the prediction value.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model has a reasonable R² of 0.686, indicating a good fit, but the prediction of 209.96 is lower than most recent lags, suggesting a potential underestimation; the MAE of 20.550 suggests a medium error range relative to the prediction value.""
+}
+```",32.73,0
+19,T,none,deepseek,False,False,True,2010-02-22 00:00:00,209.96017456054688,229.4187,-8.481664938147206,medium,medium,1,4,"The model's MAE of 20.55 kWh and prediction of 209.96 kWh imply a typical absolute percentage error around 10%, which falls within the medium bucket.","{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model's MAE of 20.55 kWh and prediction of 209.96 kWh imply a typical absolute percentage error around 10%, which falls within the medium bucket.""
+}",60.43,0
+19,X+T,none,gpt,False,True,True,2010-02-22 00:00:00,209.96017456054688,229.4187,-8.481664938147206,medium,medium,1,4,"The prediction of 209.96 is influenced by significant positive SHAP contributions from lag_1 and weekofyear, but the actual recent consumption values (lags) are generally higher, suggesting a potential underestimation; the model's MAE and RMSE indicate moderate errors, supporting a medium error classification.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The prediction of 209.96 is influenced by significant positive SHAP contributions from lag_1 and weekofyear, but the actual recent consumption values (lags) are generally higher, suggesting a potential underestimation; the model's MAE and RMSE indicate moderate errors, supporting a medium error classification.""
+}
+```",32.08,0
+19,X+T,none,deepseek,False,True,True,2010-02-22 00:00:00,209.96017456054688,229.4187,-8.481664938147206,medium,medium,1,3,"The model's mean absolute error of 20.55 kWh corresponds to approximately 10% error for this prediction value, which falls within the medium error bucket.","{  ""error_bucket"": ""medium"",
+  ""confidence"": 3,
+  ""reasoning"": ""The model's mean absolute error of 20.55 kWh corresponds to approximately 10% error for this prediction value, which falls within the medium error bucket.""
+}",92.11,0
+19,E+X+T,gpt,gpt,True,True,True,2010-02-22 00:00:00,209.96017456054688,229.4187,-8.481664938147206,medium,medium,1,4,"Given the model's MAE of 20.550 and RMSE of 25.035, the prediction error is likely to fall within the medium range, as these metrics suggest a typical deviation of around 10% from the predicted value of 209.96 kWh.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""Given the model's MAE of 20.550 and RMSE of 25.035, the prediction error is likely to fall within the medium range, as these metrics suggest a typical deviation of around 10% from the predicted value of 209.96 kWh.""
+}
+```",34.94,0
+19,E+X+T,gpt,deepseek,True,True,True,2010-02-22 00:00:00,209.96017456054688,229.4187,-8.481664938147206,medium,medium,1,4,"Model's MAE (20.55) and RMSE (25.035) translate to ~9.8-11.9% error relative to the prediction of 209.96 kWh, placing it solidly in the medium bucket.","{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""Model's MAE (20.55) and RMSE (25.035) translate to ~9.8-11.9% error relative to the prediction of 209.96 kWh, placing it solidly in the medium bucket.""
+}",22.22,0
+19,E+X+T,deepseek,gpt,True,True,True,2010-02-22 00:00:00,209.96017456054688,229.4187,-8.481664938147206,medium,medium,1,4,"The model's MAE and RMSE suggest typical errors around 20-25 kWh, which is approximately 10% of the prediction value, indicating a medium error bucket.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model's MAE and RMSE suggest typical errors around 20-25 kWh, which is approximately 10% of the prediction value, indicating a medium error bucket.""
+}
+```",32.01,0
+19,E+X+T,deepseek,deepseek,True,True,True,2010-02-22 00:00:00,209.96017456054688,229.4187,-8.481664938147206,medium,medium,1,4,"The model's MAE (20.55 kWh) represents ~9.8% error relative to the predicted 209.96 kWh, falling squarely in the medium bucket (5-15%).","{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model's MAE (20.55 kWh) represents ~9.8% error relative to the predicted 209.96 kWh, falling squarely in the medium bucket (5-15%).""
+}",13.52,0
+36,Baseline,none,gpt,False,False,False,2010-06-21 00:00:00,156.17913818359375,168.36753333333334,-7.239160014068186,medium,medium,1,3,"The prediction of 156.18 is close to lag_7 (154.34) but significantly lower than the other recent lags, suggesting a moderate error given the variability in past consumption values.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 3,
+  ""reasoning"": ""The prediction of 156.18 is close to lag_7 (154.34) but significantly lower than the other recent lags, suggesting a moderate error given the variability in past consumption values.""
+}
+```",31.7,0
+36,Baseline,none,deepseek,False,False,False,2010-06-21 00:00:00,156.17913818359375,168.36753333333334,-7.239160014068186,medium,small,0,3,"The prediction (156.18) is close to lag_7 (154.34) and aligns with potential weekly seasonality patterns captured by the XGBRegressor using lag features, suggesting a relatively accurate forecast.","{
+  ""error_bucket"": ""small"",
+  ""confidence"": 3,
+  ""reasoning"": ""The prediction (156.18) is close to lag_7 (154.34) and aligns with potential weekly seasonality patterns captured by the XGBRegressor using lag features, suggesting a relatively accurate forecast.""
+}",28.98,0
+36,X,none,gpt,False,True,False,2010-06-21 00:00:00,156.17913818359375,168.36753333333334,-7.239160014068186,medium,medium,1,4,"The prediction is significantly lower than the base value and most recent lags, with SHAP values indicating negative contributions from key features, suggesting a moderate deviation from expected consumption patterns.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The prediction is significantly lower than the base value and most recent lags, with SHAP values indicating negative contributions from key features, suggesting a moderate deviation from expected consumption patterns.""
+}
+```",31.77,0
+36,X,none,deepseek,False,True,False,2010-06-21 00:00:00,156.17913818359375,168.36753333333334,-7.239160014068186,medium,medium,1,3,"The model predicts a significant drop from recent lagged values and uses week 25's seasonal influence, but actual consumption might align closer to historical lags (~5-15% error range).","{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 3,
+  ""reasoning"": ""The model predicts a significant drop from recent lagged values and uses week 25's seasonal influence, but actual consumption might align closer to historical lags (~5-15% error range).""
+}",86.87,1
+36,T,none,gpt,False,False,True,2010-06-21 00:00:00,156.17913818359375,168.36753333333334,-7.239160014068186,medium,medium,1,4,"The prediction of 156.18 is significantly lower than most of the lag values, suggesting a potential underestimation; given the model's MAE and RMSE, a medium error is likely.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The prediction of 156.18 is significantly lower than most of the lag values, suggesting a potential underestimation; given the model's MAE and RMSE, a medium error is likely.""
+}
+```",31.6,0
+36,T,none,deepseek,False,False,True,2010-06-21 00:00:00,156.17913818359375,168.36753333333334,-7.239160014068186,medium,medium,1,4,"The model's MAE (20.55 kWh) suggests typical absolute errors around 13-15% for a prediction of ~156 kWh, aligning with the medium error bucket (5-15%).","{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model's MAE (20.55 kWh) suggests typical absolute errors around 13-15% for a prediction of ~156 kWh, aligning with the medium error bucket (5-15%).""
+}",25.87,0
+36,X+T,none,gpt,False,True,True,2010-06-21 00:00:00,156.17913818359375,168.36753333333334,-7.239160014068186,medium,medium,1,4,"The prediction of 156.18 is lower than the recent lags, especially lag_1 and lag_5, and the SHAP values suggest a downward adjustment from the base value of 177.366, indicating a moderate deviation from expected patterns, likely leading to a medium error range.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The prediction of 156.18 is lower than the recent lags, especially lag_1 and lag_5, and the SHAP values suggest a downward adjustment from the base value of 177.366, indicating a moderate deviation from expected patterns, likely leading to a medium error range.""
+}
+```",33.56,0
+36,X+T,none,deepseek,False,True,True,2010-06-21 00:00:00,156.17913818359375,168.36753333333334,-7.239160014068186,medium,medium,1,3,"The model's MAE of 20.55 kWh corresponds to approximately 13% error relative to the prediction of 156.18, which falls within the medium error bucket.","{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 3,
+  ""reasoning"": ""The model's MAE of 20.55 kWh corresponds to approximately 13% error relative to the prediction of 156.18, which falls within the medium error bucket.""
+}",80.39,0
+36,E+X+T,gpt,gpt,True,True,True,2010-06-21 00:00:00,156.17913818359375,168.36753333333334,-7.239160014068186,medium,medium,1,4,"The model's MAE and RMSE suggest a typical error range of 20-25 units, and the prediction is influenced by several factors with a decent R² of 0.686, indicating a medium error likelihood.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model's MAE and RMSE suggest a typical error range of 20-25 units, and the prediction is influenced by several factors with a decent R² of 0.686, indicating a medium error likelihood.""
+}
+```",33.3,0
+36,E+X+T,gpt,deepseek,True,True,True,2010-06-21 00:00:00,156.17913818359375,168.36753333333334,-7.239160014068186,medium,medium,1,4,"The model's MAE (20.55) and prediction magnitude (~156 kWh) suggest a typical absolute percentage error around ~13% (medium bucket), aligning with the model's moderate R² (0.686) and error metrics.","{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model's MAE (20.55) and prediction magnitude (~156 kWh) suggest a typical absolute percentage error around ~13% (medium bucket), aligning with the model's moderate R² (0.686) and error metrics.""
+}",40.25,0
+36,E+X+T,deepseek,gpt,True,True,True,2010-06-21 00:00:00,156.17913818359375,168.36753333333334,-7.239160014068186,medium,medium,1,4,"The model's average error (MAE) is about 20.550 kWh, which is approximately 13% of the prediction (156.18 kWh), suggesting a medium error bucket.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model's average error (MAE) is about 20.550 kWh, which is approximately 13% of the prediction (156.18 kWh), suggesting a medium error bucket.""
+}
+```",67.4,0
+36,E+X+T,deepseek,deepseek,True,True,True,2010-06-21 00:00:00,156.17913818359375,168.36753333333334,-7.239160014068186,medium,medium,1,3,"Based on the model's average MAE of 20.55 kWh and typical consumption around 175-177 kWh, the likely absolute percentage error is approximately 11-12%, which falls into the medium bucket.","{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 3,
+  ""reasoning"": ""Based on the model's average MAE of 20.55 kWh and typical consumption around 175-177 kWh, the likely absolute percentage error is approximately 11-12%, which falls into the medium bucket.""
+}",92.01,0
+12,Baseline,none,gpt,False,False,False,2010-01-04 00:00:00,244.41329956054688,215.57705,13.376307710188474,medium,medium,1,3,"The prediction of 244.41 is close to the recent lag values, but the presence of a holiday and the variability in past consumption suggest a moderate chance of deviation, leading to a medium error estimate.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 3,
+  ""reasoning"": ""The prediction of 244.41 is close to the recent lag values, but the presence of a holiday and the variability in past consumption suggest a moderate chance of deviation, leading to a medium error estimate.""
+}
+```",37.45,0
+12,Baseline,none,deepseek,False,False,False,2010-01-04 00:00:00,244.41329956054688,215.57705,13.376307710188474,medium,medium,1,3,"The prediction (244.41) is close to lag_1 (247.50), but potential seasonal/week-of-year effects and holiday adjustments may introduce moderate error given historical lag volatility.","{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 3,
+  ""reasoning"": ""The prediction (244.41) is close to lag_1 (247.50), but potential seasonal/week-of-year effects and holiday adjustments may introduce moderate error given historical lag volatility.""
+}",41.36,0
+12,X,none,gpt,False,True,False,2010-01-04 00:00:00,244.41329956054688,215.57705,13.376307710188474,medium,medium,1,3,"The prediction of 244.41 is influenced heavily by lag_1 and weekofyear, which are both higher than the base value, suggesting a reasonable prediction; however, the variability in past lags and the holiday effect could introduce moderate error.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 3,
+  ""reasoning"": ""The prediction of 244.41 is influenced heavily by lag_1 and weekofyear, which are both higher than the base value, suggesting a reasonable prediction; however, the variability in past lags and the holiday effect could introduce moderate error.""
+}
+```",37.99,0
+12,X,none,deepseek,False,True,False,2010-01-04 00:00:00,244.41329956054688,215.57705,13.376307710188474,medium,medium,1,3,"The prediction (244.41) is strongly influenced by lag_1 (247.5) and seasonal effects (week 1 SHAP +17.95), but potential holiday-induced consumption reduction and lag volatility suggest moderate error likelihood.","{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 3,
+  ""reasoning"": ""The prediction (244.41) is strongly influenced by lag_1 (247.5) and seasonal effects (week 1 SHAP +17.95), but potential holiday-induced consumption reduction and lag volatility suggest moderate error likelihood.""
+}",68.92,0
+12,T,none,gpt,False,False,True,2010-01-04 00:00:00,244.41329956054688,215.57705,13.376307710188474,medium,medium,1,4,"The model has a reasonable R² of 0.686, indicating a good fit, and the prediction is close to recent lags, suggesting a medium error is likely given the MAE and RMSE values.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model has a reasonable R² of 0.686, indicating a good fit, and the prediction is close to recent lags, suggesting a medium error is likely given the MAE and RMSE values.""
+}
+```",37.03,0
+12,T,none,deepseek,False,False,True,2010-01-04 00:00:00,244.41329956054688,215.57705,13.376307710188474,medium,medium,1,4,"The model's MAE of 20.55 suggests average absolute errors around ~8-10% for typical consumption values (200-250 kWh), aligning with the medium bucket.","{  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model's MAE of 20.55 suggests average absolute errors around ~8-10% for typical consumption values (200-250 kWh), aligning with the medium bucket.""
+}",26.01,0
+12,X+T,none,gpt,False,True,True,2010-01-04 00:00:00,244.41329956054688,215.57705,13.376307710188474,medium,medium,1,4,"The model has a relatively high R² of 0.686, indicating a good fit, but the MAE of 20.550 suggests some prediction error; given the prediction of 244.41 and the SHAP base value of 177.366, the model's adjustments seem reasonable, but the variability in lag features and the influence of the week of the year suggest a medium error is likely.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model has a relatively high R² of 0.686, indicating a good fit, but the MAE of 20.550 suggests some prediction error; given the prediction of 244.41 and the SHAP base value of 177.366, the model's adjustments seem reasonable, but the variability in lag features and the influence of the week of the year suggest a medium error is likely.""
+}
+```",37.72,0
+12,X+T,none,deepseek,False,True,True,2010-01-04 00:00:00,244.41329956054688,215.57705,13.376307710188474,medium,medium,1,3,"The model's MAE of 20.55 corresponds to approximately 8.4% error for this prediction value, which falls within the medium error bucket.","{  ""error_bucket"": ""medium"",
+  ""confidence"": 3,
+  ""reasoning"": ""The model's MAE of 20.55 corresponds to approximately 8.4% error for this prediction value, which falls within the medium error bucket.""
+}",108.3,0
+12,E+X+T,gpt,gpt,True,True,True,2010-01-04 00:00:00,244.41329956054688,215.57705,13.376307710188474,medium,medium,1,4,"The model has a reasonable R² of 0.686 and the prediction is close to the recent lag values, but the MAE of 20.550 suggests a typical error around 8.4% of the prediction, placing it in the medium error bucket.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model has a reasonable R² of 0.686 and the prediction is close to the recent lag values, but the MAE of 20.550 suggests a typical error around 8.4% of the prediction, placing it in the medium error bucket.""
+}
+```",2.74,0
+12,E+X+T,gpt,deepseek,True,True,True,2010-01-04 00:00:00,244.41329956054688,215.57705,13.376307710188474,medium,medium,1,4,"The model's MAE of 20.550 and RMSE of 25.035 relative to the prediction of 244.41 yield estimated percentage errors of 8.41% and 10.24%, respectively, placing the likely error in the medium bucket.","{  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model's MAE of 20.550 and RMSE of 25.035 relative to the prediction of 244.41 yield estimated percentage errors of 8.41% and 10.24%, respectively, placing the likely error in the medium bucket.""
+}",50.59,0
+12,E+X+T,deepseek,gpt,True,True,True,2010-01-04 00:00:00,244.41329956054688,215.57705,13.376307710188474,medium,medium,1,4,"The model has a reasonable R² of 0.686 and an MAE of 20.550, suggesting moderate accuracy; the prediction is influenced by recent high consumption and seasonal effects, but the potential for deviations due to unmodeled factors like extreme weather suggests a medium error range.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model has a reasonable R² of 0.686 and an MAE of 20.550, suggesting moderate accuracy; the prediction is influenced by recent high consumption and seasonal effects, but the potential for deviations due to unmodeled factors like extreme weather suggests a medium error range.""
+}
+```",34.63,0
+12,E+X+T,deepseek,deepseek,True,True,True,2010-01-04 00:00:00,244.41329956054688,215.57705,13.376307710188474,medium,medium,1,4,"The model's MAE of 20.55 kWh on a prediction of 244.41 kWh corresponds to approximately 8.4% error, which falls within the medium error bucket based on average performance.","{  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model's MAE of 20.55 kWh on a prediction of 244.41 kWh corresponds to approximately 8.4% error, which falls within the medium error bucket based on average performance.""
+}",56.42,0
+14,Baseline,none,gpt,False,False,False,2010-01-18 00:00:00,242.58505249023438,258.8346,-6.277965739420327,medium,medium,1,3,"The prediction of 242.59 is within the range of recent lags, but given the variability in past consumption and the lack of holidays, a medium error is plausible.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 3,
+  ""reasoning"": ""The prediction of 242.59 is within the range of recent lags, but given the variability in past consumption and the lack of holidays, a medium error is plausible.""
+}
+```",34.38,0
+14,Baseline,none,deepseek,False,False,False,2010-01-18 00:00:00,242.58505249023438,258.8346,-6.277965739420327,medium,medium,1,3,"The prediction aligns with recent lagged values (232.13 to 247.50), but historical lags show variability (~200 to ~250 kWh), suggesting moderate uncertainty despite plausible seasonality.","{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 3,
+  ""reasoning"": ""The prediction aligns with recent lagged values (232.13 to 247.50), but historical lags show variability (~200 to ~250 kWh), suggesting moderate uncertainty despite plausible seasonality.""
+}",28.94,0
+14,X,none,gpt,False,True,False,2010-01-18 00:00:00,242.58505249023438,258.8346,-6.277965739420327,medium,medium,1,3,"The prediction of 242.59 is influenced heavily by lag_1 and weekofyear, which are positive contributors, but the prediction is significantly higher than most recent lags, suggesting a moderate error potential.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 3,
+  ""reasoning"": ""The prediction of 242.59 is influenced heavily by lag_1 and weekofyear, which are positive contributors, but the prediction is significantly higher than most recent lags, suggesting a moderate error potential.""
+}
+```",31.91,0
+14,X,none,deepseek,False,True,False,2010-01-18 00:00:00,242.58505249023438,258.8346,-6.277965739420327,medium,small,0,3,"The prediction aligns closely with recent lags (particularly lag_1 and lag_3) and seasonal patterns (week 3 SHAP contribution), suggesting relatively stable consumption, though minor volatility in historical lags leaves some uncertainty.","{
+  ""error_bucket"": ""small"",
+  ""confidence"": 3,
+  ""reasoning"": ""The prediction aligns closely with recent lags (particularly lag_1 and lag_3) and seasonal patterns (week 3 SHAP contribution), suggesting relatively stable consumption, though minor volatility in historical lags leaves some uncertainty.""
+}",62.04,0
+14,T,none,gpt,False,False,True,2010-01-18 00:00:00,242.58505249023438,258.8346,-6.277965739420327,medium,medium,1,4,"The prediction of 242.59 is within the range of recent lags, and the model's R² of 0.686 suggests a reasonable fit, but the MAE of 20.550 indicates potential for moderate error.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The prediction of 242.59 is within the range of recent lags, and the model's R² of 0.686 suggests a reasonable fit, but the MAE of 20.550 indicates potential for moderate error.""
+}
+```",32.1,0
+14,T,none,deepseek,False,False,True,2010-01-18 00:00:00,242.58505249023438,258.8346,-6.277965739420327,medium,medium,1,4,"The MAE of 20.55 applied to the predicted 242.59 kWh corresponds to ~8.5% absolute percentage error, falling into the medium bucket based on average performance.","{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The MAE of 20.55 applied to the predicted 242.59 kWh corresponds to ~8.5% absolute percentage error, falling into the medium bucket based on average performance.""
+}",21.23,0
+14,X+T,none,gpt,False,True,True,2010-01-18 00:00:00,242.58505249023438,258.8346,-6.277965739420327,medium,medium,1,4,"The model has a relatively high R² of 0.686, indicating a good fit, but the MAE of 20.550 suggests moderate errors; the prediction of 242.59 is close to recent lags, but the SHAP values show significant positive contributions, indicating potential overestimation, leading to a medium error expectation.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model has a relatively high R² of 0.686, indicating a good fit, but the MAE of 20.550 suggests moderate errors; the prediction of 242.59 is close to recent lags, but the SHAP values show significant positive contributions, indicating potential overestimation, leading to a medium error expectation.""
+}
+```",33.22,0
+14,X+T,none,deepseek,False,True,True,2010-01-18 00:00:00,242.58505249023438,258.8346,-6.277965739420327,medium,medium,1,4,"The model's MAE of ~20.5 suggests typical absolute errors around 8-10% of the predicted value (242.59), aligning with medium error range.","{  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model's MAE of ~20.5 suggests typical absolute errors around 8-10% of the predicted value (242.59), aligning with medium error range.""
+}",30.11,1
+14,E+X+T,gpt,gpt,True,True,True,2010-01-18 00:00:00,242.58505249023438,258.8346,-6.277965739420327,medium,medium,1,4,"The model has a reasonable R² of 0.686 and the prediction is well-aligned with recent consumption patterns, but the MAE and RMSE suggest some deviation, likely placing the error in the medium range.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model has a reasonable R² of 0.686 and the prediction is well-aligned with recent consumption patterns, but the MAE and RMSE suggest some deviation, likely placing the error in the medium range.""
+}
+```",32.81,0
+14,E+X+T,gpt,deepseek,True,True,True,2010-01-18 00:00:00,242.58505249023438,258.8346,-6.277965739420327,medium,medium,1,4,"The model's MAE of 20.55 translates to ~8.5% error relative to the predicted value of 242.59 kWh, placing it in the medium bucket, with typical errors driven by moderate R² performance and lagged patterns.","{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model's MAE of 20.55 translates to ~8.5% error relative to the predicted value of 242.59 kWh, placing it in the medium bucket, with typical errors driven by moderate R² performance and lagged patterns.""
+}",24.68,0
+14,E+X+T,deepseek,gpt,True,True,True,2010-01-18 00:00:00,242.58505249023438,258.8346,-6.277965739420327,medium,medium,1,4,"The model's MAE of 20.55 kWh suggests a typical error range of ±8.5% around the prediction, placing it in the medium error bucket given the prediction of 242.59 kWh.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model's MAE of 20.55 kWh suggests a typical error range of ±8.5% around the prediction, placing it in the medium error bucket given the prediction of 242.59 kWh.""
+}
+```",32.73,0
+14,E+X+T,deepseek,deepseek,True,True,True,2010-01-18 00:00:00,242.58505249023438,258.8346,-6.277965739420327,medium,medium,1,4,"The model's MAE (20.55) translates to ~8.5% error relative to the prediction (242.59), falling squarely in the medium bucket [5%,15%), with seasonal/weekly patterns well-captured but typical residual variance.","{  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model's MAE (20.55) translates to ~8.5% error relative to the prediction (242.59), falling squarely in the medium bucket [5%,15%), with seasonal/weekly patterns well-captured but typical residual variance.""
+}",20.65,0
+35,Baseline,none,gpt,False,False,False,2010-06-14 00:00:00,154.0137939453125,174.15641666666667,-11.565822900402754,medium,medium,1,3,"The prediction of 154.01 is close to the recent lag values, especially lag_6, but the variability in past weeks (e.g., lag_4 is significantly higher) suggests potential for moderate error.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 3,
+  ""reasoning"": ""The prediction of 154.01 is close to the recent lag values, especially lag_6, but the variability in past weeks (e.g., lag_4 is significantly higher) suggests potential for moderate error.""
+}
+```",32.71,0
+35,Baseline,none,deepseek,False,False,False,2010-06-14 00:00:00,154.0137939453125,174.15641666666667,-11.565822900402754,medium,medium,1,3,"The prediction (154.01) aligns closely with lag_6 (154.34) but diverges from more recent lags (e.g., lag_1: 163.89), suggesting moderate error due to short-term fluctuations not fully captured by the model.","{  ""error_bucket"": ""medium"",
+  ""confidence"": 3,
+  ""reasoning"": ""The prediction (154.01) aligns closely with lag_6 (154.34) but diverges from more recent lags (e.g., lag_1: 163.89), suggesting moderate error due to short-term fluctuations not fully captured by the model.""
+}",24.8,0
+35,X,none,gpt,False,True,False,2010-06-14 00:00:00,154.0137939453125,174.15641666666667,-11.565822900402754,medium,medium,1,3,"The prediction of 154.01 is significantly lower than the recent lags, especially lag_1 (163.89) and lag_2 (172.73), and the SHAP values indicate a strong negative influence from lag_6 and lag_1, suggesting the model might be under-predicting compared to the base value of 177.37.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 3,
+  ""reasoning"": ""The prediction of 154.01 is significantly lower than the recent lags, especially lag_1 (163.89) and lag_2 (172.73), and the SHAP values indicate a strong negative influence from lag_6 and lag_1, suggesting the model might be under-predicting compared to the base value of 177.37.""
+}
+```",32.89,0
+35,X,none,deepseek,False,True,False,2010-06-14 00:00:00,154.0137939453125,174.15641666666667,-11.565822900402754,medium,medium,1,3,"The prediction deviates from recent lags and the base value by a moderate amount, suggesting an absolute percentage error likely between 5% and 15%.","{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 3,
+  ""reasoning"": ""The prediction deviates from recent lags and the base value by a moderate amount, suggesting an absolute percentage error likely between 5% and 15%.""
+}",107.45,0
+35,T,none,gpt,False,False,True,2010-06-14 00:00:00,154.0137939453125,174.15641666666667,-11.565822900402754,medium,medium,1,4,"The prediction of 154.01 is close to the recent lag values, especially lag_6, and the model has a relatively good R² of 0.686, but the MAE of 20.550 suggests a moderate error range, likely placing the error in the medium bucket.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The prediction of 154.01 is close to the recent lag values, especially lag_6, and the model has a relatively good R² of 0.686, but the MAE of 20.550 suggests a moderate error range, likely placing the error in the medium bucket.""
+}
+```",32.91,0
+35,T,none,deepseek,False,False,True,2010-06-14 00:00:00,154.0137939453125,174.15641666666667,-11.565822900402754,medium,medium,1,3,"The model's MAE (20.55) suggests typical errors around ~13-15% of predictions (assuming actual values near historical lag range of 150-210 kWh), placing it in the medium bucket.","{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 3,
+  ""reasoning"": ""The model's MAE (20.55) suggests typical errors around ~13-15% of predictions (assuming actual values near historical lag range of 150-210 kWh), placing it in the medium bucket.""
+}",37.38,0
+35,X+T,none,gpt,False,True,True,2010-06-14 00:00:00,154.0137939453125,174.15641666666667,-11.565822900402754,medium,medium,1,4,"The prediction of 154.01 is significantly lower than the recent lags, especially lag_1 (163.89) and lag_2 (172.73), and the SHAP values indicate a negative impact from lag_6 and lag_1, suggesting the model expects a decrease; however, the model's performance metrics (MAE and RMSE) suggest moderate accuracy, leading to a medium error expectation.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The prediction of 154.01 is significantly lower than the recent lags, especially lag_1 (163.89) and lag_2 (172.73), and the SHAP values indicate a negative impact from lag_6 and lag_1, suggesting the model expects a decrease; however, the model's performance metrics (MAE and RMSE) suggest moderate accuracy, leading to a medium error expectation.""
+}
+```",32.88,0
+35,X+T,none,deepseek,False,True,True,2010-06-14 00:00:00,154.0137939453125,174.15641666666667,-11.565822900402754,medium,medium,1,3,"The model's MAE (20.55) suggests a typical absolute error around 13-15% of the prediction (154.01), aligning with medium error range given average performance and SHAP-driven adjustments.","{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 3,
+  ""reasoning"": ""The model's MAE (20.55) suggests a typical absolute error around 13-15% of the prediction (154.01), aligning with medium error range given average performance and SHAP-driven adjustments.""
+}",105.99,0
+35,E+X+T,gpt,gpt,True,True,True,2010-06-14 00:00:00,154.0137939453125,174.15641666666667,-11.565822900402754,medium,medium,1,4,"The model's MAE and RMSE suggest an average deviation of 20 to 25 kWh, which is about 13% to 16% of the prediction, indicating a medium error bucket; the R² value shows reasonable model performance, supporting this classification.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model's MAE and RMSE suggest an average deviation of 20 to 25 kWh, which is about 13% to 16% of the prediction, indicating a medium error bucket; the R² value shows reasonable model performance, supporting this classification.""
+}
+```",33.0,0
+35,E+X+T,gpt,deepseek,True,True,True,2010-06-14 00:00:00,154.0137939453125,174.15641666666667,-11.565822900402754,medium,medium,1,3,"The model's MAE of ~20.55 suggests average absolute error corresponds to ~13% relative to the prediction value (154 kWh), placing it in the medium bucket (5-15%), though variability could push individual instances to adjacent buckets.","{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 3,
+  ""reasoning"": ""The model's MAE of ~20.55 suggests average absolute error corresponds to ~13% relative to the prediction value (154 kWh), placing it in the medium bucket (5-15%), though variability could push individual instances to adjacent buckets.""
+}",86.12,0
+35,E+X+T,deepseek,gpt,True,True,True,2010-06-14 00:00:00,154.0137939453125,174.15641666666667,-11.565822900402754,medium,medium,1,4,"The model's typical error range (20-25 kWh) suggests a medium error bucket, and the prediction aligns with the SHAP analysis and historical lags, indicating moderate confidence in this classification.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model's typical error range (20-25 kWh) suggests a medium error bucket, and the prediction aligns with the SHAP analysis and historical lags, indicating moderate confidence in this classification.""
+}
+```",32.66,0
+35,E+X+T,deepseek,deepseek,True,True,True,2010-06-14 00:00:00,154.0137939453125,174.15641666666667,-11.565822900402754,medium,medium,1,3,"Based on the model's MAE of 20.55 kWh and a prediction of 154.01 kWh, the likely absolute percentage error is approximately 13%, which falls within the medium error bucket of 5% to 15%.","{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 3,
+  ""reasoning"": ""Based on the model's MAE of 20.55 kWh and a prediction of 154.01 kWh, the likely absolute percentage error is approximately 13%, which falls within the medium error bucket of 5% to 15%.""
+}",80.74,0
+52,Baseline,none,gpt,False,False,False,2010-10-11 00:00:00,193.81680297851562,195.39606666666663,-0.8082371948894582,small,medium,0,3,"The prediction of 193.82 is higher than most recent lags, suggesting a potential overestimation; however, the model may account for trends or seasonality, leading to a moderate error expectation.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 3,
+  ""reasoning"": ""The prediction of 193.82 is higher than most recent lags, suggesting a potential overestimation; however, the model may account for trends or seasonality, leading to a moderate error expectation.""
+}
+```",32.67,0
+52,Baseline,none,deepseek,False,False,False,2010-10-11 00:00:00,193.81680297851562,195.39606666666663,-0.8082371948894582,small,medium,0,3,"The prediction (193.82) falls between recent lagged values (lag_1: 214.25 and lag_2: 159.88), suggesting moderate volatility, and XGBoost's reliance on lagged trends likely captures some pattern but may struggle with abrupt changes in consumption.","{  ""error_bucket"": ""medium"",
+  ""confidence"": 3,
+  ""reasoning"": ""The prediction (193.82) falls between recent lagged values (lag_1: 214.25 and lag_2: 159.88), suggesting moderate volatility, and XGBoost's reliance on lagged trends likely captures some pattern but may struggle with abrupt changes in consumption.""
+}",26.6,0
+52,X,none,gpt,False,True,False,2010-10-11 00:00:00,193.81680297851562,195.39606666666663,-0.8082371948894582,small,medium,0,3,"The prediction of 193.82 is influenced by recent high consumption (lag_1) and the SHAP values suggest a moderate deviation from the base value; however, the variability in past weeks' consumption suggests potential for moderate error.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 3,
+  ""reasoning"": ""The prediction of 193.82 is influenced by recent high consumption (lag_1) and the SHAP values suggest a moderate deviation from the base value; however, the variability in past weeks' consumption suggests potential for moderate error.""
+}
+```",31.82,0
+52,X,none,deepseek,False,True,False,2010-10-11 00:00:00,193.81680297851562,195.39606666666663,-0.8082371948894582,small,medium,0,3,"The prediction is within the range of recent lag values and close to the SHAP base value, suggesting a moderate error likely between 5% and 15%.","{  ""error_bucket"": ""medium"",
+  ""confidence"": 3,
+  ""reasoning"": ""The prediction is within the range of recent lag values and close to the SHAP base value, suggesting a moderate error likely between 5% and 15%.""
+}",74.95,0
+52,T,none,gpt,False,False,True,2010-10-11 00:00:00,193.81680297851562,195.39606666666663,-0.8082371948894582,small,medium,0,4,"The model has a relatively good R² of 0.686, indicating a decent fit, but the MAE of 20.550 suggests that the prediction error could be around 10% given the prediction value of 193.82, placing it in the medium error bucket.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model has a relatively good R² of 0.686, indicating a decent fit, but the MAE of 20.550 suggests that the prediction error could be around 10% given the prediction value of 193.82, placing it in the medium error bucket.""
+}
+```",32.61,0
+52,T,none,deepseek,False,False,True,2010-10-11 00:00:00,193.81680297851562,195.39606666666663,-0.8082371948894582,small,medium,0,3,"Based on the model's MAE of 20.55 kWh and the prediction of 193.82 kWh, the typical absolute percentage error is around 10.6%, which falls into the medium error bucket.","{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 3,
+  ""reasoning"": ""Based on the model's MAE of 20.55 kWh and the prediction of 193.82 kWh, the typical absolute percentage error is around 10.6%, which falls into the medium error bucket.""
+}",79.81,0
+52,X+T,none,gpt,False,True,True,2010-10-11 00:00:00,193.81680297851562,195.39606666666663,-0.8082371948894582,small,medium,0,4,"The model has a relatively high R² of 0.686, indicating a good fit, but the MAE of 20.550 suggests moderate errors; given the prediction of 193.82 and the SHAP base value of 177.366, the prediction is slightly above the base, aligning with the positive influence of lag_1 and weekofyear, suggesting a medium error range is likely.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model has a relatively high R² of 0.686, indicating a good fit, but the MAE of 20.550 suggests moderate errors; given the prediction of 193.82 and the SHAP base value of 177.366, the prediction is slightly above the base, aligning with the positive influence of lag_1 and weekofyear, suggesting a medium error range is likely.""
+}
+```",32.87,0
+52,X+T,none,deepseek,False,True,True,2010-10-11 00:00:00,193.81680297851562,195.39606666666663,-0.8082371948894582,small,medium,0,3,"The model's MAE of 20.55 kWh corresponds to approximately 10.6% error relative to the prediction, which falls within the medium range.","{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 3,
+  ""reasoning"": ""The model's MAE of 20.55 kWh corresponds to approximately 10.6% error relative to the prediction, which falls within the medium range.""
+}",74.39,0
+52,E+X+T,gpt,gpt,True,True,True,2010-10-11 00:00:00,193.81680297851562,195.39606666666663,-0.8082371948894582,small,medium,0,4,"The model's MAE of 20.55 suggests a typical error of around 10% given the prediction of 193.82, and the R² of 0.686 indicates moderate accuracy, supporting a medium error classification.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model's MAE of 20.55 suggests a typical error of around 10% given the prediction of 193.82, and the R² of 0.686 indicates moderate accuracy, supporting a medium error classification.""
+}
+```",32.32,0
+52,E+X+T,gpt,deepseek,True,True,True,2010-10-11 00:00:00,193.81680297851562,195.39606666666663,-0.8082371948894582,small,medium,0,3,"Based on the model's MAE of 20.55 and the prediction of 193.82 kWh, the typical absolute percentage error is approximately 10.6%, which falls within the medium error bucket.","{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 3,
+  ""reasoning"": ""Based on the model's MAE of 20.55 and the prediction of 193.82 kWh, the typical absolute percentage error is approximately 10.6%, which falls within the medium error bucket.""
+}",69.12,0
+52,E+X+T,deepseek,gpt,True,True,True,2010-10-11 00:00:00,193.81680297851562,195.39606666666663,-0.8082371948894582,small,medium,0,4,"The model's MAE of 20.550 suggests a typical error range of about 10.6% relative to the prediction of 193.82 kWh, placing it in the medium error bucket.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model's MAE of 20.550 suggests a typical error range of about 10.6% relative to the prediction of 193.82 kWh, placing it in the medium error bucket.""
+}
+```",63.46,0
+52,E+X+T,deepseek,deepseek,True,True,True,2010-10-11 00:00:00,193.81680297851562,195.39606666666663,-0.8082371948894582,small,medium,0,3,"The MAE of 20.55 kWh corresponds to approximately 10.6% of the predicted weekly consumption (193.82 kWh), falling into the medium error bucket [5%,15%).","{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 3,
+  ""reasoning"": ""The MAE of 20.55 kWh corresponds to approximately 10.6% of the predicted weekly consumption (193.82 kWh), falling into the medium error bucket [5%,15%).""
+}",18.46,0
+41,Baseline,none,gpt,False,False,False,2010-07-26 00:00:00,124.97123718261719,119.94703333333334,4.188685380255771,small,large,0,4,"The prediction of 124.97 is significantly lower than the recent lags, which range from 126.57 to 174.16, suggesting a large deviation from the recent trend and likely a large error.","```json
+{
+  ""error_bucket"": ""large"",
+  ""confidence"": 4,
+  ""reasoning"": ""The prediction of 124.97 is significantly lower than the recent lags, which range from 126.57 to 174.16, suggesting a large deviation from the recent trend and likely a large error.""
+}
+```",2.43,0
+41,Baseline,none,deepseek,False,False,False,2010-07-26 00:00:00,124.97123718261719,119.94703333333334,4.188685380255771,small,medium,0,3,"The prediction is close to recent lag values (lag_1: 127.78, lag_2: 126.58), suggesting a plausible trend, but potential volatility in weekly energy consumption and missing features like temperature could introduce moderate error.","{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 3,
+  ""reasoning"": ""The prediction is close to recent lag values (lag_1: 127.78, lag_2: 126.58), suggesting a plausible trend, but potential volatility in weekly energy consumption and missing features like temperature could introduce moderate error.""
+}",31.04,0
+41,X,none,gpt,False,True,False,2010-07-26 00:00:00,124.97123718261719,119.94703333333334,4.188685380255771,small,large,0,4,"The prediction of 124.97 is significantly lower than the base SHAP value of 177.366 and the recent lags, indicating a large deviation from typical consumption patterns.","```json
+{
+  ""error_bucket"": ""large"",
+  ""confidence"": 4,
+  ""reasoning"": ""The prediction of 124.97 is significantly lower than the base SHAP value of 177.366 and the recent lags, indicating a large deviation from typical consumption patterns.""
+}
+```",32.46,0
+41,X,none,deepseek,False,True,False,2010-07-26 00:00:00,124.97123718261719,119.94703333333334,4.188685380255771,small,medium,0,3,"The prediction (124.97) is significantly below the SHAP base value (177.37), driven by strong negative contributions from recent lags and seasonality, but recent lag values (lag_1: ~127.78) suggest actual consumption may be closer to recent trends, leading to a moderate error.","{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 3,
+  ""reasoning"": ""The prediction (124.97) is significantly below the SHAP base value (177.37), driven by strong negative contributions from recent lags and seasonality, but recent lag values (lag_1: ~127.78) suggest actual consumption may be closer to recent trends, leading to a moderate error.""
+}",39.46,1
+41,T,none,gpt,False,False,True,2010-07-26 00:00:00,124.97123718261719,119.94703333333334,4.188685380255771,small,medium,0,4,"The model has a reasonable R² of 0.686, indicating a good fit, but the MAE of 20.550 suggests a moderate error relative to the prediction of 124.97, likely placing the error in the medium range.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model has a reasonable R² of 0.686, indicating a good fit, but the MAE of 20.550 suggests a moderate error relative to the prediction of 124.97, likely placing the error in the medium range.""
+}
+```",32.65,0
+41,T,none,deepseek,False,False,True,2010-07-26 00:00:00,124.97123718261719,119.94703333333334,4.188685380255771,small,large,0,3,"Based on the model's MAE of 20.55 kWh relative to the prediction of 124.97 kWh, the typical absolute percentage error is around 16.4%, which falls within the large bucket.","{  ""error_bucket"": ""large"",
+  ""confidence"": 3,
+  ""reasoning"": ""Based on the model's MAE of 20.55 kWh relative to the prediction of 124.97 kWh, the typical absolute percentage error is around 16.4%, which falls within the large bucket.""
+}",35.68,0
+41,X+T,none,gpt,False,True,True,2010-07-26 00:00:00,124.97123718261719,119.94703333333334,4.188685380255771,small,large,0,4,"The prediction of 124.97 is significantly lower than the recent lags and the SHAP base value of 177.366, suggesting a large deviation from expected patterns, likely resulting in a large error.","```json
+{
+  ""error_bucket"": ""large"",
+  ""confidence"": 4,
+  ""reasoning"": ""The prediction of 124.97 is significantly lower than the recent lags and the SHAP base value of 177.366, suggesting a large deviation from expected patterns, likely resulting in a large error.""
+}
+```",32.86,0
+41,X+T,none,deepseek,False,True,True,2010-07-26 00:00:00,124.97123718261719,119.94703333333334,4.188685380255771,small,large,0,3,"Based on the model's MAE of 20.55 kWh relative to the prediction of 124.97 kWh, the typical absolute percentage error is around 16.4%, which falls into the large error bucket.","{  ""error_bucket"": ""large"",
+  ""confidence"": 3,
+  ""reasoning"": ""Based on the model's MAE of 20.55 kWh relative to the prediction of 124.97 kWh, the typical absolute percentage error is around 16.4%, which falls into the large error bucket.""
+}",81.1,0
+41,E+X+T,gpt,gpt,True,True,True,2010-07-26 00:00:00,124.97123718261719,119.94703333333334,4.188685380255771,small,medium,0,4,"The model's MAE and RMSE suggest moderate error, and the prediction is significantly lower than the base value, indicating a potential underestimation, but the R² value shows reasonable model performance.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model's MAE and RMSE suggest moderate error, and the prediction is significantly lower than the base value, indicating a potential underestimation, but the R² value shows reasonable model performance.""
+}
+```",32.42,0
+41,E+X+T,gpt,deepseek,True,True,True,2010-07-26 00:00:00,124.97123718261719,119.94703333333334,4.188685380255771,small,large,0,3,"The model's MAE (20.55) suggests a typical absolute error of ~16% relative to the prediction (124.97), aligning with the large error bucket.","{
+  ""error_bucket"": ""large"",
+  ""confidence"": 3,
+  ""reasoning"": ""The model's MAE (20.55) suggests a typical absolute error of ~16% relative to the prediction (124.97), aligning with the large error bucket.""
+}",58.86,0
+41,E+X+T,deepseek,gpt,True,True,True,2010-07-26 00:00:00,124.97123718261719,119.94703333333334,4.188685380255771,small,medium,0,4,"The model's MAE of 20.550 suggests a typical error range of ±20.5 kWh, which is about 16.4% of the prediction (124.97 kWh), placing it near the boundary of medium and large error buckets; however, given the R² of 0.686 and the detailed SHAP analysis, a medium error is more likely.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model's MAE of 20.550 suggests a typical error range of ±20.5 kWh, which is about 16.4% of the prediction (124.97 kWh), placing it near the boundary of medium and large error buckets; however, given the R² of 0.686 and the detailed SHAP analysis, a medium error is more likely.""
+}
+```",33.01,0
+41,E+X+T,deepseek,deepseek,True,True,True,2010-07-26 00:00:00,124.97123718261719,119.94703333333334,4.188685380255771,small,large,0,4,"Based on the model's MAE of 20.55 kWh, the absolute error for this prediction is likely around 20.55 kWh, which relative to the predicted value of 124.97 kWh corresponds to approximately 16.4% error, falling within the large bucket.","{
+  ""error_bucket"": ""large"",
+  ""confidence"": 4,
+  ""reasoning"": ""Based on the model's MAE of 20.55 kWh, the absolute error for this prediction is likely around 20.55 kWh, which relative to the predicted value of 124.97 kWh corresponds to approximately 16.4% error, falling within the large bucket.""
+}",58.09,0
+6,Baseline,none,gpt,False,False,False,2009-11-23 00:00:00,235.9180145263672,236.70476666666667,-0.33237697380526654,small,medium,0,3,"The prediction of 235.92 is higher than all the lag values, suggesting a potential overestimation; however, the model may account for seasonal increases in consumption, leading to a moderate error expectation.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 3,
+  ""reasoning"": ""The prediction of 235.92 is higher than all the lag values, suggesting a potential overestimation; however, the model may account for seasonal increases in consumption, leading to a moderate error expectation.""
+}
+```",31.92,0
+6,Baseline,none,deepseek,False,False,False,2009-11-23 00:00:00,235.9180145263672,236.70476666666667,-0.33237697380526654,small,small,1,4,"Based on seasonal increase in energy consumption during week 48 and recent lag values, the prediction is likely close to the actual value.","{  ""error_bucket"": ""small"",
+  ""confidence"": 4,
+  ""reasoning"": ""Based on seasonal increase in energy consumption during week 48 and recent lag values, the prediction is likely close to the actual value.""
+}",101.43,0
+6,X,none,gpt,False,True,False,2009-11-23 00:00:00,235.9180145263672,236.70476666666667,-0.33237697380526654,small,medium,0,4,"The prediction of 235.92 is significantly higher than most recent lags, with SHAP values indicating strong positive contributions from recent weeks and the week of year, suggesting a moderate error due to potential overestimation.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The prediction of 235.92 is significantly higher than most recent lags, with SHAP values indicating strong positive contributions from recent weeks and the week of year, suggesting a moderate error due to potential overestimation.""
+}
+```",62.65,0
+6,X,none,deepseek,False,True,False,2009-11-23 00:00:00,235.9180145263672,236.70476666666667,-0.33237697380526654,small,medium,0,3,"The prediction is significantly higher than recent lagged values but strongly influenced by seasonal (weekofyear) SHAP contributions, suggesting potential accuracy if seasonal trends justify this increase, though uncertainty remains given the lagged values' lower baseline.","{  ""error_bucket"": ""medium"",
+  ""confidence"": 3,
+  ""reasoning"": ""The prediction is significantly higher than recent lagged values but strongly influenced by seasonal (weekofyear) SHAP contributions, suggesting potential accuracy if seasonal trends justify this increase, though uncertainty remains given the lagged values' lower baseline.""
+}",26.49,0
+6,T,none,gpt,False,False,True,2009-11-23 00:00:00,235.9180145263672,236.70476666666667,-0.33237697380526654,small,medium,0,4,"The model has a reasonable R² of 0.686, indicating a good fit, but the MAE of 20.550 suggests a moderate error relative to the prediction of 235.92, likely placing the error in the medium range.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model has a reasonable R² of 0.686, indicating a good fit, but the MAE of 20.550 suggests a moderate error relative to the prediction of 235.92, likely placing the error in the medium range.""
+}
+```",32.98,0
+6,T,none,deepseek,False,False,True,2009-11-23 00:00:00,235.9180145263672,236.70476666666667,-0.33237697380526654,small,medium,0,4,"The model's MAE of ~20.55 suggests typical absolute errors around 8-10% of the predicted value (235.92 kWh), aligning with the medium bucket (5-15%).","{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model's MAE of ~20.55 suggests typical absolute errors around 8-10% of the predicted value (235.92 kWh), aligning with the medium bucket (5-15%).""
+}",36.04,0
+6,X+T,none,gpt,False,True,True,2009-11-23 00:00:00,235.9180145263672,236.70476666666667,-0.33237697380526654,small,medium,0,4,"The model has a reasonable R² of 0.686, indicating decent predictive power, and the SHAP values suggest the prediction is well-aligned with influential features, but the MAE of 20.550 suggests a moderate error magnitude relative to the prediction value of 235.92.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model has a reasonable R² of 0.686, indicating decent predictive power, and the SHAP values suggest the prediction is well-aligned with influential features, but the MAE of 20.550 suggests a moderate error magnitude relative to the prediction value of 235.92.""
+}
+```",32.54,0
+6,X+T,none,deepseek,False,True,True,2009-11-23 00:00:00,235.9180145263672,236.70476666666667,-0.33237697380526654,small,medium,0,4,"The model's MAE of ~20.55 translates to an ~8.7% average error relative to the prediction value (235.92), aligning with the medium error bucket (5-15%).","{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model's MAE of ~20.55 translates to an ~8.7% average error relative to the prediction value (235.92), aligning with the medium error bucket (5-15%).""
+}",39.94,0
+6,E+X+T,gpt,gpt,True,True,True,2009-11-23 00:00:00,235.9180145263672,236.70476666666667,-0.33237697380526654,small,medium,0,4,"The model's R² of 0.686 and MAE of 20.550 suggest moderate accuracy, and the prediction is influenced by strong seasonal and recent consumption patterns, indicating a likely medium error range.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model's R² of 0.686 and MAE of 20.550 suggest moderate accuracy, and the prediction is influenced by strong seasonal and recent consumption patterns, indicating a likely medium error range.""
+}
+```",1.84,0
+6,E+X+T,gpt,deepseek,True,True,True,2009-11-23 00:00:00,235.9180145263672,236.70476666666667,-0.33237697380526654,small,medium,0,3,"Based on the model's MAE of 20.55 and the prediction of 235.92, the likely absolute percentage error is around 8-9%, which falls within the medium error bucket.","{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 3,
+  ""reasoning"": ""Based on the model's MAE of 20.55 and the prediction of 235.92, the likely absolute percentage error is around 8-9%, which falls within the medium error bucket.""
+}",71.77,0
+6,E+X+T,deepseek,gpt,True,True,True,2009-11-23 00:00:00,235.9180145263672,236.70476666666667,-0.33237697380526654,small,medium,0,4,"The model's MAE and RMSE suggest average errors around 20-25 kWh, and the prediction falls within the expected range of 210-260 kWh, indicating a medium error likelihood.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model's MAE and RMSE suggest average errors around 20-25 kWh, and the prediction falls within the expected range of 210-260 kWh, indicating a medium error likelihood.""
+}
+```",32.59,0
+6,E+X+T,deepseek,deepseek,True,True,True,2009-11-23 00:00:00,235.9180145263672,236.70476666666667,-0.33237697380526654,small,medium,0,4,"The model's MAE (20.55) and prediction magnitude (~235 kWh) suggest ~8.7-10.6% error, aligning with the explanation's 210-260 kWh range (actual likely within ~±10% of prediction).","{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model's MAE (20.55) and prediction magnitude (~235 kWh) suggest ~8.7-10.6% error, aligning with the explanation's 210-260 kWh range (actual likely within ~±10% of prediction).""
+}",25.46,0
+42,Baseline,none,gpt,False,False,False,2010-08-02 00:00:00,114.34907531738281,76.25233333333334,49.96141143315763,very_large,large,0,4,"The prediction of 114.35 is significantly lower than all lag values, suggesting a large deviation from recent consumption patterns, especially given no holidays to explain a drop.","```json
+{
+  ""error_bucket"": ""large"",
+  ""confidence"": 4,
+  ""reasoning"": ""The prediction of 114.35 is significantly lower than all lag values, suggesting a large deviation from recent consumption patterns, especially given no holidays to explain a drop.""
+}
+```",32.68,0
+42,Baseline,none,deepseek,False,False,False,2010-08-02 00:00:00,114.34907531738281,76.25233333333334,49.96141143315763,very_large,small,0,3,"The prediction continues a recent downward trend in consumption (lag_1 = 119.94), and the model likely leverages historical weekly patterns (week 31) with XGBRegressor's robustness, suggesting a plausible small error under 5%.","{
+  ""error_bucket"": ""small"",
+  ""confidence"": 3,
+  ""reasoning"": ""The prediction continues a recent downward trend in consumption (lag_1 = 119.94), and the model likely leverages historical weekly patterns (week 31) with XGBRegressor's robustness, suggesting a plausible small error under 5%.""
+}",58.86,0
+42,X,none,gpt,False,True,False,2010-08-02 00:00:00,114.34907531738281,76.25233333333334,49.96141143315763,very_large,large,0,4,"The prediction of 114.35 is significantly lower than the recent lags and the SHAP base value of 177.366, suggesting a large deviation from expected consumption patterns.","```json
+{
+  ""error_bucket"": ""large"",
+  ""confidence"": 4,
+  ""reasoning"": ""The prediction of 114.35 is significantly lower than the recent lags and the SHAP base value of 177.366, suggesting a large deviation from expected consumption patterns.""
+}
+```",32.83,0
+42,X,none,deepseek,False,True,False,2010-08-02 00:00:00,114.34907531738281,76.25233333333334,49.96141143315763,very_large,small,0,3,"The prediction heavily relies on seasonal/weekly patterns captured by SHAP values, and the predicted ~4.7% drop from lag_1 aligns with historical trends, placing error near the 5% threshold.","{
+  ""error_bucket"": ""small"",
+  ""confidence"": 3,
+  ""reasoning"": ""The prediction heavily relies on seasonal/weekly patterns captured by SHAP values, and the predicted ~4.7% drop from lag_1 aligns with historical trends, placing error near the 5% threshold.""
+}",74.15,0
+42,T,none,gpt,False,False,True,2010-08-02 00:00:00,114.34907531738281,76.25233333333334,49.96141143315763,very_large,large,0,4,"The prediction of 114.35 is significantly lower than all the lag values, suggesting a potential underestimation; combined with the model's RMSE of 25.035, this indicates a likely large error.","```json
+{
+  ""error_bucket"": ""large"",
+  ""confidence"": 4,
+  ""reasoning"": ""The prediction of 114.35 is significantly lower than all the lag values, suggesting a potential underestimation; combined with the model's RMSE of 25.035, this indicates a likely large error.""
+}
+```",33.76,0
+42,T,none,deepseek,False,False,True,2010-08-02 00:00:00,114.34907531738281,76.25233333333334,49.96141143315763,very_large,large,0,3,"The model's MAE of 20.55 kWh relative to the prediction of 114.35 kWh suggests a typical absolute percentage error around 18%, which falls within the large error bucket.","{  ""error_bucket"": ""large"",
+  ""confidence"": 3,
+  ""reasoning"": ""The model's MAE of 20.55 kWh relative to the prediction of 114.35 kWh suggests a typical absolute percentage error around 18%, which falls within the large error bucket.""
+}",54.79,0
+42,X+T,none,gpt,False,True,True,2010-08-02 00:00:00,114.34907531738281,76.25233333333334,49.96141143315763,very_large,very_large,1,4,"The prediction of 114.35 is significantly lower than the recent lags, which range from 119.95 to 174.16, and the SHAP base value of 177.366, indicating a likely large underestimation.","```json
+{
+  ""error_bucket"": ""very_large"",
+  ""confidence"": 4,
+  ""reasoning"": ""The prediction of 114.35 is significantly lower than the recent lags, which range from 119.95 to 174.16, and the SHAP base value of 177.366, indicating a likely large underestimation.""
+}
+```",63.28,0
+42,X+T,none,deepseek,False,True,True,2010-08-02 00:00:00,114.34907531738281,76.25233333333334,49.96141143315763,very_large,large,0,3,"Based on the model's MAE of 20.55 kWh, the typical absolute error corresponds to approximately 18% of the predicted value, placing it in the large error bucket.","{  ""error_bucket"": ""large"",
+  ""confidence"": 3,
+  ""reasoning"": ""Based on the model's MAE of 20.55 kWh, the typical absolute error corresponds to approximately 18% of the predicted value, placing it in the large error bucket.""
+}",89.93,0
+42,E+X+T,gpt,gpt,True,True,True,2010-08-02 00:00:00,114.34907531738281,76.25233333333334,49.96141143315763,very_large,medium,0,4,"The model's MAE of 20.550 suggests a typical error of around 18% relative to the prediction of 114.35, indicating a medium error bucket, supported by the moderate R² value and the SHAP analysis showing significant deviations from the base value.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model's MAE of 20.550 suggests a typical error of around 18% relative to the prediction of 114.35, indicating a medium error bucket, supported by the moderate R² value and the SHAP analysis showing significant deviations from the base value.""
+}
+```",33.14,0
+42,E+X+T,gpt,deepseek,True,True,True,2010-08-02 00:00:00,114.34907531738281,76.25233333333334,49.96141143315763,very_large,large,0,3,"The model's MAE of 20.55 kWh corresponds to approximately 18% error for this prediction, placing it in the large error bucket.","{  ""error_bucket"": ""large"",
+  ""confidence"": 3,
+  ""reasoning"": ""The model's MAE of 20.55 kWh corresponds to approximately 18% error for this prediction, placing it in the large error bucket.""
+}",33.7,0
+42,E+X+T,deepseek,gpt,True,True,True,2010-08-02 00:00:00,114.34907531738281,76.25233333333334,49.96141143315763,very_large,medium,0,4,"The model's MAE of 20.55 kWh suggests a typical error range that aligns with a medium error bucket, and the prediction accounts for recent trends and seasonality, but the R² indicates some unexplained variance.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model's MAE of 20.55 kWh suggests a typical error range that aligns with a medium error bucket, and the prediction accounts for recent trends and seasonality, but the R² indicates some unexplained variance.""
+}
+```",33.23,0
+42,E+X+T,deepseek,deepseek,True,True,True,2010-08-02 00:00:00,114.34907531738281,76.25233333333334,49.96141143315763,very_large,large,0,4,"Based on the model's MAE of 20.55 kWh and the predicted value of 114.35 kWh, the absolute percentage error is likely around 15-20%, which falls into the large bucket.","{
+  ""error_bucket"": ""large"",
+  ""confidence"": 4,
+  ""reasoning"": ""Based on the model's MAE of 20.55 kWh and the predicted value of 114.35 kWh, the absolute percentage error is likely around 15-20%, which falls into the large bucket.""
+}",84.69,0

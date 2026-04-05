@@ -1,0 +1,5 @@
+poisoning,has_nle,accuracy,n_correct,n_total,mean_confidence
+baseline,False,0.95,114,120,3.983
+baseline,True,0.983,236,240,3.988
+ood,False,0.3,36,120,3.817
+ood,True,0.15,36,240,3.892

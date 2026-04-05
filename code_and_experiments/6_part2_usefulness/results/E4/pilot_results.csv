@@ -1,0 +1,533 @@
+instance_idx,condition,generator,judge,has_nle,train_indices,WeekEndDate,Prediction,TrueValue,PctError,true_bucket,predicted_bucket,correct,confidence,reasoning,raw_response,Duration_s,retries
+5,E,deepseek,gpt,True,"[0, 1, 2, 3, 4]",2009-11-16 00:00:00,222.97052001953125,211.4148,5.465899274568874,medium,medium,1,4.0,"The prediction is driven by strong positive influences from recent high consumption and seasonal effects, similar to previous weeks with medium errors, suggesting a likely medium error range.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The prediction is driven by strong positive influences from recent high consumption and seasonal effects, similar to previous weeks with medium errors, suggesting a likely medium error range.""
+}
+```",2.62,0.0
+5,E,gpt,gpt,True,"[0, 1, 2, 3, 4]",2009-11-16 00:00:00,222.97052001953125,211.4148,5.465899274568874,medium,medium,1,4.0,"The prediction is influenced by strong positive contributions from recent lags and the week of the year, similar to previous weeks with medium errors, suggesting a likely medium error range.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The prediction is influenced by strong positive contributions from recent lags and the week of the year, similar to previous weeks with medium errors, suggesting a likely medium error range.""
+}
+```",3.24,0.0
+5,Baseline,none,gpt,False,"[0, 1, 2, 3, 4]",2009-11-16 00:00:00,222.97052001953125,211.4148,5.465899274568874,medium,medium,1,4.0,"The prediction is influenced by a strong positive SHAP value for the weekofyear, similar to Example 5, which had a large error, but the overall pattern of SHAP values and feature trends more closely resembles the medium error examples, suggesting a medium error is more likely.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The prediction is influenced by a strong positive SHAP value for the weekofyear, similar to Example 5, which had a large error, but the overall pattern of SHAP values and feature trends more closely resembles the medium error examples, suggesting a medium error is more likely.""
+}
+```",3.57,0.0
+6,Baseline,none,gpt,False,"[1, 2, 3, 4, 5]",2009-11-23 00:00:00,235.9180145263672,236.70476666666667,-0.3323769738052665,small,medium,0,4.0,"The prediction is influenced by strong positive SHAP values from recent lags and weekofyear, similar to previous medium error cases, suggesting a likely medium error outcome.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The prediction is influenced by strong positive SHAP values from recent lags and weekofyear, similar to previous medium error cases, suggesting a likely medium error outcome.""
+}
+```",4.54,0.0
+6,E,gpt,gpt,True,"[1, 2, 3, 4, 5]",2009-11-23 00:00:00,235.9180145263672,236.70476666666667,-0.3323769738052665,small,medium,0,4.0,"The prediction is influenced by strong positive contributions from recent lags and the week of the year, similar to previous instances with medium errors, suggesting a likely medium error bucket.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The prediction is influenced by strong positive contributions from recent lags and the week of the year, similar to previous instances with medium errors, suggesting a likely medium error bucket.""
+}
+```",5.44,0.0
+6,E,deepseek,gpt,True,"[1, 2, 3, 4, 5]",2009-11-23 00:00:00,235.9180145263672,236.70476666666667,-0.3323769738052665,small,medium,0,4.0,"The prediction is driven by high recent consumption and seasonal factors, similar to previous weeks with medium errors, suggesting a likely medium error here as well.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The prediction is driven by high recent consumption and seasonal factors, similar to previous weeks with medium errors, suggesting a likely medium error here as well.""
+}
+```",36.66,0.0
+10,Baseline,none,gpt,False,"[5, 6, 7, 8, 9]",2009-12-21 00:00:00,240.49972534179688,203.00573333333327,18.4694251698295,large,medium,0,4.0,"The prediction is similar to examples 1 and 5, where the model had medium errors, and the SHAP values show a strong influence from lag_1 and weekofyear, which have been associated with medium errors in the past.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The prediction is similar to examples 1 and 5, where the model had medium errors, and the SHAP values show a strong influence from lag_1 and weekofyear, which have been associated with medium errors in the past.""
+}
+```",37.95,0.0
+10,E,gpt,gpt,True,"[5, 6, 7, 8, 9]",2009-12-21 00:00:00,240.49972534179688,203.00573333333327,18.4694251698295,large,medium,0,4.0,"The prediction is influenced by strong positive contributions from lag_1 and weekofyear, similar to previous instances with medium errors, and the model's recent performance suggests a tendency for medium errors in similar contexts.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The prediction is influenced by strong positive contributions from lag_1 and weekofyear, similar to previous instances with medium errors, and the model's recent performance suggests a tendency for medium errors in similar contexts.""
+}
+```",39.26,0.0
+5,E,gpt,deepseek,True,"[0, 1, 2, 3, 4]",2009-11-16 00:00:00,222.97052001953125,211.4148,5.465899274568874,medium,large,0,4.0,"The model's prediction is heavily influenced by weekofyear (SHAP +24.23) and recent lags, but similar strong seasonal contributions in Example 5 led to a large error (15.7%), and the recent error trend suggests increasing deviations.","{
+  ""error_bucket"": ""large"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model's prediction is heavily influenced by weekofyear (SHAP +24.23) and recent lags, but similar strong seasonal contributions in Example 5 led to a large error (15.7%), and the recent error trend suggests increasing deviations.""
+}",52.68,0.0
+19,E,gpt,gpt,True,"[14, 15, 16, 17, 18]",2010-02-22 00:00:00,209.96017456054688,229.4187,-8.481664938147206,medium,small,0,4.0,"The prediction is influenced by recent lags and weekofyear, similar to Example 5, which had a small error; the SHAP values suggest a moderate adjustment from the base value, indicating a likely small error.","```json
+{
+  ""error_bucket"": ""small"",
+  ""confidence"": 4,
+  ""reasoning"": ""The prediction is influenced by recent lags and weekofyear, similar to Example 5, which had a small error; the SHAP values suggest a moderate adjustment from the base value, indicating a likely small error.""
+}
+```",51.85,0.0
+19,E,deepseek,gpt,True,"[14, 15, 16, 17, 18]",2010-02-22 00:00:00,209.96017456054688,229.4187,-8.481664938147206,medium,medium,1,4.0,"The prediction is influenced by a recent decrease in consumption (lag_1) and a moderate seasonal effect (week 8), similar to previous weeks with medium errors.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The prediction is influenced by a recent decrease in consumption (lag_1) and a moderate seasonal effect (week 8), similar to previous weeks with medium errors.""
+}
+```",82.99,0.0
+20,Baseline,none,gpt,False,"[15, 16, 17, 18, 19]",2010-03-01 00:00:00,208.2930145263672,185.85613333333333,12.07217689867316,medium,medium,1,4.0,"The prediction is similar to Example 5, where the model underpredicted with a medium error, and the SHAP values show a similar influence pattern with lag_1 and lag_6 being significant positive contributors.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The prediction is similar to Example 5, where the model underpredicted with a medium error, and the SHAP values show a similar influence pattern with lag_1 and lag_6 being significant positive contributors.""
+}
+```",84.32,0.0
+10,E,deepseek,gpt,True,"[5, 6, 7, 8, 9]",2009-12-21 00:00:00,240.49972534179688,203.00573333333327,18.4694251698295,large,small,0,4.0,"The prediction is consistent with recent trends and seasonal patterns, with strong contributions from the time of year and recent consumption, similar to previous weeks with small errors.","```json
+{
+  ""error_bucket"": ""small"",
+  ""confidence"": 4,
+  ""reasoning"": ""The prediction is consistent with recent trends and seasonal patterns, with strong contributions from the time of year and recent consumption, similar to previous weeks with small errors.""
+}
+```",97.7,0.0
+5,E,deepseek,deepseek,True,"[0, 1, 2, 3, 4]",2009-11-16 00:00:00,222.97052001953125,211.4148,5.465899274568874,medium,medium,1,4.0,"The prediction incorporates strong seasonal (week 47) and recent high usage (lag_1=208.20), but model's MAE (~20.5 kWh) and historical medium errors in similar contexts suggest a likely ±10-12% error.","{  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The prediction incorporates strong seasonal (week 47) and recent high usage (lag_1=208.20), but model's MAE (~20.5 kWh) and historical medium errors in similar contexts suggest a likely ±10-12% error.""
+}",106.66,0.0
+6,Baseline,none,deepseek,False,"[1, 2, 3, 4, 5]",2009-11-23 00:00:00,235.9180145263672,236.70476666666667,-0.3323769738052665,small,medium,0,3.0,"The model's recent errors have mostly been in the medium range, and the new prediction's high value relative to recent consumption suggests a likely overprediction with an error magnitude similar to previous weeks.","{  ""error_bucket"": ""medium"",
+  ""confidence"": 3,
+  ""reasoning"": ""The model's recent errors have mostly been in the medium range, and the new prediction's high value relative to recent consumption suggests a likely overprediction with an error magnitude similar to previous weeks.""
+}",119.18,0.0
+22,E,gpt,gpt,True,"[17, 18, 19, 20, 21]",2010-03-15 00:00:00,201.14801025390625,215.3472,-6.593626360637026,medium,medium,1,4.0,"The prediction shows a mix of positive and negative SHAP contributions similar to previous medium error examples, with lag_1 having a negative impact and lag_6 a positive one, suggesting a moderate deviation from the true value.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The prediction shows a mix of positive and negative SHAP contributions similar to previous medium error examples, with lag_1 having a negative impact and lag_6 a positive one, suggesting a moderate deviation from the true value.""
+}
+```",66.08,0.0
+20,E,deepseek,gpt,True,"[15, 16, 17, 18, 19]",2010-03-01 00:00:00,208.2930145263672,185.85613333333333,12.07217689867316,medium,medium,1,4.0,"The prediction is similar to Example 5, where the model predicted around 210 kWh with similar feature influences and resulted in a medium error; thus, a medium error is likely here as well.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The prediction is similar to Example 5, where the model predicted around 210 kWh with similar feature influences and resulted in a medium error; thus, a medium error is likely here as well.""
+}
+```",93.6,0.0
+20,E,gpt,gpt,True,"[15, 16, 17, 18, 19]",2010-03-01 00:00:00,208.2930145263672,185.85613333333333,12.07217689867316,medium,medium,1,4.0,"The prediction is similar to Example 5, where the model underestimated the true value with a medium error, and the SHAP values show a similar pattern of influence from recent lags and week of the year.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The prediction is similar to Example 5, where the model underestimated the true value with a medium error, and the SHAP values show a similar pattern of influence from recent lags and week of the year.""
+}
+```",115.68,0.0
+26,Baseline,none,gpt,False,"[21, 22, 23, 24, 25]",2010-04-12 00:00:00,201.3729553222656,175.63698333333332,14.65293442218214,medium,medium,1,4.0,"The prediction is similar to previous weeks with medium errors, and the SHAP values show a balanced influence of recent lags, suggesting a moderate error is likely.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The prediction is similar to previous weeks with medium errors, and the SHAP values show a balanced influence of recent lags, suggesting a moderate error is likely.""
+}
+```",93.21,0.0
+22,E,deepseek,gpt,True,"[17, 18, 19, 20, 21]",2010-03-15 00:00:00,201.14801025390625,215.3472,-6.593626360637026,medium,large,0,4.0,"The prediction is significantly higher than the recent trend indicated by lag_1, and similar past instances with such discrepancies have resulted in larger errors.","```json
+{
+  ""error_bucket"": ""large"",
+  ""confidence"": 4,
+  ""reasoning"": ""The prediction is significantly higher than the recent trend indicated by lag_1, and similar past instances with such discrepancies have resulted in larger errors.""
+}
+```",95.66,0.0
+26,E,gpt,gpt,True,"[21, 22, 23, 24, 25]",2010-04-12 00:00:00,201.3729553222656,175.63698333333332,14.65293442218214,medium,medium,1,4.0,"The prediction is similar to previous weeks with medium errors, and the SHAP values show a balanced influence of recent lags, suggesting a moderate error is likely.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The prediction is similar to previous weeks with medium errors, and the SHAP values show a balanced influence of recent lags, suggesting a moderate error is likely.""
+}
+```",93.58,0.0
+19,Baseline,none,gpt,False,"[14, 15, 16, 17, 18]",2010-02-22 00:00:00,209.96017456054688,229.4187,-8.481664938147206,medium,large,0,4.0,"The prediction is significantly lower than the recent lag values, and the SHAP value for lag_5 is notably negative, suggesting a potential underestimation similar to previous medium errors, but more pronounced.","```json
+{
+  ""error_bucket"": ""large"",
+  ""confidence"": 4,
+  ""reasoning"": ""The prediction is significantly lower than the recent lag values, and the SHAP value for lag_5 is notably negative, suggesting a potential underestimation similar to previous medium errors, but more pronounced.""
+}
+```",113.88,1.0
+34,Baseline,none,gpt,False,"[29, 30, 31, 32, 33]",2010-06-07 00:00:00,154.66644287109375,163.88533333333334,-5.625207744178604,medium,medium,1,4.0,"The prediction is influenced by negative SHAP values for lag_6, lag_1, and weekofyear, similar to previous medium error cases, suggesting a moderate deviation from the true value.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The prediction is influenced by negative SHAP values for lag_6, lag_1, and weekofyear, similar to previous medium error cases, suggesting a moderate deviation from the true value.""
+}
+```",85.67,0.0
+26,E,deepseek,gpt,True,"[21, 22, 23, 24, 25]",2010-04-12 00:00:00,201.3729553222656,175.63698333333332,14.65293442218214,medium,medium,1,4.0,"The prediction is primarily driven by recent high consumption (lag_1), similar to previous instances with medium errors, and the SHAP values suggest a balanced influence of positive and negative factors, indicating a likely medium error.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The prediction is primarily driven by recent high consumption (lag_1), similar to previous instances with medium errors, and the SHAP values suggest a balanced influence of positive and negative factors, indicating a likely medium error.""
+}
+```",104.8,0.0
+34,E,gpt,gpt,True,"[29, 30, 31, 32, 33]",2010-06-07 00:00:00,154.66644287109375,163.88533333333334,-5.625207744178604,medium,medium,1,4.0,"The prediction is influenced by negative SHAP values from recent lags and weekofyear, similar to previous instances with medium errors, suggesting a moderate deviation from the true value.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The prediction is influenced by negative SHAP values from recent lags and weekofyear, similar to previous instances with medium errors, suggesting a moderate deviation from the true value.""
+}
+```",97.24,0.0
+22,Baseline,none,gpt,False,"[17, 18, 19, 20, 21]",2010-03-15 00:00:00,201.14801025390625,215.3472,-6.593626360637026,medium,medium,1,4.0,"The prediction is influenced by a recent low lag_1 value, similar to Example 5, which had a medium error; the SHAP values suggest a mix of positive and negative influences, indicating potential for moderate error.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The prediction is influenced by a recent low lag_1 value, similar to Example 5, which had a medium error; the SHAP values suggest a mix of positive and negative influences, indicating potential for moderate error.""
+}
+```",98.28,1.0
+41,E,deepseek,gpt,True,"[36, 37, 38, 39, 40]",2010-07-26 00:00:00,124.9712371826172,119.94703333333334,4.188685380255771,small,small,1,4.0,"The prediction is driven by recent low consumption (lag_1 and lag_2) and seasonal effects, similar to Example 5, which had a small error.","```json
+{
+  ""error_bucket"": ""small"",
+  ""confidence"": 4,
+  ""reasoning"": ""The prediction is driven by recent low consumption (lag_1 and lag_2) and seasonal effects, similar to Example 5, which had a small error.""
+}
+```",55.92,0.0
+41,Baseline,none,gpt,False,"[36, 37, 38, 39, 40]",2010-07-26 00:00:00,124.9712371826172,119.94703333333334,4.188685380255771,small,small,1,4.0,"The prediction is close to the recent lag values, and similar SHAP patterns in previous weeks with small errors suggest a likely small error here.","```json
+{
+  ""error_bucket"": ""small"",
+  ""confidence"": 4,
+  ""reasoning"": ""The prediction is close to the recent lag values, and similar SHAP patterns in previous weeks with small errors suggest a likely small error here.""
+}
+```",103.34,0.0
+42,Baseline,none,gpt,False,"[37, 38, 39, 40, 41]",2010-08-02 00:00:00,114.3490753173828,76.25233333333334,49.96141143315763,very_large,small,0,4.0,The prediction is consistent with recent patterns where the model has shown small errors when the SHAP values for recent lags are negative and the weekofyear feature has a strong negative impact.,"```json
+{
+  ""error_bucket"": ""small"",
+  ""confidence"": 4,
+  ""reasoning"": ""The prediction is consistent with recent patterns where the model has shown small errors when the SHAP values for recent lags are negative and the weekofyear feature has a strong negative impact.""
+}
+```",86.07,0.0
+42,E,gpt,gpt,True,"[37, 38, 39, 40, 41]",2010-08-02 00:00:00,114.3490753173828,76.25233333333334,49.96141143315763,very_large,small,0,5.0,The prediction is consistent with the recent pattern of small errors when the model predicts lower consumption based on recent decreasing trends in lag values and similar SHAP influences.,"```json
+{
+  ""error_bucket"": ""small"",
+  ""confidence"": 5,
+  ""reasoning"": ""The prediction is consistent with the recent pattern of small errors when the model predicts lower consumption based on recent decreasing trends in lag values and similar SHAP influences.""
+}
+```",84.44,0.0
+42,E,deepseek,gpt,True,"[37, 38, 39, 40, 41]",2010-08-02 00:00:00,114.3490753173828,76.25233333333334,49.96141143315763,very_large,small,0,4.0,"The prediction is driven by recent low consumption and seasonal patterns, similar to previous weeks with small errors, and the model's MAE suggests the actual value will likely be close to the prediction.","```json
+{
+  ""error_bucket"": ""small"",
+  ""confidence"": 4,
+  ""reasoning"": ""The prediction is driven by recent low consumption and seasonal patterns, similar to previous weeks with small errors, and the model's MAE suggests the actual value will likely be close to the prediction.""
+}
+```",93.69,0.0
+46,Baseline,none,gpt,False,"[41, 42, 43, 44, 45]",2010-08-30 00:00:00,124.9823226928711,151.62326666666667,-17.5704854271237,large,very_large,0,4.0,"The prediction is similar to Example 5, where a low lag_1 value led to a very large error, and the SHAP values indicate a similar pattern of negative contributions from recent lags and weekofyear.","```json
+{
+  ""error_bucket"": ""very_large"",
+  ""confidence"": 4,
+  ""reasoning"": ""The prediction is similar to Example 5, where a low lag_1 value led to a very large error, and the SHAP values indicate a similar pattern of negative contributions from recent lags and weekofyear.""
+}
+```",95.31,0.0
+46,E,gpt,gpt,True,"[41, 42, 43, 44, 45]",2010-08-30 00:00:00,124.9823226928711,151.62326666666667,-17.5704854271237,large,very_large,0,4.0,"The prediction of 124.98 kWh is similar to the previous week's prediction, which had a very large error due to underestimating the true value, and the SHAP values indicate a similar pattern of influence from recent lags and week number.","```json
+{
+  ""error_bucket"": ""very_large"",
+  ""confidence"": 4,
+  ""reasoning"": ""The prediction of 124.98 kWh is similar to the previous week's prediction, which had a very large error due to underestimating the true value, and the SHAP values indicate a similar pattern of influence from recent lags and week number.""
+}
+```",104.92,0.0
+34,E,deepseek,gpt,True,"[29, 30, 31, 32, 33]",2010-06-07 00:00:00,154.66644287109375,163.88533333333334,-5.625207744178604,medium,medium,1,4.0,"The prediction is significantly below the baseline due to negative influences from recent lags and seasonal effects, similar to previous instances with medium errors.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The prediction is significantly below the baseline due to negative influences from recent lags and seasonal effects, similar to previous instances with medium errors.""
+}
+```",76.31,1.0
+41,E,gpt,gpt,True,"[36, 37, 38, 39, 40]",2010-07-26 00:00:00,124.9712371826172,119.94703333333334,4.188685380255771,small,small,1,4.0,"The prediction is similar to Example 5, where recent lags and weekofyear have strong negative SHAP values, and the previous outcome was in the small error bucket.","```json
+{
+  ""error_bucket"": ""small"",
+  ""confidence"": 4,
+  ""reasoning"": ""The prediction is similar to Example 5, where recent lags and weekofyear have strong negative SHAP values, and the previous outcome was in the small error bucket.""
+}
+```",88.65,1.0
+49,E,deepseek,gpt,True,"[44, 45, 46, 47, 48]",2010-09-20 00:00:00,176.1153106689453,151.7416,16.06264245859099,large,medium,0,4.0,"The prediction is close to the baseline and recent lags show a stable pattern, suggesting a moderate error similar to Example 5.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The prediction is close to the baseline and recent lags show a stable pattern, suggesting a moderate error similar to Example 5.""
+}
+```",92.96,0.0
+52,Baseline,none,gpt,False,"[47, 48, 49, 50, 51]",2010-10-11 00:00:00,193.8168029785156,195.39606666666663,-0.8082371948894582,small,large,0,4.0,"The prediction is significantly influenced by lag_1, similar to previous instances with large errors, and the SHAP values suggest a strong deviation from the base value, indicating a likely large error.","```json
+{
+  ""error_bucket"": ""large"",
+  ""confidence"": 4,
+  ""reasoning"": ""The prediction is significantly influenced by lag_1, similar to previous instances with large errors, and the SHAP values suggest a strong deviation from the base value, indicating a likely large error.""
+}
+```",99.01,0.0
+52,E,deepseek,gpt,True,"[47, 48, 49, 50, 51]",2010-10-11 00:00:00,193.8168029785156,195.39606666666663,-0.8082371948894582,small,very_large,0,4.0,"The prediction is significantly influenced by a high lag_1 value, similar to Example 5, which resulted in a large error; combined with the upward SHAP impact of lag_1 and weekofyear, this suggests a likely overestimation.","```json
+{
+  ""error_bucket"": ""very_large"",
+  ""confidence"": 4,
+  ""reasoning"": ""The prediction is significantly influenced by a high lag_1 value, similar to Example 5, which resulted in a large error; combined with the upward SHAP impact of lag_1 and weekofyear, this suggests a likely overestimation.""
+}
+```",75.16,0.0
+10,Baseline,none,deepseek,False,"[5, 6, 7, 8, 9]",2009-12-21 00:00:00,240.49972534179688,203.00573333333327,18.4694251698295,large,medium,0,4.0,Strong contributions from lag_1 and weekofyear (similar to previous medium-error instances) suggest a pattern where the model moderately overestimates consumption despite recent downward trends in true values.,"{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""Strong contributions from lag_1 and weekofyear (similar to previous medium-error instances) suggest a pattern where the model moderately overestimates consumption despite recent downward trends in true values.""
+}",108.01,2.0
+52,E,gpt,gpt,True,"[47, 48, 49, 50, 51]",2010-10-11 00:00:00,193.8168029785156,195.39606666666663,-0.8082371948894582,small,very_large,0,4.0,"The prediction is significantly lower than the recent high actual value of 214.25 kWh (lag_1), and similar past instances with large positive lag_1 influences resulted in large errors, suggesting a very large error is likely.","```json
+{
+  ""error_bucket"": ""very_large"",
+  ""confidence"": 4,
+  ""reasoning"": ""The prediction is significantly lower than the recent high actual value of 214.25 kWh (lag_1), and similar past instances with large positive lag_1 influences resulted in large errors, suggesting a very large error is likely.""
+}
+```",97.87,0.0
+49,Baseline,none,gpt,False,"[44, 45, 46, 47, 48]",2010-09-20 00:00:00,176.1153106689453,151.7416,16.06264245859099,large,medium,0,4.0,"The prediction is close to the expected/base value, and the SHAP values show a balanced influence of recent lags, similar to Example 5, which had a medium error.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The prediction is close to the expected/base value, and the SHAP values show a balanced influence of recent lags, similar to Example 5, which had a medium error.""
+}
+```",81.35,1.0
+49,E,gpt,gpt,True,"[44, 45, 46, 47, 48]",2010-09-20 00:00:00,176.1153106689453,151.7416,16.06264245859099,large,medium,0,4.0,"The prediction is close to the base value with moderate SHAP adjustments, similar to Example 5, which had a medium error.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The prediction is close to the base value with moderate SHAP adjustments, similar to Example 5, which had a medium error.""
+}
+```",75.75,1.0
+55,Baseline,none,gpt,False,"[50, 51, 52, 53, 54]",2010-11-01 00:00:00,182.55816650390625,164.77066666666667,10.79530731839784,medium,large,0,4.0,"The prediction is significantly lower than the recent lag values, similar to Example 2, which had a large error due to underestimation.","```json
+{
+  ""error_bucket"": ""large"",
+  ""confidence"": 4,
+  ""reasoning"": ""The prediction is significantly lower than the recent lag values, similar to Example 2, which had a large error due to underestimation.""
+}
+```",112.93,0.0
+55,E,gpt,gpt,True,"[50, 51, 52, 53, 54]",2010-11-01 00:00:00,182.55816650390625,164.77066666666667,10.79530731839784,medium,medium,1,4.0,"The prediction is similar to Example 5, where a high lag_1 value led to a medium error, and the SHAP values show a similar pattern of influences with a slightly negative weekofyear impact.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The prediction is similar to Example 5, where a high lag_1 value led to a medium error, and the SHAP values show a similar pattern of influences with a slightly negative weekofyear impact.""
+}
+```",103.71,0.0
+56,E,gpt,gpt,True,"[51, 52, 53, 54, 55]",2010-11-08 00:00:00,157.11070251464844,201.33963333333327,-21.96732460789796,large,large,1,4.0,"The prediction is significantly lower than the recent lags, especially lag_1 and lag_2, and similar patterns in previous examples (e.g., Example 1) resulted in large errors.","```json
+{
+  ""error_bucket"": ""large"",
+  ""confidence"": 4,
+  ""reasoning"": ""The prediction is significantly lower than the recent lags, especially lag_1 and lag_2, and similar patterns in previous examples (e.g., Example 1) resulted in large errors.""
+}
+```",71.32,0.0
+56,E,deepseek,gpt,True,"[51, 52, 53, 54, 55]",2010-11-08 00:00:00,157.11070251464844,201.33963333333327,-21.96732460789796,large,large,1,4.0,"The prediction is significantly lower than the recent consumption values, and the SHAP values indicate strong negative influences from recent weeks, suggesting a potential underestimation similar to Example 1.","```json
+{
+  ""error_bucket"": ""large"",
+  ""confidence"": 4,
+  ""reasoning"": ""The prediction is significantly lower than the recent consumption values, and the SHAP values indicate strong negative influences from recent weeks, suggesting a potential underestimation similar to Example 1.""
+}
+```",105.43,0.0
+46,E,deepseek,gpt,True,"[41, 42, 43, 44, 45]",2010-08-30 00:00:00,124.9823226928711,151.62326666666667,-17.5704854271237,large,very_large,0,4.0,"The model has consistently under-predicted when recent consumption was low, and the SHAP values indicate a similar pattern with significant negative impacts from recent lags and seasonality, suggesting a likely underestimation.","```json
+{
+  ""error_bucket"": ""very_large"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model has consistently under-predicted when recent consumption was low, and the SHAP values indicate a similar pattern with significant negative impacts from recent lags and seasonality, suggesting a likely underestimation.""
+}
+```",93.48,2.0
+55,E,deepseek,gpt,True,"[50, 51, 52, 53, 54]",2010-11-01 00:00:00,182.55816650390625,164.77066666666667,10.79530731839784,medium,medium,1,4.0,"The prediction is lower than recent high consumption weeks, similar to Example 5, which had a medium error; the SHAP values show mixed influences with a strong negative from lag_6, suggesting potential underestimation.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The prediction is lower than recent high consumption weeks, similar to Example 5, which had a medium error; the SHAP values show mixed influences with a strong negative from lag_6, suggesting potential underestimation.""
+}
+```",68.96,1.0
+56,Baseline,none,gpt,False,"[51, 52, 53, 54, 55]",2010-11-08 00:00:00,157.11070251464844,201.33963333333327,-21.96732460789796,large,large,1,4.0,"The prediction is significantly lower than the recent lag values, similar to Example 1, which had a large error.","```json
+{
+  ""error_bucket"": ""large"",
+  ""confidence"": 4,
+  ""reasoning"": ""The prediction is significantly lower than the recent lag values, similar to Example 1, which had a large error.""
+}
+```",67.1,1.0
+6,E,deepseek,deepseek,True,"[1, 2, 3, 4, 5]",2009-11-23 00:00:00,235.9180145263672,236.70476666666667,-0.3323769738052665,small,medium,0,4.0,"The prediction shows similar strong positive drivers (weekofyear and lag_1) as in recent examples with medium errors, and the absence of conflicting negative SHAP values suggests a consistent pattern likely resulting in an error within the 5-15% range.","{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The prediction shows similar strong positive drivers (weekofyear and lag_1) as in recent examples with medium errors, and the absence of conflicting negative SHAP values suggests a consistent pattern likely resulting in an error within the 5-15% range.""
+}",102.77,4.0
+10,E,deepseek,deepseek,True,"[5, 6, 7, 8, 9]",2009-12-21 00:00:00,240.49972534179688,203.00573333333327,18.4694251698295,large,medium,0,4.0,"The model's prediction aligns with recent seasonal patterns (week 52 SHAP +25.5) and lag_1 usage, but MAE (~20 kWh) and recent instances (e.g., Week 51's 5.6% error) suggest a medium error (likely ±5–15%) due to consistent overestimation of high seasonal forecasts.","{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model's prediction aligns with recent seasonal patterns (week 52 SHAP +25.5) and lag_1 usage, but MAE (~20 kWh) and recent instances (e.g., Week 51's 5.6% error) suggest a medium error (likely ±5–15%) due to consistent overestimation of high seasonal forecasts.""
+}",47.07,0.0
+10,E,gpt,deepseek,True,"[5, 6, 7, 8, 9]",2009-12-21 00:00:00,240.49972534179688,203.00573333333327,18.4694251698295,large,medium,0,4.0,"High contributions from weekofyear and lag_1 (similar to previous medium-error instances) suggest overestization risk, aligning with recent patterns of 5-13% errors when these features dominate.","{  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""High contributions from weekofyear and lag_1 (similar to previous medium-error instances) suggest overestization risk, aligning with recent patterns of 5-13% errors when these features dominate.""
+}",60.29,2.0
+19,Baseline,none,deepseek,False,"[14, 15, 16, 17, 18]",2010-02-22 00:00:00,209.96017456054688,229.4187,-8.481664938147206,medium,medium,1,3.0,"The strong negative SHAP from lag_5 (-13.36) and reduced weekofyear contribution (+9.71 vs prior weeks) suggest potential underprediction, aligning with the model's MAE (~20 kWh) and historical medium errors when lag contributions conflicted.","{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 3,
+  ""reasoning"": ""The strong negative SHAP from lag_5 (-13.36) and reduced weekofyear contribution (+9.71 vs prior weeks) suggest potential underprediction, aligning with the model's MAE (~20 kWh) and historical medium errors when lag contributions conflicted.""
+}",79.03,0.0
+19,E,deepseek,deepseek,True,"[14, 15, 16, 17, 18]",2010-02-22 00:00:00,209.96017456054688,229.4187,-8.481664938147206,medium,medium,1,4.0,"The model's prediction is notably lowered by lag_5's substantial negative SHAP impact (-13.356), similar to Example 3 where underprediction led to medium error. Actual consumption is likely higher than forecasted due to recent trends.","{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model's prediction is notably lowered by lag_5's substantial negative SHAP impact (-13.356), similar to Example 3 where underprediction led to medium error. Actual consumption is likely higher than forecasted due to recent trends.""
+}",78.89,0.0
+20,E,gpt,deepseek,True,"[15, 16, 17, 18, 19]",2010-03-01 00:00:00,208.2930145263672,185.85613333333333,12.07217689867316,medium,medium,1,4.0,"The prediction is similar in magnitude to the previous week's prediction which had a medium error, and the model's average error metrics align with a deviation around 10%.","{  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The prediction is similar in magnitude to the previous week's prediction which had a medium error, and the model's average error metrics align with a deviation around 10%.""
+}",84.59,0.0
+19,E,gpt,deepseek,True,"[14, 15, 16, 17, 18]",2010-02-22 00:00:00,209.96017456054688,229.4187,-8.481664938147206,medium,medium,1,4.0,"The model's recent errors (mostly medium) coupled with a significant negative SHAP impact from lag_5 (-13.356) suggest a probable underprediction similar to Example 3, leading to an error in the 5-15% range.","{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model's recent errors (mostly medium) coupled with a significant negative SHAP impact from lag_5 (-13.356) suggest a probable underprediction similar to Example 3, leading to an error in the 5-15% range.""
+}",67.48,1.0
+20,Baseline,none,deepseek,False,"[15, 16, 17, 18, 19]",2010-03-01 00:00:00,208.2930145263672,185.85613333333333,12.07217689867316,medium,medium,1,4.0,"Recent under-predictions with similar lag_1 alignment and SHAP patterns suggest the actual value will likely exceed the prediction by ~8-10%, aligning with medium error.","{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""Recent under-predictions with similar lag_1 alignment and SHAP patterns suggest the actual value will likely exceed the prediction by ~8-10%, aligning with medium error.""
+}",53.35,1.0
+22,E,gpt,deepseek,True,"[17, 18, 19, 20, 21]",2010-03-15 00:00:00,201.14801025390625,215.3472,-6.593626360637026,medium,large,0,4.0,"The model heavily relies on lag_6 (higher historical value) while recent consumption shows a sharp downward trend, creating a high likelihood of significant prediction-error divergence similar to recent medium errors but amplified by lag mismatch.","{
+  ""error_bucket"": ""large"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model heavily relies on lag_6 (higher historical value) while recent consumption shows a sharp downward trend, creating a high likelihood of significant prediction-error divergence similar to recent medium errors but amplified by lag mismatch.""
+}",54.21,0.0
+20,E,deepseek,deepseek,True,"[15, 16, 17, 18, 19]",2010-03-01 00:00:00,208.2930145263672,185.85613333333333,12.07217689867316,medium,medium,1,4.0,"Recent predictions with similar lag_1 values (e.g., Example 5's 229.42 true vs 209.96 predicted) resulted in ~8.5% error, and the model's SHAP values here show conflicting influences (lag_6 boosting vs weekofyear reducing) likely aligning with a ~10% error given historical MAE patterns.","{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""Recent predictions with similar lag_1 values (e.g., Example 5's 229.42 true vs 209.96 predicted) resulted in ~8.5% error, and the model's SHAP values here show conflicting influences (lag_6 boosting vs weekofyear reducing) likely aligning with a ~10% error given historical MAE patterns.""
+}",33.99,1.0
+22,E,deepseek,deepseek,True,"[17, 18, 19, 20, 21]",2010-03-15 00:00:00,201.14801025390625,215.3472,-6.593626360637026,medium,medium,1,3.0,"The model's typical absolute error of ~20 kWh corresponds to a ~10% error for this prediction, consistent with recent medium-error examples.","{  ""error_bucket"": ""medium"",
+  ""confidence"": 3,
+  ""reasoning"": ""The model's typical absolute error of ~20 kWh corresponds to a ~10% error for this prediction, consistent with recent medium-error examples.""
+}",89.73,0.0
+26,E,deepseek,deepseek,True,"[21, 22, 23, 24, 25]",2010-04-12 00:00:00,201.3729553222656,175.63698333333332,14.65293442218214,medium,medium,1,4.0,"The model's prediction (201.37 kWh) is heavily influenced by recent consumption (lag_1 = 196.35 kWh, +15.4 SHAP), but conflicting lag impacts (e.g., lag_7 = 229.42 pulls down slightly) and seasonal adjustment (-1.5 SHAP for week 15) introduce uncertainty. Historical MAE (~20 kWh) and recent errors (6.6–18.3%) suggest a medium error (±10–15%) is most likely given the mixed drivers and typical model variance.","{  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model's prediction (201.37 kWh) is heavily influenced by recent consumption (lag_1 = 196.35 kWh, +15.4 SHAP), but conflicting lag impacts (e.g., lag_7 = 229.42 pulls down slightly) and seasonal adjustment (-1.5 SHAP for week 15) introduce uncertainty. Historical MAE (~20 kWh) and recent errors (6.6–18.3%) suggest a medium error (±10–15%) is most likely given the mixed drivers and typical model variance.""
+}",109.54,0.0
+26,E,gpt,deepseek,True,"[21, 22, 23, 24, 25]",2010-04-12 00:00:00,201.3729553222656,175.63698333333332,14.65293442218214,medium,medium,1,3.0,"Recent predictions with similar SHAP contributions and lag patterns resulted in medium errors (5-10%), and the model's MAE (20.55 kWh) aligns with a typical ~10% error for a 201 kWh prediction.","{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 3,
+  ""reasoning"": ""Recent predictions with similar SHAP contributions and lag patterns resulted in medium errors (5-10%), and the model's MAE (20.55 kWh) aligns with a typical ~10% error for a 201 kWh prediction.""
+}",77.85,1.0
+34,Baseline,none,deepseek,False,"[29, 30, 31, 32, 33]",2010-06-07 00:00:00,154.66644287109375,163.88533333333334,-5.625207744178604,medium,medium,1,4.0,"Significant negative SHAP contributions from lag_1 and weekofyear suggest underprediction, but recent examples show similar SHAP patterns resulting in medium errors (5-15%) when true values stabilize near previous weeks' levels.","{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""Significant negative SHAP contributions from lag_1 and weekofyear suggest underprediction, but recent examples show similar SHAP patterns resulting in medium errors (5-15%) when true values stabilize near previous weeks' levels.""
+}",50.69,1.0
+34,E,gpt,deepseek,True,"[29, 30, 31, 32, 33]",2010-06-07 00:00:00,154.66644287109375,163.88533333333334,-5.625207744178604,medium,large,0,4.0,"The model's prediction is heavily influenced by sharp negative contributions from lag_1 (-10.94) and lag_6 (-11.20), but historical patterns show similar drastic drops (e.g., Example 3) resulted in large errors when actual values rebounded unexpectedly.","{
+  ""error_bucket"": ""large"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model's prediction is heavily influenced by sharp negative contributions from lag_1 (-10.94) and lag_6 (-11.20), but historical patterns show similar drastic drops (e.g., Example 3) resulted in large errors when actual values rebounded unexpectedly.""
+}",89.67,1.0
+34,E,deepseek,deepseek,True,"[29, 30, 31, 32, 33]",2010-06-07 00:00:00,154.66644287109375,163.88533333333334,-5.625207744178604,medium,medium,1,4.0,"The model's prediction is driven downward by lag_1, lag_6, and weekofyear, but recent true values (170-172 kWh) suggest a potential ~10% error if the actual remains near recent levels, aligning with MAE trends.","{  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model's prediction is driven downward by lag_1, lag_6, and weekofyear, but recent true values (170-172 kWh) suggest a potential ~10% error if the actual remains near recent levels, aligning with MAE trends.""
+}",81.63,1.0
+41,E,gpt,deepseek,True,"[36, 37, 38, 39, 40]",2010-07-26 00:00:00,124.9712371826172,119.94703333333334,4.188685380255771,small,small,1,4.0,"Recent examples show small errors when lag_1 aligns closely with actuals, and the prediction's SHAP values suggest a plausible continuation of stabilized consumption trends within a narrow range.","{
+  ""error_bucket"": ""small"",
+  ""confidence"": 4,
+  ""reasoning"": ""Recent examples show small errors when lag_1 aligns closely with actuals, and the prediction's SHAP values suggest a plausible continuation of stabilized consumption trends within a narrow range.""
+}",91.26,0.0
+41,E,deepseek,deepseek,True,"[36, 37, 38, 39, 40]",2010-07-26 00:00:00,124.9712371826172,119.94703333333334,4.188685380255771,small,small,1,3.0,"Recent predictions with strong negative SHAP influences from lag_1 and seasonal week numbers have shown small errors (examples 3,5), suggesting the model's downward adjustment aligns with actual consumption trends in summer weeks.","{
+  ""error_bucket"": ""small"",
+  ""confidence"": 3,
+  ""reasoning"": ""Recent predictions with strong negative SHAP influences from lag_1 and seasonal week numbers have shown small errors (examples 3,5), suggesting the model's downward adjustment aligns with actual consumption trends in summer weeks.""
+}",90.78,0.0
+42,Baseline,none,deepseek,False,"[37, 38, 39, 40, 41]",2010-08-02 00:00:00,114.3490753173828,76.25233333333334,49.96141143315763,very_large,small,0,4.0,"The model's recent predictions have had small errors, and the new instance features and SHAP values indicate a consistent downward trend similar to the previous week, suggesting the prediction is likely close to the true value.","{  ""error_bucket"": ""small"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model's recent predictions have had small errors, and the new instance features and SHAP values indicate a consistent downward trend similar to the previous week, suggesting the prediction is likely close to the true value.""
+}",84.6,0.0
+42,E,gpt,deepseek,True,"[37, 38, 39, 40, 41]",2010-08-02 00:00:00,114.3490753173828,76.25233333333334,49.96141143315763,very_large,small,0,4.0,"Recent examples with strong lag_1 and lag_6 SHAP contributions (as seen here) resulted in small errors (4.2%, 2.3%), and the continued downward trend in actual values suggests the model is tracking consumption decreases accurately.","{
+  ""error_bucket"": ""small"",
+  ""confidence"": 4,
+  ""reasoning"": ""Recent examples with strong lag_1 and lag_6 SHAP contributions (as seen here) resulted in small errors (4.2%, 2.3%), and the continued downward trend in actual values suggests the model is tracking consumption decreases accurately.""
+}",39.51,0.0
+41,Baseline,none,deepseek,False,"[36, 37, 38, 39, 40]",2010-07-26 00:00:00,124.9712371826172,119.94703333333334,4.188685380255771,small,small,1,3.0,"The recent true values have been around 126-128 kWh, and the prediction of 124.97 kWh is within 2-3 kWh of that range, likely resulting in an error under 5%.","{  ""error_bucket"": ""small"",
+  ""confidence"": 3,
+  ""reasoning"": ""The recent true values have been around 126-128 kWh, and the prediction of 124.97 kWh is within 2-3 kWh of that range, likely resulting in an error under 5%.""
+}",116.53,2.0
+46,E,deepseek,deepseek,True,"[41, 42, 43, 44, 45]",2010-08-30 00:00:00,124.9823226928711,151.62326666666667,-17.5704854271237,large,large,1,3.0,"The model's recent large errors following abrupt consumption changes (e.g., lag_1's sharp rise to 124.56 in Example 5) and persistent negative SHAP impacts from lag_1/lag_2 (despite lag_7's positive influence) suggest moderate instability, aligning with the model's ~20.5 kWh MAE range (15–30% error at this prediction level).","```json
+{
+  ""error_bucket"": ""large"",
+  ""confidence"": 3,
+  ""reasoning"": ""The model's recent large errors following abrupt consumption changes (e.g., lag_1's sharp rise to 124.56 in Example 5) and persistent negative SHAP impacts from lag_1/lag_2 (despite lag_7's positive influence) suggest moderate instability, aligning with the model's ~20.5 kWh MAE range (15–30% error at this prediction level).""
+}
+```",74.8,1.0
+52,E,gpt,deepseek,True,"[47, 48, 49, 50, 51]",2010-10-11 00:00:00,193.8168029785156,195.39606666666663,-0.8082371948894582,small,large,0,4.0,"The model's prediction relies heavily on a sudden spike in lag_1 (214.25) which historically led to underestimation errors, while the strong negative SHAP from lag_6 may overcorrect, likely resulting in a significant deviation from the true value.","{
+  ""error_bucket"": ""large"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model's prediction relies heavily on a sudden spike in lag_1 (214.25) which historically led to underestimation errors, while the strong negative SHAP from lag_6 may overcorrect, likely resulting in a significant deviation from the true value.""
+}",116.96,0.0
+49,E,deepseek,deepseek,True,"[44, 45, 46, 47, 48]",2010-09-20 00:00:00,176.1153106689453,151.7416,16.06264245859099,large,medium,0,3.0,"The prediction is close to the model's baseline, and the typical MAE of 20.55 kWh corresponds to an 11.7% error for this prediction magnitude, which falls in the medium bucket.","{  ""error_bucket"": ""medium"",
+  ""confidence"": 3,
+  ""reasoning"": ""The prediction is close to the model's baseline, and the typical MAE of 20.55 kWh corresponds to an 11.7% error for this prediction magnitude, which falls in the medium bucket.""
+}",118.91,3.0
+52,E,deepseek,deepseek,True,"[47, 48, 49, 50, 51]",2010-10-11 00:00:00,193.8168029785156,195.39606666666663,-0.8082371948894582,small,large,0,4.0,"The model heavily relies on a sudden spike in lag_1 (214.25 kWh), but historical patterns show such sharp increases often lead to overestimations or volatility, similar to Example 5's 15.2% error when lag_1 spiked unexpectedly.","{  ""error_bucket"": ""large"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model heavily relies on a sudden spike in lag_1 (214.25 kWh), but historical patterns show such sharp increases often lead to overestimations or volatility, similar to Example 5's 15.2% error when lag_1 spiked unexpectedly.""
+}",103.39,3.0
+55,Baseline,none,deepseek,False,"[50, 51, 52, 53, 54]",2010-11-01 00:00:00,182.55816650390625,164.77066666666667,10.79530731839784,medium,medium,1,4.0,"High lag_1 (208.78) suggests recent high consumption, but strong negative SHAP from lag_6 (-13.688) lowers prediction; historical patterns show similar configurations yielding medium errors (6.9-15.2%) when balancing opposing lag impacts.","{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""High lag_1 (208.78) suggests recent high consumption, but strong negative SHAP from lag_6 (-13.688) lowers prediction; historical patterns show similar configurations yielding medium errors (6.9-15.2%) when balancing opposing lag impacts.""
+}",115.33,2.0
+55,E,deepseek,deepseek,True,"[50, 51, 52, 53, 54]",2010-11-01 00:00:00,182.55816650390625,164.77066666666667,10.79530731839784,medium,medium,1,4.0,"The model's significant negative SHAP from lag_6 (-13.688) likely overcompensates for the high lag_1, similar to Example 5's pattern (6.9% error), while the MAE of ~20.5 kWh suggests a typical error around ±11% for this prediction range.","{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model's significant negative SHAP from lag_6 (-13.688) likely overcompensates for the high lag_1, similar to Example 5's pattern (6.9% error), while the MAE of ~20.5 kWh suggests a typical error around ±11% for this prediction range.""
+}",118.2,0.0
+56,E,gpt,deepseek,True,"[51, 52, 53, 54, 55]",2010-11-08 00:00:00,157.11070251464844,201.33963333333327,-21.96732460789796,large,large,1,4.0,"Significant negative SHAP contributions from lag_1 and lag_6 combined with potential unmodeled seasonal heating demand in week 45 suggest a higher actual consumption than predicted, leading to a large error.","{
+  ""error_bucket"": ""large"",
+  ""confidence"": 4,
+  ""reasoning"": ""Significant negative SHAP contributions from lag_1 and lag_6 combined with potential unmodeled seasonal heating demand in week 45 suggest a higher actual consumption than predicted, leading to a large error.""
+}",114.91,0.0
+56,Baseline,none,deepseek,False,"[51, 52, 53, 54, 55]",2010-11-08 00:00:00,157.11070251464844,201.33963333333327,-21.96732460789796,large,large,1,4.0,"Strong negative SHAP contributions from lag_1 and lag_6 suggest potential underestimation, mirroring Example 1's pattern where a similar setup led to a large error due to unexpected consumption rebound.","{
+  ""error_bucket"": ""large"",
+  ""confidence"": 4,
+  ""reasoning"": ""Strong negative SHAP contributions from lag_1 and lag_6 suggest potential underestimation, mirroring Example 1's pattern where a similar setup led to a large error due to unexpected consumption rebound.""
+}",112.06,1.0
+56,E,deepseek,deepseek,True,"[51, 52, 53, 54, 55]",2010-11-08 00:00:00,157.11070251464844,201.33963333333327,-21.96732460789796,large,medium,0,4.0,"The model's strong negative SHAP contributions from lag_1 and lag_6 suggest an aggressive downward adjustment, but historical patterns show volatility after sharp consumption drops (e.g., ±20 kWh MAE), likely placing the actual value 5-15% away from the prediction.","{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model's strong negative SHAP contributions from lag_1 and lag_6 suggest an aggressive downward adjustment, but historical patterns show volatility after sharp consumption drops (e.g., ±20 kWh MAE), likely placing the actual value 5-15% away from the prediction.""
+}",90.39,0.0
+5,Baseline,none,deepseek,False,"[0, 1, 2, 3, 4]",2009-11-16 00:00:00,222.97052001953125,211.4148,5.465899274568874,medium,medium,1,3.0,"The model's recent errors have predominantly been in the medium range (4 out of 5 examples), and the prediction's high value combined with typical absolute error magnitudes suggests a percentage error likely between 5% and 15%.","{  ""error_bucket"": ""medium"",
+  ""confidence"": 3,
+  ""reasoning"": ""The model's recent errors have predominantly been in the medium range (4 out of 5 examples), and the prediction's high value combined with typical absolute error magnitudes suggests a percentage error likely between 5% and 15%.""
+}",119.58,0.0
+6,E,gpt,deepseek,True,"[1, 2, 3, 4, 5]",2009-11-23 00:00:00,235.9180145263672,236.70476666666667,-0.3323769738052665,small,medium,0,4.0,"The prediction relies heavily on weekofyear and lag_1, similar to previous instances where errors were medium (5-15%), with MAE-driven deviations likely staying within this range despite the higher prediction.","{  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The prediction relies heavily on weekofyear and lag_1, similar to previous instances where errors were medium (5-15%), with MAE-driven deviations likely staying within this range despite the higher prediction.""
+}",113.02,0.0
+22,Baseline,none,deepseek,False,"[17, 18, 19, 20, 21]",2010-03-15 00:00:00,201.14801025390625,215.3472,-6.593626360637026,medium,medium,1,4.0,"The model's recent predictions show medium errors (8.5-12.1%) influenced by lag patterns, and the new prediction's reliance on lag_6 (+22.66 SHAP) while ignoring recent sharp declines in lag_1 suggests a similar overprediction scenario.","{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model's recent predictions show medium errors (8.5-12.1%) influenced by lag patterns, and the new prediction's reliance on lag_6 (+22.66 SHAP) while ignoring recent sharp declines in lag_1 suggests a similar overprediction scenario.""
+}",88.85,2.0
+26,Baseline,none,deepseek,False,"[21, 22, 23, 24, 25]",2010-04-12 00:00:00,201.3729553222656,175.63698333333332,14.65293442218214,medium,medium,1,4.0,"The model's prediction is strongly influenced by lag_1 (196.35 kWh), but recent volatility and a potential downward trend (from 206.95 → 196.35 in prior weeks) suggest a moderate overestimation, aligning with the model's MAE and recent medium-error patterns.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model's prediction is strongly influenced by lag_1 (196.35 kWh), but recent volatility and a potential downward trend (from 206.95 → 196.35 in prior weeks) suggest a moderate overestimation, aligning with the model's MAE and recent medium-error patterns.""
+}
+```",116.97,3.0
+42,E,deepseek,deepseek,True,"[37, 38, 39, 40, 41]",2010-08-02 00:00:00,114.3490753173828,76.25233333333334,49.96141143315763,very_large,small,0,4.0,"Recent consecutive predictions have shown small errors, and the new prediction aligns with the downward trend in consumption during summer weeks, supported by consistent negative SHAP values similar to previous accurate forecasts.","{
+  ""error_bucket"": ""small"",
+  ""confidence"": 4,
+  ""reasoning"": ""Recent consecutive predictions have shown small errors, and the new prediction aligns with the downward trend in consumption during summer weeks, supported by consistent negative SHAP values similar to previous accurate forecasts.""
+}",105.43,0.0
+46,E,gpt,deepseek,True,"[41, 42, 43, 44, 45]",2010-08-30 00:00:00,124.9823226928711,151.62326666666667,-17.5704854271237,large,large,1,3.0,"The model's MAE of 20.55 kWh corresponds to about 16% error for this prediction, and recent examples with mixed lag values show errors in the large or very large buckets.","{  ""error_bucket"": ""large"",
+  ""confidence"": 3,
+  ""reasoning"": ""The model's MAE of 20.55 kWh corresponds to about 16% error for this prediction, and recent examples with mixed lag values show errors in the large or very large buckets.""
+}",119.91,1.0
+49,Baseline,none,deepseek,False,"[44, 45, 46, 47, 48]",2010-09-20 00:00:00,176.1153106689453,151.7416,16.06264245859099,large,medium,0,4.0,"The model's MAE (20.55) and recent overprediction trend (e.g., Example 5 with 5.5% error) suggest a likely medium error (5-15%) when predicting higher values after a dip.","```json
+{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model's MAE (20.55) and recent overprediction trend (e.g., Example 5 with 5.5% error) suggest a likely medium error (5-15%) when predicting higher values after a dip.""
+}
+```",101.72,3.0
+49,E,gpt,deepseek,True,"[44, 45, 46, 47, 48]",2010-09-20 00:00:00,176.1153106689453,151.7416,16.06264245859099,large,medium,0,3.0,"The model's prediction aligns with recent SHAP patterns where lag_2's higher value positively influenced the forecast, but given historical MAE (~20 kWh) and fluctuating actuals around ±15%, a 5-15% error is most plausible.","{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 3,
+  ""reasoning"": ""The model's prediction aligns with recent SHAP patterns where lag_2's higher value positively influenced the forecast, but given historical MAE (~20 kWh) and fluctuating actuals around ±15%, a 5-15% error is most plausible.""
+}",112.29,1.0
+52,Baseline,none,deepseek,False,"[47, 48, 49, 50, 51]",2010-10-11 00:00:00,193.8168029785156,195.39606666666663,-0.8082371948894582,small,large,0,4.0,"The model heavily relies on the unusually high lag_1 (214.25 kWh), but historical patterns show consumption often drops after spikes, leading to significant overprediction similar to Example 5's 15.2% error pattern.","{
+  ""error_bucket"": ""large"",
+  ""confidence"": 4,
+  ""reasoning"": ""The model heavily relies on the unusually high lag_1 (214.25 kWh), but historical patterns show consumption often drops after spikes, leading to significant overprediction similar to Example 5's 15.2% error pattern.""
+}",101.69,3.0
+55,E,gpt,deepseek,True,"[50, 51, 52, 53, 54]",2010-11-01 00:00:00,182.55816650390625,164.77066666666667,10.79530731839784,medium,medium,1,3.0,"The prediction pattern with strong positive lag_1 and strong negative lag_6 SHAP values resembles previous instances that resulted in small to medium errors, and given the model's typical MAE and recent volatility, a medium error is most likely.","{
+  ""error_bucket"": ""medium"",
+  ""confidence"": 3,
+  ""reasoning"": ""The prediction pattern with strong positive lag_1 and strong negative lag_6 SHAP values resembles previous instances that resulted in small to medium errors, and given the model's typical MAE and recent volatility, a medium error is most likely.""
+}",114.85,2.0
+46,Baseline,none,deepseek,False,"[41, 42, 43, 44, 45]",2010-08-30 00:00:00,124.9823226928711,151.62326666666667,-17.5704854271237,large,large,1,4.0,"Recent volatile patterns and strong negative SHAP impacts from weekofyear suggest potential underprediction of consumption drop, with error magnitude aligning with the model's MAE (16.4% error at ±20.55 kWh).","{
+  ""error_bucket"": ""large"",
+  ""confidence"": 4,
+  ""reasoning"": ""Recent volatile patterns and strong negative SHAP impacts from weekofyear suggest potential underprediction of consumption drop, with error magnitude aligning with the model's MAE (16.4% error at ±20.55 kWh).""
+}",118.66,1.0

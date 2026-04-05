@@ -1,0 +1,527 @@
+instance_idx,condition,generator,judge,has_nle,WeekEndDate,pred_orig,pred_pert,pct_change,top_features,true_direction,predicted_direction,correct,confidence,reasoning,raw_response,Duration_s,retries
+30,X,none,gpt,False,2010-05-10 00:00:00,168.75526428222656,180.9909820556641,7.250569530663332,"[""lag_1"", ""weekofyear"", ""lag_6""]",higher,lower,0,4.0,"The decrease in lag_1, which has a significant negative SHAP value, and the change in weekofyear, which also has a negative SHAP value, are likely to lower the prediction despite the increase in lag_6, which has a positive SHAP value.","```json
+{
+  ""direction"": ""lower"",
+  ""confidence"": 4,
+  ""reasoning"": ""The decrease in lag_1, which has a significant negative SHAP value, and the change in weekofyear, which also has a negative SHAP value, are likely to lower the prediction despite the increase in lag_6, which has a positive SHAP value.""
+}
+```",3.19,0.0
+30,X,none,deepseek,False,2010-05-10 00:00:00,168.75526428222656,180.9909820556641,7.250569530663332,"[""lag_1"", ""weekofyear"", ""lag_6""]",higher,higher,1,4.0,"All three feature changes (lag_1 decreasing, weekofyear increasing, lag_6 increasing) are likely to increase the prediction based on their original SHAP contributions and the direction of the perturbations.","{  ""direction"": ""higher"",
+  ""confidence"": 4,
+  ""reasoning"": ""All three feature changes (lag_1 decreasing, weekofyear increasing, lag_6 increasing) are likely to increase the prediction based on their original SHAP contributions and the direction of the perturbations.""
+}",86.88,5.0
+30,E+X,gpt,gpt,True,2010-05-10 00:00:00,168.75526428222656,180.9909820556641,7.250569530663332,"[""lag_1"", ""weekofyear"", ""lag_6""]",higher,higher,1,4.0,"The increase in lag_6, which has a positive SHAP value, and the change in weekofyear to a less negative SHAP value, will likely outweigh the decrease in lag_1, leading to a higher prediction.","```json
+{
+  ""direction"": ""higher"",
+  ""confidence"": 4,
+  ""reasoning"": ""The increase in lag_6, which has a positive SHAP value, and the change in weekofyear to a less negative SHAP value, will likely outweigh the decrease in lag_1, leading to a higher prediction.""
+}
+```",3.15,0.0
+30,E+X,gpt,deepseek,True,2010-05-10 00:00:00,168.75526428222656,180.9909820556641,7.250569530663332,"[""lag_1"", ""weekofyear"", ""lag_6""]",higher,higher,1,4.0,"All three feature changes (decreasing lag_1, increasing weekofyear, and increasing lag_6) are likely to increase the prediction based on their original SHAP contributions and the direction of change, with the combined effect expected to exceed 5%.","{  ""direction"": ""higher"",
+  ""confidence"": 4,
+  ""reasoning"": ""All three feature changes (decreasing lag_1, increasing weekofyear, and increasing lag_6) are likely to increase the prediction based on their original SHAP contributions and the direction of change, with the combined effect expected to exceed 5%.""
+}",96.56,1.0
+30,E+X,deepseek,gpt,True,2010-05-10 00:00:00,168.75526428222656,180.9909820556641,7.250569530663332,"[""lag_1"", ""weekofyear"", ""lag_6""]",higher,lower,0,4.0,"The significant decrease in lag_1 from 154.34 to 115.76, which had the strongest negative SHAP impact originally, will likely further lower the prediction, despite the increase in lag_6 and change in weekofyear to a potentially higher consumption period.","```json
+{
+  ""direction"": ""lower"",
+  ""confidence"": 4,
+  ""reasoning"": ""The significant decrease in lag_1 from 154.34 to 115.76, which had the strongest negative SHAP impact originally, will likely further lower the prediction, despite the increase in lag_6 and change in weekofyear to a potentially higher consumption period.""
+}
+```",3.18,0.0
+30,E+X,deepseek,deepseek,True,2010-05-10 00:00:00,168.75526428222656,180.9909820556641,7.250569530663332,"[""lag_1"", ""weekofyear"", ""lag_6""]",higher,higher,1,5.0,"Lowering lag_1 (strongest negative contributor) reduces its negative impact, changing weekofyear from 19 (spring) to 32 (summer) reverses a major negative seasonal effect, and increasing lag_6 (positive contributor) amplifies its positive impact - all driving the prediction upward.","{
+  ""direction"": ""higher"",
+  ""confidence"": 5,
+  ""reasoning"": ""Lowering lag_1 (strongest negative contributor) reduces its negative impact, changing weekofyear from 19 (spring) to 32 (summer) reverses a major negative seasonal effect, and increasing lag_6 (positive contributor) amplifies its positive impact - all driving the prediction upward.""
+}",68.62,1.0
+55,X,none,gpt,False,2010-11-01 00:00:00,182.55816650390625,213.4950714111328,16.946327573116044,"[""lag_1"", ""lag_6"", ""lag_2""]",higher,similar,0,3.0,"The increase in lag_1, which has a strong positive SHAP value, is offset by the decrease in lag_6 and lag_2, which have negative and positive SHAP values respectively, likely resulting in a net change of less than 5%.","```json
+{
+  ""direction"": ""similar"",
+  ""confidence"": 3,
+  ""reasoning"": ""The increase in lag_1, which has a strong positive SHAP value, is offset by the decrease in lag_6 and lag_2, which have negative and positive SHAP values respectively, likely resulting in a net change of less than 5%.""
+}
+```",3.3,0.0
+55,X,none,deepseek,False,2010-11-01 00:00:00,182.55816650390625,213.4950714111328,16.946327573116044,"[""lag_1"", ""lag_6"", ""lag_2""]",higher,higher,1,5.0,"Increasing lag_1 (strongest positive contributor) and decreasing lag_6 (strongest negative contributor) both push the prediction upward, outweighing the negative impact of reducing lag_2 (moderate positive contributor).","{
+  ""direction"": ""higher"",
+  ""confidence"": 5,
+  ""reasoning"": ""Increasing lag_1 (strongest positive contributor) and decreasing lag_6 (strongest negative contributor) both push the prediction upward, outweighing the negative impact of reducing lag_2 (moderate positive contributor).""
+}",95.38,0.0
+55,E+X,gpt,gpt,True,2010-11-01 00:00:00,182.55816650390625,213.4950714111328,16.946327573116044,"[""lag_1"", ""lag_6"", ""lag_2""]",higher,higher,1,5.0,"The increase in lag_1, which has the highest positive SHAP value, will significantly raise the prediction, while the decrease in lag_6, which has a negative SHAP value, will further increase the prediction, and the decrease in lag_2 will have a lesser negative impact due to its smaller SHAP value.","```json
+{
+  ""direction"": ""higher"",
+  ""confidence"": 5,
+  ""reasoning"": ""The increase in lag_1, which has the highest positive SHAP value, will significantly raise the prediction, while the decrease in lag_6, which has a negative SHAP value, will further increase the prediction, and the decrease in lag_2 will have a lesser negative impact due to its smaller SHAP value.""
+}
+```",3.15,0.0
+55,E+X,gpt,deepseek,True,2010-11-01 00:00:00,182.55816650390625,213.4950714111328,16.946327573116044,"[""lag_1"", ""lag_6"", ""lag_2""]",higher,higher,1,5.0,"Increasing lag_1 (strongest positive contributor) and decreasing lag_6 (strongest negative contributor) both push predictions higher, outweighing the impact of decreasing lag_2.","```json
+{
+  ""direction"": ""higher"",
+  ""confidence"": 5,
+  ""reasoning"": ""Increasing lag_1 (strongest positive contributor) and decreasing lag_6 (strongest negative contributor) both push predictions higher, outweighing the impact of decreasing lag_2.""
+}
+```",117.8,2.0
+55,E+X,deepseek,gpt,True,2010-11-01 00:00:00,182.55816650390625,213.4950714111328,16.946327573116044,"[""lag_1"", ""lag_6"", ""lag_2""]",higher,higher,1,4.0,"The increase in lag_1, which has the highest positive SHAP value, will likely outweigh the decrease in lag_6 and lag_2, leading to a higher prediction.","```json
+{
+  ""direction"": ""higher"",
+  ""confidence"": 4,
+  ""reasoning"": ""The increase in lag_1, which has the highest positive SHAP value, will likely outweigh the decrease in lag_6 and lag_2, leading to a higher prediction.""
+}
+```",3.15,0.0
+29,X,none,gpt,False,2010-05-03 00:00:00,180.59356689453125,230.4656982421875,27.61567435942065,"[""weekofyear"", ""lag_1"", ""lag_2""]",higher,higher,1,5.0,"The increase in lag_1 and lag_2, which have significant positive SHAP values, will likely outweigh the negative impact of the weekofyear change, leading to a higher prediction.","```json
+{
+  ""direction"": ""higher"",
+  ""confidence"": 5,
+  ""reasoning"": ""The increase in lag_1 and lag_2, which have significant positive SHAP values, will likely outweigh the negative impact of the weekofyear change, leading to a higher prediction.""
+}
+```",3.16,0.0
+29,X,none,deepseek,False,2010-05-03 00:00:00,180.59356689453125,230.4656982421875,27.61567435942065,"[""weekofyear"", ""lag_1"", ""lag_2""]",higher,higher,1,4.0,Increasing lag_1/lag_2 (which have strong negative/positive SHAP contributions) and moving to week 5 (likely reversing week's negative impact) would significantly boost predictions.,"{
+  ""direction"": ""higher"",
+  ""confidence"": 4,
+  ""reasoning"": ""Increasing lag_1/lag_2 (which have strong negative/positive SHAP contributions) and moving to week 5 (likely reversing week's negative impact) would significantly boost predictions.""
+}",113.9,0.0
+29,E+X,gpt,gpt,True,2010-05-03 00:00:00,180.59356689453125,230.4656982421875,27.61567435942065,"[""weekofyear"", ""lag_1"", ""lag_2""]",higher,higher,1,5.0,"The increase in Lag_1 and Lag_2, which have significant positive SHAP values, will likely raise the prediction, while the change in weekofyear, which has a negative SHAP value, will have a lesser impact in the opposite direction.","```json
+{
+  ""direction"": ""higher"",
+  ""confidence"": 5,
+  ""reasoning"": ""The increase in Lag_1 and Lag_2, which have significant positive SHAP values, will likely raise the prediction, while the change in weekofyear, which has a negative SHAP value, will have a lesser impact in the opposite direction.""
+}
+```",3.38,0.0
+29,E+X,gpt,deepseek,True,2010-05-03 00:00:00,180.59356689453125,230.4656982421875,27.61567435942065,"[""weekofyear"", ""lag_1"", ""lag_2""]",higher,higher,1,4.0,"The increased lag_2 (strong positive SHAP) and weekofyear change (likely shifting from negative to positive SHAP due to colder weeks) outweigh the more negative lag_1 contribution, driving the prediction up.","{
+  ""direction"": ""higher"",
+  ""confidence"": 4,
+  ""reasoning"": ""The increased lag_2 (strong positive SHAP) and weekofyear change (likely shifting from negative to positive SHAP due to colder weeks) outweigh the more negative lag_1 contribution, driving the prediction up.""
+}",114.26,0.0
+29,E+X,deepseek,gpt,True,2010-05-03 00:00:00,180.59356689453125,230.4656982421875,27.61567435942065,"[""weekofyear"", ""lag_1"", ""lag_2""]",higher,higher,1,5.0,"The change in 'weekofyear' from 18 to 5 will likely increase the prediction as the SHAP value for week 18 was negative, indicating lower consumption, and changing to week 5 should remove this negative influence. Additionally, increasing 'lag_1' and 'lag_2' to significantly higher values will further increase the prediction, as these features had strong positive SHAP contributions when their values were higher. Overall, these changes will likely result in a higher prediction.","```json
+{
+  ""direction"": ""higher"",
+  ""confidence"": 5,
+  ""reasoning"": ""The change in 'weekofyear' from 18 to 5 will likely increase the prediction as the SHAP value for week 18 was negative, indicating lower consumption, and changing to week 5 should remove this negative influence. Additionally, increasing 'lag_1' and 'lag_2' to significantly higher values will further increase the prediction, as these features had strong positive SHAP contributions when their values were higher. Overall, these c",33.45,0.0
+29,E+X,deepseek,deepseek,True,2010-05-03 00:00:00,180.59356689453125,230.4656982421875,27.61567435942065,"[""weekofyear"", ""lag_1"", ""lag_2""]",higher,higher,1,5.0,"Increasing lag_1 (negative→positive SHAP contribution) and lag_2 (already positive), plus changing to week 5 (lowering the negative SHAP impact) all strongly push the prediction upward.","{
+  ""direction"": ""higher"",
+  ""confidence"": 5,
+  ""reasoning"": ""Increasing lag_1 (negative→positive SHAP contribution) and lag_2 (already positive), plus changing to week 5 (lowering the negative SHAP impact) all strongly push the prediction upward.""
+}",66.27,0.0
+46,X,none,gpt,False,2010-08-30 00:00:00,124.9823226928711,144.36776733398438,15.510549190824898,"[""lag_1"", ""lag_2"", ""weekofyear""]",higher,higher,1,4.0,"The changes in lag_1 and lag_2 to lower values will reduce their negative contributions, and the change in weekofyear to a later time in the year (likely winter) may increase consumption, leading to a higher prediction.","```json
+{
+  ""direction"": ""higher"",
+  ""confidence"": 4,
+  ""reasoning"": ""The changes in lag_1 and lag_2 to lower values will reduce their negative contributions, and the change in weekofyear to a later time in the year (likely winter) may increase consumption, leading to a higher prediction.""
+}
+```",2.44,0.0
+46,X,none,deepseek,False,2010-08-30 00:00:00,124.9823226928711,144.36776733398438,15.510549190824898,"[""lag_1"", ""lag_2"", ""weekofyear""]",higher,higher,1,5.0,"Decreasing lag_1 and lag_2 (which had strong negative SHAP impacts) reduces their downward pressure on the prediction, while moving to week 48 (winter) likely reverses weekofyear's negative contribution, leading to a significant prediction increase.","{
+  ""direction"": ""higher"",
+  ""confidence"": 5,
+  ""reasoning"": ""Decreasing lag_1 and lag_2 (which had strong negative SHAP impacts) reduces their downward pressure on the prediction, while moving to week 48 (winter) likely reverses weekofyear's negative contribution, leading to a significant prediction increase.""
+}",82.23,0.0
+46,E+X,gpt,gpt,True,2010-08-30 00:00:00,124.9823226928711,144.36776733398438,15.510549190824898,"[""lag_1"", ""lag_2"", ""weekofyear""]",higher,lower,0,4.0,"The changes in lag_1 and lag_2 to lower values will likely decrease the prediction further, as they already had significant negative SHAP values, and the increase in weekofyear, which also had a negative SHAP value, will contribute to a lower prediction.","```json
+{
+  ""direction"": ""lower"",
+  ""confidence"": 4,
+  ""reasoning"": ""The changes in lag_1 and lag_2 to lower values will likely decrease the prediction further, as they already had significant negative SHAP values, and the increase in weekofyear, which also had a negative SHAP value, will contribute to a lower prediction.""
+}
+```",2.63,0.0
+46,E+X,gpt,deepseek,True,2010-08-30 00:00:00,124.9823226928711,144.36776733398438,15.510549190824898,"[""lag_1"", ""lag_2"", ""weekofyear""]",higher,higher,1,4.0,"Decreasing lag_1 and lag_2 reduces their negative SHAP contributions (less drag on prediction), while moving to week 48 likely introduces a positive seasonal effect (winter energy demand), outweighing the original week 35's negative impact.","{
+  ""direction"": ""higher"",
+  ""confidence"": 4,
+  ""reasoning"": ""Decreasing lag_1 and lag_2 reduces their negative SHAP contributions (less drag on prediction), while moving to week 48 likely introduces a positive seasonal effect (winter energy demand), outweighing the original week 35's negative impact.""
+}",90.05,1.0
+46,E+X,deepseek,gpt,True,2010-08-30 00:00:00,124.9823226928711,144.36776733398438,15.510549190824898,"[""lag_1"", ""lag_2"", ""weekofyear""]",higher,lower,0,4.0,"The changes in lag_1 and lag_2 to lower values will further decrease the prediction, and the change in weekofyear to 48, which likely corresponds to late autumn or early winter, may not offset this decrease significantly given the strong negative SHAP values for lag_1 and lag_2.","```json
+{
+  ""direction"": ""lower"",
+  ""confidence"": 4,
+  ""reasoning"": ""The changes in lag_1 and lag_2 to lower values will further decrease the prediction, and the change in weekofyear to 48, which likely corresponds to late autumn or early winter, may not offset this decrease significantly given the strong negative SHAP values for lag_1 and lag_2.""
+}
+```",2.66,0.0
+46,E+X,deepseek,deepseek,True,2010-08-30 00:00:00,124.9823226928711,144.36776733398438,15.510549190824898,"[""lag_1"", ""lag_2"", ""weekofyear""]",higher,higher,1,4.0,"Decreasing lag_1/lag_2 increases their negative SHAP contributions slightly, but changing weekofyear from 35 (low-consumption season) to Week 48 (high-consumption winter weeks) likely adds a large positive SHAP effect that outweighs lag impacts.","{
+  ""direction"": ""higher"",
+  ""confidence"": 4,
+  ""reasoning"": ""Decreasing lag_1/lag_2 increases their negative SHAP contributions slightly, but changing weekofyear from 35 (low-consumption season) to Week 48 (high-consumption winter weeks) likely adds a large positive SHAP effect that outweighs lag impacts.""
+}",90.28,2.0
+0,X,none,gpt,False,2009-10-12 00:00:00,168.75978088378906,196.49208068847656,16.433002969934197,"[""lag_6"", ""lag_1"", ""lag_7""]",higher,higher,1,4.0,"The increase in lag_1 from 166.27 to 207.84, which had a negative SHAP value, will likely increase the prediction significantly, and the increase in lag_7 from 129.44 to 161.80, which had a positive SHAP value, will further increase the prediction, outweighing the decrease in lag_6 from 137.85 to 103.38, which had a negative SHAP value.","```json
+{
+  ""direction"": ""higher"",
+  ""confidence"": 4,
+  ""reasoning"": ""The increase in lag_1 from 166.27 to 207.84, which had a negative SHAP value, will likely increase the prediction significantly, and the increase in lag_7 from 129.44 to 161.80, which had a positive SHAP value, will further increase the prediction, outweighing the decrease in lag_6 from 137.85 to 103.38, which had a negative SHAP value.""
+}
+```",2.63,0.0
+0,E+X,gpt,gpt,True,2009-10-12 00:00:00,168.75978088378906,196.49208068847656,16.433002969934197,"[""lag_6"", ""lag_1"", ""lag_7""]",higher,higher,1,4.0,"The increase in lag_1 from 166.27 to 207.84, which had a negative SHAP value, will likely increase the prediction significantly, and the increase in lag_7 from 129.44 to 161.80, which had a positive SHAP value, will further increase the prediction, outweighing the decrease in lag_6 from 137.85 to 103.38, which also had a negative SHAP value.","```json
+{
+  ""direction"": ""higher"",
+  ""confidence"": 4,
+  ""reasoning"": ""The increase in lag_1 from 166.27 to 207.84, which had a negative SHAP value, will likely increase the prediction significantly, and the increase in lag_7 from 129.44 to 161.80, which had a positive SHAP value, will further increase the prediction, outweighing the decrease in lag_6 from 137.85 to 103.38, which also had a negative SHAP value.""
+}
+```",2.73,0.0
+0,E+X,gpt,deepseek,True,2009-10-12 00:00:00,168.75978088378906,196.49208068847656,16.433002969934197,"[""lag_6"", ""lag_1"", ""lag_7""]",higher,lower,0,4.0,"Decreasing lag_6 (strong negative contributor) and increasing lag_1 (negative contributor) amplify their downward pressure, which likely outweighs the upward boost from increasing lag_7 (positive contributor), leading to a >5% prediction decrease.","{  ""direction"": ""lower"",
+  ""confidence"": 4,
+  ""reasoning"": ""Decreasing lag_6 (strong negative contributor) and increasing lag_1 (negative contributor) amplify their downward pressure, which likely outweighs the upward boost from increasing lag_7 (positive contributor), leading to a >5% prediction decrease.""
+}",108.15,1.0
+0,E+X,deepseek,gpt,True,2009-10-12 00:00:00,168.75978088378906,196.49208068847656,16.433002969934197,"[""lag_6"", ""lag_1"", ""lag_7""]",higher,higher,1,5.0,"The increase in lag_1 from 166.27 to 207.84 and lag_7 from 129.44 to 161.80, both of which have positive SHAP values, will significantly increase the prediction, while the decrease in lag_6 from 137.85 to 103.38, which has a negative SHAP value, will further contribute to a higher prediction.","```json
+{
+  ""direction"": ""higher"",
+  ""confidence"": 5,
+  ""reasoning"": ""The increase in lag_1 from 166.27 to 207.84 and lag_7 from 129.44 to 161.80, both of which have positive SHAP values, will significantly increase the prediction, while the decrease in lag_6 from 137.85 to 103.38, which has a negative SHAP value, will further contribute to a higher prediction.""
+}
+```",32.16,0.0
+0,E+X,deepseek,deepseek,True,2009-10-12 00:00:00,168.75978088378906,196.49208068847656,16.433002969934197,"[""lag_6"", ""lag_1"", ""lag_7""]",higher,higher,1,4.0,"Increasing lag_1 (negative→positive impact) and lag_7 (stronger positive) outweighs deeper lag_6 reduction, with SHAP math showing net positive effect (+12.8 vs original -8.6).","{
+  ""direction"": ""higher"",
+  ""confidence"": 4,
+  ""reasoning"": ""Increasing lag_1 (negative→positive impact) and lag_7 (stronger positive) outweighs deeper lag_6 reduction, with SHAP math showing net positive effect (+12.8 vs original -8.6).""
+}",55.93,1.0
+36,X,none,gpt,False,2010-06-21 00:00:00,156.17913818359375,186.4391021728516,19.37516389268727,"[""lag_1"", ""lag_6"", ""weekofyear""]",higher,lower,0,4.0,"The decrease in lag_1, which has a significant negative SHAP value, and the change in weekofyear to a value with a negative SHAP contribution, suggest a lower prediction, despite the increase in lag_6.","```json
+{
+  ""direction"": ""lower"",
+  ""confidence"": 4,
+  ""reasoning"": ""The decrease in lag_1, which has a significant negative SHAP value, and the change in weekofyear to a value with a negative SHAP contribution, suggest a lower prediction, despite the increase in lag_6.""
+}
+```",32.36,0.0
+36,X,none,deepseek,False,2010-06-21 00:00:00,156.17913818359375,186.4391021728516,19.37516389268727,"[""lag_1"", ""lag_6"", ""weekofyear""]",higher,higher,1,4.0,"Decreasing lag_1 (strongest negative contributor) and changing to week 12 (likely less negative) outweigh increasing lag_6's negative impact, leading to a higher prediction.","{
+  ""direction"": ""higher"",
+  ""confidence"": 4,
+  ""reasoning"": ""Decreasing lag_1 (strongest negative contributor) and changing to week 12 (likely less negative) outweigh increasing lag_6's negative impact, leading to a higher prediction.""
+}",117.63,1.0
+36,E+X,gpt,gpt,True,2010-06-21 00:00:00,156.17913818359375,186.4391021728516,19.37516389268727,"[""lag_1"", ""lag_6"", ""weekofyear""]",higher,lower,0,4.0,"The decrease in lag_1, which has the strongest negative SHAP value, will likely further reduce the prediction, and the change in weekofyear to 12, which is not specified to have a positive impact, suggests a continuation of lower consumption trends.","```json
+{
+  ""direction"": ""lower"",
+  ""confidence"": 4,
+  ""reasoning"": ""The decrease in lag_1, which has the strongest negative SHAP value, will likely further reduce the prediction, and the change in weekofyear to 12, which is not specified to have a positive impact, suggests a continuation of lower consumption trends.""
+}
+```",32.54,0.0
+36,E+X,gpt,deepseek,True,2010-06-21 00:00:00,156.17913818359375,186.4391021728516,19.37516389268727,"[""lag_1"", ""lag_6"", ""weekofyear""]",higher,higher,1,4.0,"Reducing lag_1 (strongest negative contributor) lessens its downward pull, while changing to week 12 likely reverses its negative seasonal impact, outweighing lag_6's increased negative effect.","{  ""direction"": ""higher"",
+  ""confidence"": 4,
+  ""reasoning"": ""Reducing lag_1 (strongest negative contributor) lessens its downward pull, while changing to week 12 likely reverses its negative seasonal impact, outweighing lag_6's increased negative effect.""
+}",95.62,0.0
+36,E+X,deepseek,gpt,True,2010-06-21 00:00:00,156.17913818359375,186.4391021728516,19.37516389268727,"[""lag_1"", ""lag_6"", ""weekofyear""]",higher,lower,0,4.0,"The decrease in lag_1, which had a strong negative SHAP value, will further lower the prediction, and the change in weekofyear to 12, which likely corresponds to a period of lower consumption, will also contribute to a lower prediction, despite the increase in lag_6.","```json
+{
+  ""direction"": ""lower"",
+  ""confidence"": 4,
+  ""reasoning"": ""The decrease in lag_1, which had a strong negative SHAP value, will further lower the prediction, and the change in weekofyear to 12, which likely corresponds to a period of lower consumption, will also contribute to a lower prediction, despite the increase in lag_6.""
+}
+```",63.0,0.0
+36,E+X,deepseek,deepseek,True,2010-06-21 00:00:00,156.17913818359375,186.4391021728516,19.37516389268727,"[""lag_1"", ""lag_6"", ""weekofyear""]",higher,higher,1,4.0,Reducing lag_1 (strongest negative contributor) and changing to a potentially higher-consumption season (week 12) likely outweigh the increased negative impact from lag_6.,"{  ""direction"": ""higher"",
+  ""confidence"": 4,
+  ""reasoning"": ""Reducing lag_1 (strongest negative contributor) and changing to a potentially higher-consumption season (week 12) likely outweigh the increased negative impact from lag_6.""
+}",112.55,1.0
+42,X,none,gpt,False,2010-08-02 00:00:00,114.3490753173828,135.36253356933594,18.37658782428192,"[""lag_1"", ""lag_6"", ""weekofyear""]",higher,lower,0,4.0,"The decrease in lag_1, which has the largest negative SHAP value, and the increase in lag_6, which also has a significant negative SHAP value, both suggest a lower prediction, while the change in weekofyear is less impactful but also negative, leading to an overall lower prediction.","```json
+{
+  ""direction"": ""lower"",
+  ""confidence"": 4,
+  ""reasoning"": ""The decrease in lag_1, which has the largest negative SHAP value, and the increase in lag_6, which also has a significant negative SHAP value, both suggest a lower prediction, while the change in weekofyear is less impactful but also negative, leading to an overall lower prediction.""
+}
+```",63.25,0.0
+42,E+X,gpt,gpt,True,2010-08-02 00:00:00,114.3490753173828,135.36253356933594,18.37658782428192,"[""lag_1"", ""lag_6"", ""weekofyear""]",higher,higher,1,4.0,"The increase in lag_6 from 168.37 to 210.46, which is a significant positive change, will likely outweigh the negative impact of the decrease in lag_1 from 119.95 to 89.96, especially since lag_6 has a larger SHAP value magnitude. Additionally, the change in weekofyear from 31 to 44 may also contribute positively if it aligns with higher seasonal consumption patterns, leading to an overall higher prediction.","```json
+{
+  ""direction"": ""higher"",
+  ""confidence"": 4,
+  ""reasoning"": ""The increase in lag_6 from 168.37 to 210.46, which is a significant positive change, will likely outweigh the negative impact of the decrease in lag_1 from 119.95 to 89.96, especially since lag_6 has a larger SHAP value magnitude. Additionally, the change in weekofyear from 31 to 44 may also contribute positively if it aligns with higher seasonal consumption patterns, leading to an overall higher prediction.""
+}
+```",63.52,0.0
+42,E+X,gpt,deepseek,True,2010-08-02 00:00:00,114.3490753173828,135.36253356933594,18.37658782428192,"[""lag_1"", ""lag_6"", ""weekofyear""]",higher,higher,1,4.0,"Reducing lag_1 (most impactful negative contributor) and increasing weekofyear (seasonal shift to colder weeks) likely offset the increased negative contribution from lag_6, resulting in a net prediction increase.","{
+  ""direction"": ""higher"",
+  ""confidence"": 4,
+  ""reasoning"": ""Reducing lag_1 (most impactful negative contributor) and increasing weekofyear (seasonal shift to colder weeks) likely offset the increased negative contribution from lag_6, resulting in a net prediction increase.""
+}",112.06,3.0
+42,E+X,deepseek,gpt,True,2010-08-02 00:00:00,114.3490753173828,135.36253356933594,18.37658782428192,"[""lag_1"", ""lag_6"", ""weekofyear""]",higher,higher,1,4.0,"The increase in lag_6 from 168.37 to 210.46, which had a significant negative SHAP value, will likely lead to a higher prediction, and the change in weekofyear from 31 to 44, which is likely in a colder season, will also contribute to a higher prediction despite the decrease in lag_1.","```json
+{
+  ""direction"": ""higher"",
+  ""confidence"": 4,
+  ""reasoning"": ""The increase in lag_6 from 168.37 to 210.46, which had a significant negative SHAP value, will likely lead to a higher prediction, and the change in weekofyear from 31 to 44, which is likely in a colder season, will also contribute to a higher prediction despite the decrease in lag_1.""
+}
+```",62.97,0.0
+42,E+X,deepseek,deepseek,True,2010-08-02 00:00:00,114.3490753173828,135.36253356933594,18.37658782428192,"[""lag_1"", ""lag_6"", ""weekofyear""]",higher,higher,1,4.0,"Increasing holiday-season week (44) strongly boosts consumption prediction (+SHAP), while lowered lag_1 reduces its negative impact; lag_6's higher value adds moderate negative pressure but week change dominates.","{
+  ""direction"": ""higher"",
+  ""confidence"": 4,
+  ""reasoning"": ""Increasing holiday-season week (44) strongly boosts consumption prediction (+SHAP), while lowered lag_1 reduces its negative impact; lag_6's higher value adds moderate negative pressure but week change dominates.""
+}",94.23,1.0
+16,X,none,gpt,False,2010-02-01 00:00:00,228.43507385253903,193.1356506347656,-15.452716004793624,"[""lag_1"", ""weekofyear"", ""lag_5""]",lower,higher,0,5.0,"The increase in lag_1 and lag_5, both of which are positively correlated with the prediction, along with the change in weekofyear to a higher value that also has a positive SHAP contribution, will likely result in a higher prediction.","```json
+{
+  ""direction"": ""higher"",
+  ""confidence"": 5,
+  ""reasoning"": ""The increase in lag_1 and lag_5, both of which are positively correlated with the prediction, along with the change in weekofyear to a higher value that also has a positive SHAP contribution, will likely result in a higher prediction.""
+}
+```",2.81,0.0
+16,E+X,gpt,gpt,True,2010-02-01 00:00:00,228.43507385253903,193.1356506347656,-15.452716004793624,"[""lag_1"", ""weekofyear"", ""lag_5""]",lower,higher,0,5.0,"The increase in lag_1 and lag_5, both of which have significant SHAP contributions, along with a change in weekofyear to a higher value, will likely increase the prediction significantly above 228.44 kWh.","```json
+{
+  ""direction"": ""higher"",
+  ""confidence"": 5,
+  ""reasoning"": ""The increase in lag_1 and lag_5, both of which have significant SHAP contributions, along with a change in weekofyear to a higher value, will likely increase the prediction significantly above 228.44 kWh.""
+}
+```",2.66,0.0
+16,E+X,gpt,deepseek,True,2010-02-01 00:00:00,228.43507385253903,193.1356506347656,-15.452716004793624,"[""lag_1"", ""weekofyear"", ""lag_5""]",lower,lower,1,4.0,"The increase in lag_1 raises the prediction, but the shift from winter (week 5) to spring (week 18) likely reduces the seasonal contribution substantially, and the increase in lag_5 (originally negative) adds further downward pressure, resulting in a net decrease exceeding 5%.","{  ""direction"": ""lower"",
+  ""confidence"": 4,
+  ""reasoning"": ""The increase in lag_1 raises the prediction, but the shift from winter (week 5) to spring (week 18) likely reduces the seasonal contribution substantially, and the increase in lag_5 (originally negative) adds further downward pressure, resulting in a net decrease exceeding 5%.""
+}",109.16,2.0
+16,E+X,deepseek,gpt,True,2010-02-01 00:00:00,228.43507385253903,193.1356506347656,-15.452716004793624,"[""lag_1"", ""weekofyear"", ""lag_5""]",lower,higher,0,5.0,"The increase in lag_1 from 258.75 to 323.44 will significantly raise the prediction due to its high SHAP value of +38.584, and the increase in lag_5 from 247.50 to 309.37 will likely reduce its negative contribution, further increasing the prediction. Although the change in weekofyear from 5 to 18 might reduce the prediction due to seasonal effects, the substantial increases in lag_1 and lag_5 are likely to result in an overall higher prediction.","```json
+{
+  ""direction"": ""higher"",
+  ""confidence"": 5,
+  ""reasoning"": ""The increase in lag_1 from 258.75 to 323.44 will significantly raise the prediction due to its high SHAP value of +38.584, and the increase in lag_5 from 247.50 to 309.37 will likely reduce its negative contribution, further increasing the prediction. Although the change in weekofyear from 5 to 18 might reduce the prediction due to seasonal effects, the substantial increases in lag_1 and lag_5 are likely to result in an overal",33.05,0.0
+16,E+X,deepseek,deepseek,True,2010-02-01 00:00:00,228.43507385253903,193.1356506347656,-15.452716004793624,"[""lag_1"", ""weekofyear"", ""lag_5""]",lower,lower,1,4.0,"The shift from a high-consumption winter week (week 5) to a lower-consumption spring week (week 18) and the increased negative contribution from lag_5 likely outweigh the positive effect of increased lag_1, leading to a lower prediction.","{
+  ""direction"": ""lower"",
+  ""confidence"": 4,
+  ""reasoning"": ""The shift from a high-consumption winter week (week 5) to a lower-consumption spring week (week 18) and the increased negative contribution from lag_5 likely outweigh the positive effect of increased lag_1, leading to a lower prediction.""
+}",83.63,0.0
+31,X,none,gpt,False,2010-05-17 00:00:00,167.4282684326172,123.1814422607422,-26.427333081857967,"[""lag_1"", ""weekofyear"", ""lag_6""]",lower,lower,1,5.0,"The changes in lag_1 and weekofyear, both with negative SHAP values, will further decrease the prediction, and the reduction in lag_6, which has a positive SHAP value, will also contribute to a lower prediction.","```json
+{
+  ""direction"": ""lower"",
+  ""confidence"": 5,
+  ""reasoning"": ""The changes in lag_1 and weekofyear, both with negative SHAP values, will further decrease the prediction, and the reduction in lag_6, which has a positive SHAP value, will also contribute to a lower prediction.""
+}
+```",32.36,0.0
+31,E+X,gpt,gpt,True,2010-05-17 00:00:00,167.4282684326172,123.1814422607422,-26.427333081857967,"[""lag_1"", ""weekofyear"", ""lag_6""]",lower,lower,1,4.0,"The changes in lag_1 and lag_6, both of which have significant SHAP contributions, are substantial decreases, and the weekofyear change also has a negative SHAP value, suggesting a lower prediction overall.","```json
+{
+  ""direction"": ""lower"",
+  ""confidence"": 4,
+  ""reasoning"": ""The changes in lag_1 and lag_6, both of which have significant SHAP contributions, are substantial decreases, and the weekofyear change also has a negative SHAP value, suggesting a lower prediction overall.""
+}
+```",32.78,1.0
+31,E+X,gpt,deepseek,True,2010-05-17 00:00:00,167.4282684326172,123.1814422607422,-26.427333081857967,"[""lag_1"", ""weekofyear"", ""lag_6""]",lower,higher,0,4.0,"Reducing lag_1 (strong negative contributor) and increasing weekofyear (negative → potentially positive seasonality) likely outweigh the lowered lag_6 (positive contributor), driving the prediction upward significantly.","{
+  ""direction"": ""higher"",
+  ""confidence"": 4,
+  ""reasoning"": ""Reducing lag_1 (strong negative contributor) and increasing weekofyear (negative → potentially positive seasonality) likely outweigh the lowered lag_6 (positive contributor), driving the prediction upward significantly.""
+}",71.24,3.0
+31,E+X,deepseek,gpt,True,2010-05-17 00:00:00,167.4282684326172,123.1814422607422,-26.427333081857967,"[""lag_1"", ""weekofyear"", ""lag_6""]",lower,lower,1,4.0,"The decrease in lag_1 from 180.56 to 135.42 will likely reduce the prediction further since lag_1 already had a negative SHAP value, and the change in weekofyear from 20 to 33 may not significantly offset this as it previously had a negative impact; additionally, the decrease in lag_6 from 196.35 to 147.26 will likely reduce the prediction since lag_6 had a positive SHAP value.","```json
+{
+  ""direction"": ""lower"",
+  ""confidence"": 4,
+  ""reasoning"": ""The decrease in lag_1 from 180.56 to 135.42 will likely reduce the prediction further since lag_1 already had a negative SHAP value, and the change in weekofyear from 20 to 33 may not significantly offset this as it previously had a negative impact; additionally, the decrease in lag_6 from 196.35 to 147.26 will likely reduce the prediction since lag_6 had a positive SHAP value.""
+}
+```",63.15,0.0
+31,E+X,deepseek,deepseek,True,2010-05-17 00:00:00,167.4282684326172,123.1814422607422,-26.427333081857967,"[""lag_1"", ""weekofyear"", ""lag_6""]",lower,higher,0,4.0,"Decreasing lag_1 (high negative SHAP) reduces its downward pull, changing weekofyear to 33 likely introduces a positive seasonal effect, and lowering lag_6 (positive SHAP) only partially offsets these increases.","{
+  ""direction"": ""higher"",
+  ""confidence"": 4,
+  ""reasoning"": ""Decreasing lag_1 (high negative SHAP) reduces its downward pull, changing weekofyear to 33 likely introduces a positive seasonal effect, and lowering lag_6 (positive SHAP) only partially offsets these increases.""
+}",90.52,0.0
+2,X,none,gpt,False,2009-10-26 00:00:00,198.45755004882807,183.8830718994141,-7.343876887439246,"[""lag_1"", ""lag_6"", ""lag_2""]",lower,lower,1,5.0,"The most important feature, lag_1, which had a positive contribution, is decreased significantly, and lag_2, also with a positive contribution, is decreased as well, while lag_6, which had a negative contribution, is increased; these changes will likely lower the prediction.","```json
+{
+  ""direction"": ""lower"",
+  ""confidence"": 5,
+  ""reasoning"": ""The most important feature, lag_1, which had a positive contribution, is decreased significantly, and lag_2, also with a positive contribution, is decreased as well, while lag_6, which had a negative contribution, is increased; these changes will likely lower the prediction.""
+}
+```",34.86,0.0
+2,X,none,deepseek,False,2009-10-26 00:00:00,198.45755004882807,183.8830718994141,-7.343876887439246,"[""lag_1"", ""lag_6"", ""lag_2""]",lower,lower,1,4.0,"All three feature changes (decreases in lag_1 and lag_2, which have positive SHAP contributions, and an increase in lag_6, which has a negative contribution) are expected to decrease the prediction, and the substantial magnitude of these changes likely results in a decrease greater than 5%.","{
+  ""direction"": ""lower"",
+  ""confidence"": 4,
+  ""reasoning"": ""All three feature changes (decreases in lag_1 and lag_2, which have positive SHAP contributions, and an increase in lag_6, which has a negative contribution) are expected to decrease the prediction, and the substantial magnitude of these changes likely results in a decrease greater than 5%.""
+}",109.95,1.0
+2,E+X,gpt,gpt,True,2009-10-26 00:00:00,198.45755004882807,183.8830718994141,-7.343876887439246,"[""lag_1"", ""lag_6"", ""lag_2""]",lower,lower,1,5.0,"The significant decrease in 'lag_1' and 'lag_2', both of which have positive SHAP values, will likely lower the prediction, while the increase in 'lag_6', which has a negative SHAP value, will further contribute to a lower prediction.","```json
+{
+  ""direction"": ""lower"",
+  ""confidence"": 5,
+  ""reasoning"": ""The significant decrease in 'lag_1' and 'lag_2', both of which have positive SHAP values, will likely lower the prediction, while the increase in 'lag_6', which has a negative SHAP value, will further contribute to a lower prediction.""
+}
+```",33.23,0.0
+2,E+X,gpt,deepseek,True,2009-10-26 00:00:00,198.45755004882807,183.8830718994141,-7.343876887439246,"[""lag_1"", ""lag_6"", ""lag_2""]",lower,lower,1,4.0,"All three modified features have changes that individually decrease the prediction, with lag_1's large positive contribution reduced and lag_6's negative contribution amplified, leading to a likely drop of more than 5%.","{
+  ""direction"": ""lower"",
+  ""confidence"": 4,
+  ""reasoning"": ""All three modified features have changes that individually decrease the prediction, with lag_1's large positive contribution reduced and lag_6's negative contribution amplified, leading to a likely drop of more than 5%.""
+}",107.91,0.0
+2,E+X,deepseek,gpt,True,2009-10-26 00:00:00,198.45755004882807,183.8830718994141,-7.343876887439246,"[""lag_1"", ""lag_6"", ""lag_2""]",lower,lower,1,5.0,"The most influential feature, lag_1, decreases significantly, reducing its positive contribution, while lag_6, which had a negative impact, increases, likely further lowering the prediction; lag_2 also decreases, reducing its positive contribution, leading to an overall lower prediction.","```json
+{
+  ""direction"": ""lower"",
+  ""confidence"": 5,
+  ""reasoning"": ""The most influential feature, lag_1, decreases significantly, reducing its positive contribution, while lag_6, which had a negative impact, increases, likely further lowering the prediction; lag_2 also decreases, reducing its positive contribution, leading to an overall lower prediction.""
+}
+```",33.32,0.0
+2,E+X,deepseek,deepseek,True,2009-10-26 00:00:00,198.45755004882807,183.8830718994141,-7.343876887439246,"[""lag_1"", ""lag_6"", ""lag_2""]",lower,lower,1,5.0,"Reducing lag_1 (strongest positive contributor) and lag_2 while increasing lag_6 (negative contributor) all strongly pull the prediction downward, outweighing other features' contributions.","{
+  ""direction"": ""lower"",
+  ""confidence"": 5,
+  ""reasoning"": ""Reducing lag_1 (strongest positive contributor) and lag_2 while increasing lag_6 (negative contributor) all strongly pull the prediction downward, outweighing other features' contributions.""
+}",72.02,0.0
+33,X,none,gpt,False,2010-05-31 00:00:00,168.9069366455078,159.52427673339844,-5.554928707162077,"[""lag_1"", ""weekofyear"", ""lag_2""]",lower,lower,1,5.0,"The changes in lag_1 and weekofyear, both with negative SHAP values, will further decrease the prediction, and the decrease in lag_2, which has a positive SHAP value, will also contribute to a lower prediction.","```json
+{
+  ""direction"": ""lower"",
+  ""confidence"": 5,
+  ""reasoning"": ""The changes in lag_1 and weekofyear, both with negative SHAP values, will further decrease the prediction, and the decrease in lag_2, which has a positive SHAP value, will also contribute to a lower prediction.""
+}
+```",32.89,0.0
+33,X,none,deepseek,False,2010-05-31 00:00:00,168.9069366455078,159.52427673339844,-5.554928707162077,"[""lag_1"", ""weekofyear"", ""lag_2""]",lower,higher,0,4.0,"Reducing lag_1 (strong negative contributor) and increasing weekofyear (likely shifting to a season with higher consumption) outweigh the reduced positive contribution from lag_2, leading to a significant predicted increase.","{
+  ""direction"": ""higher"",
+  ""confidence"": 4,
+  ""reasoning"": ""Reducing lag_1 (strong negative contributor) and increasing weekofyear (likely shifting to a season with higher consumption) outweigh the reduced positive contribution from lag_2, leading to a significant predicted increase.""
+}",80.95,2.0
+33,E+X,gpt,gpt,True,2010-05-31 00:00:00,168.9069366455078,159.52427673339844,-5.554928707162077,"[""lag_1"", ""weekofyear"", ""lag_2""]",lower,lower,1,4.0,"The decrease in lag_1 and lag_2, both of which had significant positive SHAP contributions, combined with the weekofyear change from 22 to 35, which likely reflects a seasonal shift to lower consumption, suggests a lower prediction.","```json
+{
+  ""direction"": ""lower"",
+  ""confidence"": 4,
+  ""reasoning"": ""The decrease in lag_1 and lag_2, both of which had significant positive SHAP contributions, combined with the weekofyear change from 22 to 35, which likely reflects a seasonal shift to lower consumption, suggests a lower prediction.""
+}
+```",32.88,0.0
+33,E+X,gpt,deepseek,True,2010-05-31 00:00:00,168.9069366455078,159.52427673339844,-5.554928707162077,"[""lag_1"", ""weekofyear"", ""lag_2""]",lower,higher,0,4.0,Reducing lag_1 (strongest negative contributor) and shifting to week 35 (likely less negative seasonality) would increase predictions more than the reduction from lower lag_2 (positive contributor).,"{
+  ""direction"": ""higher"",
+  ""confidence"": 4,
+  ""reasoning"": ""Reducing lag_1 (strongest negative contributor) and shifting to week 35 (likely less negative seasonality) would increase predictions more than the reduction from lower lag_2 (positive contributor).""
+}",107.84,2.0
+33,E+X,deepseek,gpt,True,2010-05-31 00:00:00,168.9069366455078,159.52427673339844,-5.554928707162077,"[""lag_1"", ""weekofyear"", ""lag_2""]",lower,lower,1,4.0,"The decrease in lag_1 and lag_2, both of which had significant positive SHAP contributions, combined with a change to week 35, which likely corresponds to a period of lower consumption, will likely result in a lower prediction.","```json
+{
+  ""direction"": ""lower"",
+  ""confidence"": 4,
+  ""reasoning"": ""The decrease in lag_1 and lag_2, both of which had significant positive SHAP contributions, combined with a change to week 35, which likely corresponds to a period of lower consumption, will likely result in a lower prediction.""
+}
+```",2.32,0.0
+19,X,none,gpt,False,2010-02-22 00:00:00,209.96017456054688,147.30604553222656,-29.84095872441397,"[""lag_1"", ""lag_5"", ""weekofyear""]",lower,lower,1,4.0,"The decrease in lag_1, which has the highest positive SHAP value, will likely lower the prediction significantly, and the increase in lag_5, which has a negative SHAP value, will further decrease the prediction; the change in weekofyear is less impactful but also contributes positively, so overall the prediction will be lower.","```json
+{
+  ""direction"": ""lower"",
+  ""confidence"": 4,
+  ""reasoning"": ""The decrease in lag_1, which has the highest positive SHAP value, will likely lower the prediction significantly, and the increase in lag_5, which has a negative SHAP value, will further decrease the prediction; the change in weekofyear is less impactful but also contributes positively, so overall the prediction will be lower.""
+}
+```",63.38,1.0
+19,X,none,deepseek,False,2010-02-22 00:00:00,209.96017456054688,147.30604553222656,-29.84095872441397,"[""lag_1"", ""lag_5"", ""weekofyear""]",lower,lower,1,4.0,"Decreasing lag_1 (positive SHAP) and increasing lag_5 (negative SHAP) both tend to lower the prediction, and increasing weekofyear from winter to spring likely reduces its positive contribution, leading to a net decrease of more than 5%.","{  ""direction"": ""lower"",
+  ""confidence"": 4,
+  ""reasoning"": ""Decreasing lag_1 (positive SHAP) and increasing lag_5 (negative SHAP) both tend to lower the prediction, and increasing weekofyear from winter to spring likely reduces its positive contribution, leading to a net decrease of more than 5%.""
+}",109.14,0.0
+19,E+X,gpt,gpt,True,2010-02-22 00:00:00,209.96017456054688,147.30604553222656,-29.84095872441397,"[""lag_1"", ""lag_5"", ""weekofyear""]",lower,lower,1,5.0,"The significant decrease in lag_1, which has the highest positive SHAP value, will likely lower the prediction, and the increase in lag_5, which has a negative SHAP value, will further decrease it, while the change in weekofyear is less impactful.","```json
+{
+  ""direction"": ""lower"",
+  ""confidence"": 5,
+  ""reasoning"": ""The significant decrease in lag_1, which has the highest positive SHAP value, will likely lower the prediction, and the increase in lag_5, which has a negative SHAP value, will further decrease it, while the change in weekofyear is less impactful.""
+}
+```",31.74,0.0
+19,E+X,gpt,deepseek,True,2010-02-22 00:00:00,209.96017456054688,147.30604553222656,-29.84095872441397,"[""lag_1"", ""lag_5"", ""weekofyear""]",lower,lower,1,4.0,"Decreasing lag_1 and increasing lag_5 both likely decrease prediction based on their original SHAP contributions, and changing weekofyear from winter to spring likely reduces consumption due to seasonal patterns.","{  ""direction"": ""lower"",
+  ""confidence"": 4,
+  ""reasoning"": ""Decreasing lag_1 and increasing lag_5 both likely decrease prediction based on their original SHAP contributions, and changing weekofyear from winter to spring likely reduces consumption due to seasonal patterns.""
+}",93.99,0.0
+19,E+X,deepseek,gpt,True,2010-02-22 00:00:00,209.96017456054688,147.30604553222656,-29.84095872441397,"[""lag_1"", ""lag_5"", ""weekofyear""]",lower,lower,1,4.0,"The decrease in lag_1 from 229.48 to 172.11, which had the largest positive SHAP value, will significantly lower the prediction, while the increase in lag_5 and change in weekofyear are unlikely to fully offset this decrease.","```json
+{
+  ""direction"": ""lower"",
+  ""confidence"": 4,
+  ""reasoning"": ""The decrease in lag_1 from 229.48 to 172.11, which had the largest positive SHAP value, will significantly lower the prediction, while the increase in lag_5 and change in weekofyear are unlikely to fully offset this decrease.""
+}
+```",31.77,0.0
+19,E+X,deepseek,deepseek,True,2010-02-22 00:00:00,209.96017456054688,147.30604553222656,-29.84095872441397,"[""lag_1"", ""lag_5"", ""weekofyear""]",lower,lower,1,5.0,"All three changed features (lag_1 ↓, lag_5 ↑, weekofyear → summer) strongly reduce positive contributions/lower predictions based on their SHAP directions and magnitudes.","{
+  ""direction"": ""lower"",
+  ""confidence"": 5,
+  ""reasoning"": ""All three changed features (lag_1 ↓, lag_5 ↑, weekofyear → summer) strongly reduce positive contributions/lower predictions based on their SHAP directions and magnitudes.""
+}",16.76,0.0
+17,X,none,gpt,False,2010-02-08 00:00:00,273.9654235839844,197.72706604003903,-27.82772969909992,"[""lag_1"", ""weekofyear"", ""lag_6""]",lower,lower,1,5.0,"The three most important features, all contributing positively to the prediction, are decreased significantly, which will likely lower the prediction substantially.","```json
+{
+  ""direction"": ""lower"",
+  ""confidence"": 5,
+  ""reasoning"": ""The three most important features, all contributing positively to the prediction, are decreased significantly, which will likely lower the prediction substantially.""
+}
+```",31.54,0.0
+17,X,none,deepseek,False,2010-02-08 00:00:00,273.9654235839844,197.72706604003903,-27.82772969909992,"[""lag_1"", ""weekofyear"", ""lag_6""]",lower,lower,1,5.0,"Decreasing the three most positively influential features (lag_1, weekofyear, lag_6) will significantly reduce their positive contributions to the prediction, overwhelming other feature effects and lowering consumption prediction by >5%.","{
+  ""direction"": ""lower"",
+  ""confidence"": 5,
+  ""reasoning"": ""Decreasing the three most positively influential features (lag_1, weekofyear, lag_6) will significantly reduce their positive contributions to the prediction, overwhelming other feature effects and lowering consumption prediction by >5%.""
+}",60.65,0.0
+17,E+X,gpt,gpt,True,2010-02-08 00:00:00,273.9654235839844,197.72706604003903,-27.82772969909992,"[""lag_1"", ""weekofyear"", ""lag_6""]",lower,lower,1,5.0,"The most important features, lag_1, weekofyear, and lag_6, all decrease significantly, which will likely lead to a lower prediction given their positive SHAP contributions to the original prediction.","```json
+{
+  ""direction"": ""lower"",
+  ""confidence"": 5,
+  ""reasoning"": ""The most important features, lag_1, weekofyear, and lag_6, all decrease significantly, which will likely lead to a lower prediction given their positive SHAP contributions to the original prediction.""
+}
+```",31.62,0.0
+17,E+X,gpt,deepseek,True,2010-02-08 00:00:00,273.9654235839844,197.72706604003903,-27.82772969909992,"[""lag_1"", ""weekofyear"", ""lag_6""]",lower,lower,1,5.0,"All three modified features (lag_1, weekofyear, lag_6) had strong positive SHAP contributions (+37.99, +21.75, +17.23), and their substantial reductions will significantly decrease the prediction by removing these additive boosts.","{
+  ""direction"": ""lower"",
+  ""confidence"": 5,
+  ""reasoning"": ""All three modified features (lag_1, weekofyear, lag_6) had strong positive SHAP contributions (+37.99, +21.75, +17.23), and their substantial reductions will significantly decrease the prediction by removing these additive boosts.""
+}",37.06,0.0
+17,E+X,deepseek,gpt,True,2010-02-08 00:00:00,273.9654235839844,197.72706604003903,-27.82772969909992,"[""lag_1"", ""weekofyear"", ""lag_6""]",lower,lower,1,5.0,"The proposed changes decrease the values of the three most important features, which have positive SHAP contributions, leading to a lower prediction.","```json
+{
+  ""direction"": ""lower"",
+  ""confidence"": 5,
+  ""reasoning"": ""The proposed changes decrease the values of the three most important features, which have positive SHAP contributions, leading to a lower prediction.""
+}
+```",62.62,0.0
+17,E+X,deepseek,deepseek,True,2010-02-08 00:00:00,273.9654235839844,197.72706604003903,-27.82772969909992,"[""lag_1"", ""weekofyear"", ""lag_6""]",lower,lower,1,5.0,"Decreasing the three most influential features (lag_1, weekofyear, lag_6) will significantly reduce their positive SHAP contributions, leading to a prediction drop exceeding 5% given the magnitude of changes and their original high impact.","{
+  ""direction"": ""lower"",
+  ""confidence"": 5,
+  ""reasoning"": ""Decreasing the three most influential features (lag_1, weekofyear, lag_6) will significantly reduce their positive SHAP contributions, leading to a prediction drop exceeding 5% given the magnitude of changes and their original high impact.""
+}",70.03,0.0
+9,X,none,gpt,False,2009-12-14 00:00:00,235.8815460205078,230.54933166503903,-2.26054748471301,"[""weekofyear"", ""lag_1"", ""lag_6""]",similar,higher,0,4.0,"The increase in lag_1 from 229.43 to 286.79, which has a high positive SHAP value, is likely to significantly increase the prediction, while the changes in weekofyear and lag_6 are less impactful in comparison.","```json
+{
+  ""direction"": ""higher"",
+  ""confidence"": 4,
+  ""reasoning"": ""The increase in lag_1 from 229.43 to 286.79, which has a high positive SHAP value, is likely to significantly increase the prediction, while the changes in weekofyear and lag_6 are less impactful in comparison.""
+}
+```",61.81,0.0
+9,X,none,deepseek,False,2009-12-14 00:00:00,235.8815460205078,230.54933166503903,-2.26054748471301,"[""weekofyear"", ""lag_1"", ""lag_6""]",similar,higher,0,3.0,"The substantial increase in lag_1, the most recent consumption lag, is likely to raise the prediction more than the decrease in lag_6 lowers it, leading to a higher overall forecast.","{  ""direction"": ""higher"",
+  ""confidence"": 3,
+  ""reasoning"": ""The substantial increase in lag_1, the most recent consumption lag, is likely to raise the prediction more than the decrease in lag_6 lowers it, leading to a higher overall forecast.""
+}",107.76,1.0
+9,E+X,gpt,gpt,True,2009-12-14 00:00:00,235.8815460205078,230.54933166503903,-2.26054748471301,"[""weekofyear"", ""lag_1"", ""lag_6""]",similar,higher,0,4.0,"The increase in lag_1, which has a strong positive SHAP value, is likely to outweigh the negative impact of the decrease in lag_6 and the minor change in weekofyear, leading to a higher prediction.","```json
+{
+  ""direction"": ""higher"",
+  ""confidence"": 4,
+  ""reasoning"": ""The increase in lag_1, which has a strong positive SHAP value, is likely to outweigh the negative impact of the decrease in lag_6 and the minor change in weekofyear, leading to a higher prediction.""
+}
+```",2.88,0.0
+9,E+X,gpt,deepseek,True,2009-12-14 00:00:00,235.8815460205078,230.54933166503903,-2.26054748471301,"[""weekofyear"", ""lag_1"", ""lag_6""]",similar,similar,1,4.0,"While lag_1's increase and lag_6's decrease have opposing impacts, the substantial uncertainty around weekofyear's seasonal effect (week 51→52) likely balances these changes, resulting in a net prediction change below 5%.","{
+  ""direction"": ""similar"",
+  ""confidence"": 4,
+  ""reasoning"": ""While lag_1's increase and lag_6's decrease have opposing impacts, the substantial uncertainty around weekofyear's seasonal effect (week 51→52) likely balances these changes, resulting in a net prediction change below 5%.""
+}",99.78,5.0
+9,E+X,deepseek,gpt,True,2009-12-14 00:00:00,235.8815460205078,230.54933166503903,-2.26054748471301,"[""weekofyear"", ""lag_1"", ""lag_6""]",similar,higher,0,5.0,"The increase in lag_1 from 229.43 to 286.79, which has a strong positive SHAP value, will significantly raise the prediction, and the change in weekofyear from 51 to 52, which also has a high positive SHAP value, will further increase the prediction, outweighing the decrease in lag_6.","```json
+{
+  ""direction"": ""higher"",
+  ""confidence"": 5,
+  ""reasoning"": ""The increase in lag_1 from 229.43 to 286.79, which has a strong positive SHAP value, will significantly raise the prediction, and the change in weekofyear from 51 to 52, which also has a high positive SHAP value, will further increase the prediction, outweighing the decrease in lag_6.""
+}
+```",31.87,0.0
+9,E+X,deepseek,deepseek,True,2009-12-14 00:00:00,235.8815460205078,230.54933166503903,-2.26054748471301,"[""weekofyear"", ""lag_1"", ""lag_6""]",similar,higher,0,5.0,"The large increase in lag_1 (which has a positive SHAP contribution of +22.414) will strongly increase the prediction, outweighing the smaller negative effect from the decreased lag_6 (SHAP +3.9) and assuming weekofyear's contribution remains similar.","{
+  ""direction"": ""higher"",
+  ""confidence"": 5,
+  ""reasoning"": ""The large increase in lag_1 (which has a positive SHAP contribution of +22.414) will strongly increase the prediction, outweighing the smaller negative effect from the decreased lag_6 (SHAP +3.9) and assuming weekofyear's contribution remains similar.""
+}",69.06,5.0
+39,X,none,gpt,False,2010-07-12 00:00:00,140.7723846435547,142.5236053466797,1.2440086935795047,"[""lag_1"", ""lag_6"", ""weekofyear""]",similar,lower,0,5.0,"The proposed changes decrease the values of lag_1 and lag_6, which have large negative SHAP values, and change weekofyear to a lower value, which also has a negative SHAP value, all suggesting a lower prediction.","```json
+{
+  ""direction"": ""lower"",
+  ""confidence"": 5,
+  ""reasoning"": ""The proposed changes decrease the values of lag_1 and lag_6, which have large negative SHAP values, and change weekofyear to a lower value, which also has a negative SHAP value, all suggesting a lower prediction.""
+}
+```",32.66,0.0
+39,X,none,deepseek,False,2010-07-12 00:00:00,140.7723846435547,142.5236053466797,1.2440086935795047,"[""lag_1"", ""lag_6"", ""weekofyear""]",similar,higher,0,5.0,"Decreasing lag_1 and lag_6 (both with large negative SHAP contributions) reduces their downward pressure on the prediction, while changing to week 15 (from week 28 with -9.433 SHAP) likely further increases consumption prediction given seasonal patterns.","{  ""direction"": ""higher"",
+  ""confidence"": 5,
+  ""reasoning"": ""Decreasing lag_1 and lag_6 (both with large negative SHAP contributions) reduces their downward pressure on the prediction, while changing to week 15 (from week 28 with -9.433 SHAP) likely further increases consumption prediction given seasonal patterns.""
+}",61.23,0.0
+39,E+X,gpt,gpt,True,2010-07-12 00:00:00,140.7723846435547,142.5236053466797,1.2440086935795047,"[""lag_1"", ""lag_6"", ""weekofyear""]",similar,higher,0,4.0,"The changes in lag_1 and lag_6 to lower values will reduce their negative impact on the prediction, and the change in weekofyear to a lower value will also reduce its negative impact, leading to a higher prediction.","```json
+{
+  ""direction"": ""higher"",
+  ""confidence"": 4,
+  ""reasoning"": ""The changes in lag_1 and lag_6 to lower values will reduce their negative impact on the prediction, and the change in weekofyear to a lower value will also reduce its negative impact, leading to a higher prediction.""
+}
+```",32.83,0.0
+39,E+X,gpt,deepseek,True,2010-07-12 00:00:00,140.7723846435547,142.5236053466797,1.2440086935795047,"[""lag_1"", ""lag_6"", ""weekofyear""]",similar,higher,0,5.0,"Reducing the three features with strongest negative SHAP contributions (lag_1, lag_6, weekofyear) will significantly decrease their negative impact on the prediction, pushing the forecast upward by more than 5%.","{
+  ""direction"": ""higher"",
+  ""confidence"": 5,
+  ""reasoning"": ""Reducing the three features with strongest negative SHAP contributions (lag_1, lag_6, weekofyear) will significantly decrease their negative impact on the prediction, pushing the forecast upward by more than 5%.""
+}",53.97,0.0
+39,E+X,deepseek,gpt,True,2010-07-12 00:00:00,140.7723846435547,142.5236053466797,1.2440086935795047,"[""lag_1"", ""lag_6"", ""weekofyear""]",similar,lower,0,5.0,"The changes in lag_1 and lag_6 to significantly lower values will further decrease the prediction, as both originally had strong negative SHAP values, and the change in weekofyear to 15, which likely corresponds to a period of lower consumption, will also contribute to a lower prediction.","```json
+{
+  ""direction"": ""lower"",
+  ""confidence"": 5,
+  ""reasoning"": ""The changes in lag_1 and lag_6 to significantly lower values will further decrease the prediction, as both originally had strong negative SHAP values, and the change in weekofyear to 15, which likely corresponds to a period of lower consumption, will also contribute to a lower prediction.""
+}
+```",34.06,0.0
+39,E+X,deepseek,deepseek,True,2010-07-12 00:00:00,140.7723846435547,142.5236053466797,1.2440086935795047,"[""lag_1"", ""lag_6"", ""weekofyear""]",similar,higher,0,5.0,"Decreasing lag_1 and lag_6 reduces their strong negative contributions, and changing to week 15 likely reduces the seasonal dip, all pushing the prediction upward significantly.","{
+  ""direction"": ""higher"",
+  ""confidence"": 5,
+  ""reasoning"": ""Decreasing lag_1 and lag_6 reduces their strong negative contributions, and changing to week 15 likely reduces the seasonal dip, all pushing the prediction upward significantly.""
+}",67.35,0.0
+42,X,none,deepseek,False,2010-08-02 00:00:00,114.3490753173828,135.36253356933594,18.37658782428192,"[""lag_1"", ""lag_6"", ""weekofyear""]",higher,higher,1,4.0,"Decreasing lag_1 (negative SHAP) reduces its negative impact, increasing lag_6 (negative SHAP) adds more negative impact, but changing to week 44 (originally negative SHAP for week 31) likely introduces stronger positive seasonal effects, with the combined impact dominated by weekofyear and lag_1 changes driving prediction upward.","{
+  ""direction"": ""higher"",
+  ""confidence"": 4,
+  ""reasoning"": ""Decreasing lag_1 (negative SHAP) reduces its negative impact, increasing lag_6 (negative SHAP) adds more negative impact, but changing to week 44 (originally negative SHAP for week 31) likely introduces stronger positive seasonal effects, with the combined impact dominated by weekofyear and lag_1 changes driving prediction upward.""
+}",82.96,2.0
+16,X,none,deepseek,False,2010-02-01 00:00:00,228.43507385253903,193.1356506347656,-15.452716004793624,"[""lag_1"", ""weekofyear"", ""lag_5""]",lower,lower,1,4.0,"Increasing lag_1 (strong positive) boosts prediction, but changing weekofyear from winter week 5 (high consumption) to spring week 18 (lower consumption) likely reduces SHAP contribution substantially, and increased lag_5 (negative impact) amplifies downward pressure - net effect likely exceeds 5% decrease.","{
+  ""direction"": ""lower"",
+  ""confidence"": 4,
+  ""reasoning"": ""Increasing lag_1 (strong positive) boosts prediction, but changing weekofyear from winter week 5 (high consumption) to spring week 18 (lower consumption) likely reduces SHAP contribution substantially, and increased lag_5 (negative impact) amplifies downward pressure - net effect likely exceeds 5% decrease.""
+}",84.12,2.0
+33,E+X,deepseek,deepseek,True,2010-05-31 00:00:00,168.9069366455078,159.52427673339844,-5.554928707162077,"[""lag_1"", ""weekofyear"", ""lag_2""]",lower,higher,0,5.0,"Lowering lag_1 (strongest negative contributor) reduces its negative impact dramatically, while moving to week 35 (likely warmer season) reverses weekofyear's negative seasonal effect, outweighing lag_2's reduced positive contribution.","{
+  ""direction"": ""higher"",
+  ""confidence"": 5,
+  ""reasoning"": ""Lowering lag_1 (strongest negative contributor) reduces its negative impact dramatically, while moving to week 35 (likely warmer season) reverses weekofyear's negative seasonal effect, outweighing lag_2's reduced positive contribution.""
+}",62.01,0.0
+31,X,none,deepseek,False,2010-05-17 00:00:00,167.4282684326172,123.1814422607422,-26.427333081857967,"[""lag_1"", ""weekofyear"", ""lag_6""]",lower,similar,0,4.0,"Reducing lag_1 (negative SHAP) likely reduces its negative impact, lowering lag_6 (positive SHAP) decreases its boost, and weekofyear change's impact is ambiguous but cyclical patterns suggest limited net effect, resulting in a small prediction change within 5%.","{  ""direction"": ""similar"",
+  ""confidence"": 4,
+  ""reasoning"": ""Reducing lag_1 (negative SHAP) likely reduces its negative impact, lowering lag_6 (positive SHAP) decreases its boost, and weekofyear change's impact is ambiguous but cyclical patterns suggest limited net effect, resulting in a small prediction change within 5%.""
+}",89.24,3.0
+55,E+X,deepseek,deepseek,True,2010-11-01 00:00:00,182.55816650390625,213.4950714111328,16.946327573116044,"[""lag_1"", ""lag_6"", ""lag_2""]",higher,higher,1,5.0,"Increasing lag_1 (strongest positive influence) and decreasing lag_6 (strongest negative influence) both push predictions upward dramatically, outweighing the negative impact from reduced lag_2.","{  ""direction"": ""higher"",
+  ""confidence"": 5,
+  ""reasoning"": ""Increasing lag_1 (strongest positive influence) and decreasing lag_6 (strongest negative influence) both push predictions upward dramatically, outweighing the negative impact from reduced lag_2.""
+}",102.87,5.0
+0,X,none,deepseek,False,2009-10-12 00:00:00,168.75978088378906,196.49208068847656,16.433002969934197,"[""lag_6"", ""lag_1"", ""lag_7""]",higher,similar,0,4.0,"The substantial negative contribution reduction from lag_6 (-14.277 impact becoming less extreme) and increased positive contribution from lag_7 (+6.139→higher) are counterbalanced by lag_1's increased negative impact (-9.735→more extreme), resulting in minimal net change.","{
+  ""direction"": ""similar"",
+  ""confidence"": 4,
+  ""reasoning"": ""The substantial negative contribution reduction from lag_6 (-14.277 impact becoming less extreme) and increased positive contribution from lag_7 (+6.139→higher) are counterbalanced by lag_1's increased negative impact (-9.735→more extreme), resulting in minimal net change.""
+}",100.85,0.0

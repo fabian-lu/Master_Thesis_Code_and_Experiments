@@ -1,0 +1,349 @@
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+Loading required package: Matrix
+
+Attaching package: ‘Matrix’
+
+The following objects are masked from ‘package:tidyr’:
+
+    expand, pack, unpack
+
+
+Attaching package: ‘ordinal’
+
+The following object is masked from ‘package:dplyr’:
+
+    slice
+
+Welcome to emmeans.
+Caution: You lose important information if you filter this package's results.
+See '? untidy'
+This is DHARMa 0.4.7. For overview type '?DHARMa'. For recent changes, type news(package = 'DHARMa')
+Loading required package: Rcpp
+Loading 'brms' package (version 2.23.0). Useful instructions
+can be found by typing help('brms'). A more detailed introduction
+to the package is available through vignette('brms_overview').
+
+Attaching package: ‘brms’
+
+The following object is masked from ‘package:lme4’:
+
+    ngrps
+
+The following object is masked from ‘package:stats’:
+
+    ar
+
+
+Attaching package: ‘Hmisc’
+
+The following objects are masked from ‘package:dplyr’:
+
+    src, summarize
+
+The following objects are masked from ‘package:base’:
+
+    format.pval, units
+
+Loading experiments...
+  E1: 720 rows
+  E2: 720 rows
+  E3: 360 rows
+  E4: 330 rows
+  E5: 600 rows
+Setup complete.
+
+================================================================
+  EXPERIMENT 2: SELECTIVE RELIANCE
+================================================================
+
+--- 1. Descriptive Statistics ---
+  poisoning has_nle   n  accuracy mean_conf
+1  baseline   False 120 0.9500000  3.983333
+2  baseline    True 240 0.9833333  3.987500
+3       ood   False 120 0.3000000  3.816667
+4       ood    True 240 0.1500000  3.891667
+# A tibble: 8 × 5
+  condition      judge        n accuracy mean_conf
+  <chr>          <fct>    <int>    <dbl>     <dbl>
+1 baseline_False deepseek    60  0.9          3.97
+2 baseline_False gpt         60  1            4   
+3 baseline_True  deepseek   120  0.967        3.96
+4 baseline_True  gpt        120  1            4.02
+5 ood_False      deepseek    60  0.55         3.63
+6 ood_False      gpt         60  0.05         4   
+7 ood_True       deepseek   120  0.292        3.78
+8 ood_True       gpt        120  0.00833      4   
+
+--- 2. Primary GLMM: Accuracy ---
+boundary (singular) fit: see help('isSingular')
+
+Three-way interaction (poisoning * has_nle * judge):
+Data: e2
+Models:
+m2_full: correct ~ poisoning * has_nle + judge + (1 | instance_idx)
+m2_3way: correct ~ poisoning * has_nle * judge + (1 | instance_idx)
+        npar    AIC    BIC  logLik -2*log(L)  Chisq Df Pr(>Chisq)    
+m2_full    6 394.58 422.06 -191.29    382.58                         
+m2_3way    9 341.80 383.02 -161.90    323.80 58.778  3  1.072e-12 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Interaction LRT (poisoning x has_nle):
+Data: e2
+Models:
+m2_no_int: correct ~ poisoning + has_nle + judge + (1 | instance_idx)
+m2_full: correct ~ poisoning * has_nle + judge + (1 | instance_idx)
+          npar    AIC    BIC  logLik -2*log(L)  Chisq Df Pr(>Chisq)   
+m2_no_int    5 402.43 425.32 -196.21    392.43                        
+m2_full      6 394.58 422.06 -191.29    382.58 9.8434  1   0.001704 **
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Full model summary:
+Generalized linear mixed model fit by maximum likelihood (Laplace
+  Approximation) [glmerMod]
+ Family: binomial  ( logit )
+Formula: correct ~ poisoning * has_nle + judge + (1 | instance_idx)
+   Data: e2
+Control: glmerControl(optimizer = "bobyqa")
+
+      AIC       BIC    logLik -2*log(L)  df.resid 
+    394.6     422.1    -191.3     382.6       714 
+
+Scaled residuals: 
+     Min       1Q   Median       3Q      Max 
+-15.6037  -0.2616   0.0507   0.1466   4.2796 
+
+Random effects:
+ Groups       Name        Variance Std.Dev.
+ instance_idx (Intercept) 0.7603   0.8719  
+Number of obs: 720, groups:  instance_idx, 60
+
+Fixed effects:
+                         Estimate Std. Error z value Pr(>|z|)    
+(Intercept)                4.7554     0.5798   8.202 2.36e-16 ***
+poisoningood              -4.8650     0.5798  -8.391  < 2e-16 ***
+has_nleTrue                1.1885     0.6715   1.770  0.07674 .  
+judgegpt                  -2.1232     0.3437  -6.177 6.53e-10 ***
+poisoningood:has_nleTrue  -2.3303     0.7435  -3.134  0.00172 ** 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Correlation of Fixed Effects:
+            (Intr) psnngd hs_nlT jdggpt
+poisoningod -0.884                     
+has_nleTrue -0.471  0.472              
+judgegpt    -0.581  0.411 -0.016       
+psnngd:hs_T  0.365 -0.497 -0.906  0.089
+
+Simple effects — NLE effect within Baseline:
+poisoning = baseline:
+ contrast     odds.ratio    SE  df null z.ratio p.value
+ False / True      0.305 0.205 Inf    1  -1.770  0.0767
+
+poisoning = ood:
+ contrast     odds.ratio    SE  df null z.ratio p.value
+ False / True      3.132 0.985 Inf    1   3.629  0.0003
+
+Results are averaged over the levels of: judge 
+Tests are performed on the log odds ratio scale 
+
+Simple effects — Poisoning effect within each NLE level:
+has_nle = False:
+ contrast       odds.ratio    SE  df null z.ratio p.value
+ baseline / ood        130  75.2 Inf    1   8.391 <0.0001
+
+has_nle = True:
+ contrast       odds.ratio    SE  df null z.ratio p.value
+ baseline / ood       1333 904.0 Inf    1  10.608 <0.0001
+
+Results are averaged over the levels of: judge 
+Tests are performed on the log odds ratio scale 
+
+--- 3. Confidence (CLMM) ---
+
+Confidence interaction LRT:
+Likelihood ratio tests of cumulative link models:
+ 
+          formula:                                                      link:
+c2_no_int confidence ~ poisoning + has_nle + judge + (1 | instance_idx) logit
+c2_full   confidence ~ poisoning * has_nle + judge + (1 | instance_idx) logit
+          threshold:
+c2_no_int flexible  
+c2_full   flexible  
+
+          no.par    AIC  logLik LR.stat df Pr(>Chisq)
+c2_no_int      7 365.03 -175.52                      
+c2_full        8 366.51 -175.25  0.5237  1     0.4693
+
+CLMM summary:
+Cumulative Link Mixed Model fitted with the Laplace approximation
+
+formula: confidence ~ poisoning * has_nle + judge + (1 | instance_idx)
+data:    e2
+
+ link  threshold nobs logLik  AIC    niter    max.grad cond.H 
+ logit flexible  720  -175.25 366.51 617(771) 5.84e-07 1.3e+06
+
+Random effects:
+ Groups       Name        Variance Std.Dev. 
+ instance_idx (Intercept) 1.03e-08 0.0001015
+Number of groups:  instance_idx 60 
+
+Coefficients:
+                         Estimate Std. Error z value Pr(>|z|)    
+poisoningood              -2.2413     0.5910  -3.793 0.000149 ***
+has_nleTrue                0.1418     0.6235   0.227 0.820079    
+judgegpt                   3.5932     0.7271   4.942 7.73e-07 ***
+poisoningood:has_nleTrue   0.5141     0.7129   0.721 0.470773    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Threshold coefficients:
+    Estimate Std. Error z value
+2|3  -6.0973     0.7760  -7.858
+3|4  -2.9447     0.5281  -5.576
+4|5   7.6548     0.9684   7.904
+
+--- 4. Calibration ---
+
+  Calibration model: correct ~ confidence_num * condition + judge + (1|instance_idx)
+  Calibration model summary:
+Generalized linear mixed model fit by maximum likelihood (Laplace
+  Approximation) [glmerMod]
+ Family: binomial  ( logit )
+Formula: correct ~ confidence_num * condition + judge + (1 | instance_idx)
+   Data: df
+Control: glmerControl(optimizer = "bobyqa")
+
+      AIC       BIC    logLik -2*log(L)  df.resid 
+    341.4     387.2    -160.7     321.4       710 
+
+Scaled residuals: 
+     Min       1Q   Median       3Q      Max 
+-24.8256  -0.2365   0.0305   0.0900   5.1331 
+
+Random effects:
+ Groups       Name        Variance Std.Dev.
+ instance_idx (Intercept) 0.4624   0.68    
+Number of obs: 720, groups:  instance_idx, 60
+
+Fixed effects:
+                                      Estimate Std. Error z value Pr(>|z|)    
+(Intercept)                           -10.8906     5.5437  -1.964 0.049474 *  
+confidence_num                          3.8886     1.4435   2.694 0.007063 ** 
+conditionbaseline_True                -10.9779     7.3095  -1.502 0.133132    
+conditionood_False                     18.4465     6.0116   3.068 0.002152 ** 
+conditionood_True                      16.8104     5.8314   2.883 0.003942 ** 
+judgegpt                               -1.9284     0.4034  -4.781 1.75e-06 ***
+confidence_num:conditionbaseline_True   3.3390     1.9684   1.696 0.089826 .  
+confidence_num:conditionood_False      -5.9310     1.5603  -3.801 0.000144 ***
+confidence_num:conditionood_True       -5.7776     1.5159  -3.811 0.000138 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Correlation of Fixed Effects:
+                   (Intr) cnfdn_ cndtnb_T cndt_F cndtnd_T jdggpt
+confidnc_nm        -0.995                                       
+cndtnbsln_T        -0.722  0.711                                
+condtnd_Fls        -0.913  0.906  0.667                         
+conditnd_Tr        -0.944  0.936  0.689    0.865                
+judgegpt            0.197 -0.256 -0.007   -0.126 -0.137         
+cnfdnc_nm:cndtnb_T  0.685 -0.678 -0.992   -0.632 -0.654    0.005
+cnfdnc_n:_F         0.908 -0.910 -0.658   -0.995 -0.859    0.162
+cnfdnc_nm:cndtnd_T  0.939 -0.941 -0.680   -0.861 -0.994    0.185
+                   cnfdnc_nm:cndtnb_T cn_:_F
+confidnc_nm                                 
+cndtnbsln_T                                 
+condtnd_Fls                                 
+conditnd_Tr                                 
+judgegpt                                    
+cnfdnc_nm:cndtnb_T                          
+cnfdnc_n:_F         0.628                   
+cnfdnc_nm:cndtnd_T  0.649              0.863
+
+  Somers' D (confidence vs accuracy) per condition:
+       condition   somers_d   n
+1 baseline_False  0.1564327 120
+2  baseline_True  0.7436441 240
+3      ood_False -0.4394841 120
+4       ood_True -0.3690087 240
+
+  Empirical calibration (accuracy at each confidence level, per condition):
+        condition confidence_num   accuracy   n
+1  baseline_False              3 0.66666667   3
+2  baseline_False              4 0.95689655 116
+3  baseline_False              5 1.00000000   1
+4   baseline_True              3 0.40000000   5
+5   baseline_True              4 0.99570815 233
+6   baseline_True              5 1.00000000   2
+7       ood_False              2 1.00000000   2
+8       ood_False              3 0.84210526  19
+9       ood_False              4 0.17346939  98
+10      ood_False              5 1.00000000   1
+11       ood_True              2 1.00000000   1
+12       ood_True              3 0.58333333  24
+13       ood_True              4 0.09767442 215
+
+  Conditional confidence (descriptive — NOT causal):
+       condition correct mean_conf   n
+1 baseline_False       0  3.833333   6
+2 baseline_False       1  3.991228 114
+3  baseline_True       0  3.250000   4
+4  baseline_True       1  4.000000 236
+5      ood_False       0  3.964286  84
+6      ood_False       1  3.472222  36
+7       ood_True       0  3.950980 204
+8       ood_True       1  3.555556  36
+
+--- 5. Diagnostics ---
+
+  Diagnostics (E2 accuracy GLMM):
+  Convergence: OK
+  Singularity: OK
+  DHARMa uniformity p: 0.341
+  DHARMa dispersion p: 0.368
+
+--- 6. Bayesian + ROPE ---
+
+  Bayesian GLMM (brms)...
+  Posterior ORs:
+                         Estimate Est.Error   Q2.5   Q97.5
+Intercept                  85.530     1.652 33.307 239.558
+poisoningood                0.010     1.632  0.004   0.026
+has_nleTrue                 2.704     1.689  0.978   7.667
+judgegpt                    0.149     1.371  0.079   0.273
+poisoningood:has_nleTrue    0.121     1.789  0.038   0.380
+
+--- 7. Sensitivity ---
+
+  Judge-specific models:
+  Judge deepseek:              (Intercept)             poisoningood              has_nleTrue 
+                  14.953                    0.088                    3.487 
+poisoningood:has_nleTrue 
+                   0.069 
+boundary (singular) fit: see help('isSingular')
+  Judge gpt:              (Intercept)             poisoningood              has_nleTrue 
+             6.17876e+09              0.00000e+00              1.00000e+00 
+poisoningood:has_nleTrue 
+             1.60000e-01 
+  Too few NLE rows
+NULL
+
+  Random slopes test:
+boundary (singular) fit: see help('isSingular')
+  Singular: YES (confirms intercept-only)
+
+================================================================
+  E2 COMPLETE
+================================================================

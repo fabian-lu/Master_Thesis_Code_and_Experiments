@@ -1,0 +1,351 @@
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+Loading required package: Matrix
+
+Attaching package: ‘Matrix’
+
+The following objects are masked from ‘package:tidyr’:
+
+    expand, pack, unpack
+
+
+Attaching package: ‘ordinal’
+
+The following object is masked from ‘package:dplyr’:
+
+    slice
+
+Welcome to emmeans.
+Caution: You lose important information if you filter this package's results.
+See '? untidy'
+This is DHARMa 0.4.7. For overview type '?DHARMa'. For recent changes, type news(package = 'DHARMa')
+Loading required package: Rcpp
+Loading 'brms' package (version 2.23.0). Useful instructions
+can be found by typing help('brms'). A more detailed introduction
+to the package is available through vignette('brms_overview').
+
+Attaching package: ‘brms’
+
+The following object is masked from ‘package:lme4’:
+
+    ngrps
+
+The following object is masked from ‘package:stats’:
+
+    ar
+
+
+Attaching package: ‘Hmisc’
+
+The following objects are masked from ‘package:dplyr’:
+
+    src, summarize
+
+The following objects are masked from ‘package:base’:
+
+    format.pval, units
+
+Loading experiments...
+  E1: 720 rows
+  E2: 720 rows
+  E3: 360 rows
+  E4: 330 rows
+  E5: 600 rows
+Setup complete.
+
+================================================================
+  EXPERIMENT 3: COUNTERFACTUAL SIMULATABILITY
+================================================================
+
+--- 1. Descriptive Statistics ---
+# A tibble: 2 × 6
+  condition     n accuracy mean_conf median_conf conf_na
+  <fct>     <int>    <dbl>     <dbl>       <dbl>   <int>
+1 E+X         240    0.579      4              4       0
+2 X           120    0.533      3.97           4       0
+# A tibble: 4 × 5
+  condition judge        n accuracy mean_conf
+  <fct>     <fct>    <int>    <dbl>     <dbl>
+1 E+X       deepseek   120    0.617      4.05
+2 E+X       gpt        120    0.542      3.95
+3 X         deepseek    60    0.6        3.95
+4 X         gpt         60    0.467      3.98
+
+True direction distribution:
+
+ higher   lower similar 
+    168     144      48 
+
+Confusion matrix (SHAP only, X condition):
+         True
+Predicted higher lower similar
+  higher      31    10       9
+  lower       19    30       4
+  similar      6     8       3
+
+Confusion matrix (NLE + SHAP, E+X condition):
+         True
+Predicted higher lower similar
+  higher      70    18      17
+  lower       32    61       7
+  similar     10    17       8
+
+--- 2. Primary GLMM: Accuracy ---
+NOTE: Results may be misleading due to involvement in interactions
+
+Model summary:
+Generalized linear mixed model fit by maximum likelihood (Laplace
+  Approximation) [glmerMod]
+ Family: binomial  ( logit )
+Formula: correct ~ condition * judge + (1 | instance_idx)
+   Data: df
+Control: glmerControl(optimizer = "bobyqa")
+
+      AIC       BIC    logLik -2*log(L)  df.resid 
+    419.2     438.6    -204.6     409.2       355 
+
+Scaled residuals: 
+    Min      1Q  Median      3Q     Max 
+-2.4048 -0.5680  0.2435  0.5376  2.5455 
+
+Random effects:
+ Groups       Name        Variance Std.Dev.
+ instance_idx (Intercept) 4.025    2.006   
+Number of obs: 360, groups:  instance_idx, 60
+
+Fixed effects:
+                    Estimate Std. Error z value Pr(>|z|)  
+(Intercept)           0.8294     0.3574   2.320   0.0203 *
+conditionX           -0.1159     0.4005  -0.289   0.7722  
+judgegpt             -0.5136     0.3268  -1.571   0.1161  
+conditionX:judgegpt  -0.3905     0.5630  -0.694   0.4880  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Correlation of Fixed Effects:
+            (Intr) cndtnX jdggpt
+conditionX  -0.379              
+judgegpt    -0.477  0.414       
+cndtnX:jdgg  0.260 -0.710 -0.569
+
+Marginal EMMs:
+ condition  prob     SE  df asymp.LCL asymp.UCL
+ E+X       0.639 0.0725 Inf     0.489     0.766
+ X         0.565 0.0864 Inf     0.395     0.721
+
+Results are averaged over the levels of: judge 
+Confidence level used: 0.95 
+Intervals are back-transformed from the logit scale 
+
+Judge-specific EMMs:
+judge = deepseek:
+ condition  prob     SE  df asymp.LCL asymp.UCL
+ E+X       0.696 0.0756 Inf     0.532     0.822
+ X         0.671 0.0935 Inf     0.471     0.824
+
+judge = gpt:
+ condition  prob     SE  df asymp.LCL asymp.UCL
+ E+X       0.578 0.0856 Inf     0.408     0.732
+ X         0.452 0.1040 Inf     0.267     0.652
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the logit scale 
+
+Condition OR and CI:
+  OR = 0.891 [0.406, 1.952]
+   OR = 0.677 [0.224, 2.040]
+
+--- 3. Confidence (CLMM) ---
+  CLMM LRT error: Unable to evaluate models.
+NOTE: Results may be misleading due to involvement in interactions
+
+Confidence LRT:
+NULL
+
+CLMM summary:
+Cumulative Link Mixed Model fitted with the Laplace approximation
+
+formula: confidence ~ condition * judge + (1 | instance_idx)
+data:    df
+
+ link  threshold nobs logLik  AIC    niter     max.grad cond.H 
+ logit flexible  360  -280.11 572.22 288(1432) 3.14e-05 3.2e+01
+
+Random effects:
+ Groups       Name        Variance Std.Dev.
+ instance_idx (Intercept) 2.149    1.466   
+Number of groups:  instance_idx 60 
+
+Coefficients:
+                    Estimate Std. Error z value Pr(>|z|)
+conditionX           -0.5278     0.3646  -1.448    0.148
+judgegpt             -0.4797     0.2926  -1.639    0.101
+conditionX:judgegpt   0.6783     0.5063   1.340    0.180
+
+Threshold coefficients:
+    Estimate Std. Error z value
+3|4  -2.5083     0.3344  -7.500
+4|5   2.0058     0.3185   6.299
+
+--- 4. Calibration ---
+
+  Calibration model: correct ~ confidence_num * condition + judge + (1|instance_idx)
+  Calibration model summary:
+Generalized linear mixed model fit by maximum likelihood (Laplace
+  Approximation) [glmerMod]
+ Family: binomial  ( logit )
+Formula: correct ~ confidence_num * condition + judge + (1 | instance_idx)
+   Data: df
+Control: glmerControl(optimizer = "bobyqa")
+
+      AIC       BIC    logLik -2*log(L)  df.resid 
+    415.6     438.9    -201.8     403.6       354 
+
+Scaled residuals: 
+    Min      1Q  Median      3Q     Max 
+-2.4743 -0.5664  0.2431  0.5471  2.7499 
+
+Random effects:
+ Groups       Name        Variance Std.Dev.
+ instance_idx (Intercept) 3.718    1.928   
+Number of obs: 360, groups:  instance_idx, 60
+
+Fixed effects:
+                          Estimate Std. Error z value Pr(>|z|)  
+(Intercept)                -2.5999     1.5053  -1.727   0.0841 .
+confidence_num              0.8746     0.3670   2.383   0.0172 *
+conditionX                  3.3675     2.2099   1.524   0.1276  
+judgegpt                   -0.6038     0.2836  -2.129   0.0332 *
+confidence_num:conditionX  -0.9322     0.5586  -1.669   0.0951 .
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Correlation of Fixed Effects:
+            (Intr) cnfdn_ cndtnX jdggpt
+confidnc_nm -0.972                     
+conditionX  -0.553  0.568              
+judgegpt    -0.142  0.041  0.013       
+cnfdnc_nm:X  0.543 -0.568 -0.991 -0.009
+
+  Somers' D (confidence vs accuracy) per condition:
+  condition   somers_d   n
+1       E+X 0.25899281 240
+2         X 0.08872768 120
+
+  Empirical calibration (accuracy at each confidence level, per condition):
+  condition confidence_num  accuracy   n
+1       E+X              3 0.2368421  38
+2       E+X              4 0.6280488 164
+3       E+X              5 0.7105263  38
+4         X              3 0.4090909  22
+5         X              4 0.5625000  80
+6         X              5 0.5555556  18
+
+  Conditional confidence (descriptive — NOT causal):
+  condition correct mean_conf   n
+1       E+X       0  3.821782 101
+2       E+X       1  4.129496 139
+3         X       0  3.910714  56
+4         X       1  4.015625  64
+
+--- 5. Diagnostics ---
+
+  Diagnostics (E3 accuracy GLMM):
+  Convergence: OK
+  Singularity: OK
+  DHARMa uniformity p: 0.927
+  DHARMa dispersion p: 0.928
+
+--- 6. Bayesian + ROPE ---
+
+  Bayesian GLMM (brms)...
+  Posterior ORs:
+           Estimate Est.Error  Q2.5 Q97.5
+Intercept     2.498     1.463 1.216 5.460
+conditionX    0.732     1.341 0.416 1.306
+judgegpt      0.525     1.321 0.301 0.890
+  ROPE [-0.18, 0.18] for conditionX: 27.9% inside
+
+--- 7. Sensitivity ---
+
+  Judge-specific models:
+  Judge deepseek: (Intercept)  conditionX 
+      4.023       0.843 
+  Judge gpt: (Intercept)  conditionX 
+      1.645       0.470 
+
+  Generator effect (NLE conditions only, N=240, 1 conditions):
+  Generator coefficient:
+             Estimate Std. Error z value Pr(>|z|)
+(Intercept)    0.8577     0.3991  2.1492   0.0316
+generatorgpt  -0.0580     0.3239 -0.1791   0.8579
+judgegpt      -0.5201     0.3268 -1.5917   0.1115
+
+  Same-family bias:
+  Same-family OR: 1.516, p: 0.2316
+
+  Random slopes test:
+boundary (singular) fit: see help('isSingular')
+  Singular: YES (confirms intercept-only)
+
+--- 8. true_direction covariate ---
+Model with true_direction:
+Generalized linear mixed model fit by maximum likelihood (Laplace
+  Approximation) [glmerMod]
+ Family: binomial  ( logit )
+Formula: correct ~ condition * judge + true_direction + (1 | instance_idx)
+   Data: e3
+Control: glmerControl(optimizer = "bobyqa")
+
+      AIC       BIC    logLik -2*log(L)  df.resid 
+    413.4     440.6    -199.7     399.4       353 
+
+Scaled residuals: 
+    Min      1Q  Median      3Q     Max 
+-2.4125 -0.5504  0.2490  0.5375  2.5408 
+
+Random effects:
+ Groups       Name        Variance Std.Dev.
+ instance_idx (Intercept) 3.334    1.826   
+Number of obs: 360, groups:  instance_idx, 60
+
+Fixed effects:
+                      Estimate Std. Error z value Pr(>|z|)   
+(Intercept)             1.0002     0.4576   2.186  0.02882 * 
+conditionX             -0.1174     0.4193  -0.280  0.77951   
+judgegpt               -0.5195     0.3427  -1.516  0.12950   
+true_directionlower     0.3444     0.6109   0.564  0.57297   
+true_directionsimilar  -2.4968     0.9197  -2.715  0.00663 **
+conditionX:judgegpt    -0.3928     0.5894  -0.666  0.50516   
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Correlation of Fixed Effects:
+            (Intr) cndtnX jdggpt tr_drctnl tr_drctns
+conditionX  -0.312                                  
+judgegpt    -0.398  0.414                           
+tr_drctnlwr -0.570 -0.002 -0.010                    
+tr_drctnsml -0.426  0.007  0.035  0.271             
+cndtnX:jdgg  0.209 -0.710 -0.568 -0.005     0.014   
+
+Per-class recall by condition:
+  condition true_direction    recall   n
+1       E+X         higher 0.6250000 112
+2       E+X          lower 0.6354167  96
+3       E+X        similar 0.2500000  32
+4         X         higher 0.5535714  56
+5         X          lower 0.6250000  48
+6         X        similar 0.1875000  16
+
+================================================================
+  E3 COMPLETE
+================================================================

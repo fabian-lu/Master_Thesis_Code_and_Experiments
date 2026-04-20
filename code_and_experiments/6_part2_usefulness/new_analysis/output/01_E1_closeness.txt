@@ -1,0 +1,492 @@
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+Loading required package: Matrix
+
+Attaching package: ‘Matrix’
+
+The following objects are masked from ‘package:tidyr’:
+
+    expand, pack, unpack
+
+
+Attaching package: ‘ordinal’
+
+The following object is masked from ‘package:dplyr’:
+
+    slice
+
+Welcome to emmeans.
+Caution: You lose important information if you filter this package's results.
+See '? untidy'
+This is DHARMa 0.4.7. For overview type '?DHARMa'. For recent changes, type news(package = 'DHARMa')
+Loading required package: Rcpp
+Loading 'brms' package (version 2.23.0). Useful instructions
+can be found by typing help('brms'). A more detailed introduction
+to the package is available through vignette('brms_overview').
+
+Attaching package: ‘brms’
+
+The following object is masked from ‘package:lme4’:
+
+    ngrps
+
+The following object is masked from ‘package:stats’:
+
+    ar
+
+
+Attaching package: ‘Hmisc’
+
+The following objects are masked from ‘package:dplyr’:
+
+    src, summarize
+
+The following objects are masked from ‘package:base’:
+
+    format.pval, units
+
+Loading experiments...
+  E1: 720 rows
+  E2: 720 rows
+  E3: 360 rows
+  E4: 330 rows
+  E5: 600 rows
+Setup complete.
+
+================================================================
+  EXPERIMENT 1: FORWARD SIMULATABILITY
+================================================================
+
+--- 1. Descriptive Statistics ---
+# A tibble: 5 × 6
+  condition     n accuracy mean_conf median_conf conf_na
+  <fct>     <int>    <dbl>     <dbl>       <dbl>   <int>
+1 Baseline    120    0.358      3.33           3      12
+2 X           120    0.383      3.41           3      13
+3 T           120    0.392      3.50           4      19
+4 X+T         120    0.417      3.81           4      13
+5 E+X+T       240    0.392      3.92           4      38
+# A tibble: 10 × 5
+   condition judge        n accuracy mean_conf
+   <fct>     <fct>    <int>    <dbl>     <dbl>
+ 1 Baseline  deepseek    60    0.433      3.11
+ 2 Baseline  gpt         60    0.283      3.58
+ 3 X         deepseek    60    0.4        3.16
+ 4 X         gpt         60    0.367      3.69
+ 5 T         deepseek    60    0.517      3.56
+ 6 T         gpt         60    0.267      3.43
+ 7 X+T       deepseek    60    0.533      3.65
+ 8 X+T       gpt         60    0.3        4   
+ 9 E+X+T     deepseek   120    0.483      3.85
+10 E+X+T     gpt        120    0.3        4   
+
+True bucket distribution:
+
+     large     medium      small very_large 
+       192        348        144         36 
+
+--- 2. Primary GLMM: Accuracy ---
+NOTE: Results may be misleading due to involvement in interactions
+
+Omnibus LRT (condition):
+Data: df
+Models:
+m_red: correct ~ judge + (1 | instance_idx)
+m_full: correct ~ condition * judge + (1 | instance_idx)
+       npar    AIC    BIC  logLik -2*log(L)  Chisq Df Pr(>Chisq)
+m_red     3 723.24 736.98 -358.62    717.24                     
+m_full   11 731.02 781.39 -354.51    709.02 8.2255  8     0.4118
+
+Model summary:
+Generalized linear mixed model fit by maximum likelihood (Laplace
+  Approximation) [glmerMod]
+ Family: binomial  ( logit )
+Formula: correct ~ condition * judge + (1 | instance_idx)
+   Data: df
+Control: glmerControl(optimizer = "bobyqa")
+
+      AIC       BIC    logLik -2*log(L)  df.resid 
+    731.0     781.4    -354.5     709.0       709 
+
+Scaled residuals: 
+    Min      1Q  Median      3Q     Max 
+-2.4837 -0.4556 -0.1663  0.5100  4.7616 
+
+Random effects:
+ Groups       Name        Variance Std.Dev.
+ instance_idx (Intercept) 5.248    2.291   
+Number of obs: 720, groups:  instance_idx, 60
+
+Fixed effects:
+                        Estimate Std. Error z value Pr(>|z|)  
+(Intercept)              -0.6559     0.4563  -1.437   0.1507  
+conditionX               -0.2426     0.4777  -0.508   0.6116  
+conditionT                0.6170     0.4810   1.283   0.1996  
+conditionX+T              0.7441     0.4829   1.541   0.1233  
+conditionE+X+T            0.3672     0.4142   0.887   0.3753  
+judgegpt                 -1.1137     0.4919  -2.264   0.0236 *
+conditionX:judgegpt       0.8705     0.6863   1.268   0.2047  
+conditionT:judgegpt      -0.7492     0.6972  -1.075   0.2826  
+conditionX+T:judgegpt    -0.6147     0.6935  -0.886   0.3754  
+conditionE+X+T:judgegpt  -0.2378     0.5985  -0.397   0.6911  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Correlation of Fixed Effects:
+            (Intr) cndtnX cndtnT cndX+T cnE+X+T jdggpt cndtX: cndtT: cnX+T:
+conditionX  -0.519                                                         
+conditionT  -0.526  0.493                                                  
+conditinX+T -0.526  0.491  0.497                                           
+condtnE+X+T -0.607  0.574  0.575  0.573                                    
+judgegpt    -0.500  0.487  0.474  0.470  0.553                             
+cndtnX:jdgg  0.359 -0.697 -0.341 -0.339 -0.398  -0.715                     
+cndtnT:jdgg  0.363 -0.340 -0.690 -0.343 -0.397  -0.692  0.497              
+cndtnX+T:jd  0.366 -0.342 -0.345 -0.696 -0.399  -0.696  0.500  0.498       
+cndtnE+X+T:  0.420 -0.397 -0.397 -0.396 -0.692  -0.810  0.581  0.575  0.578
+
+Marginal condition EMMs (averaged over judges):
+ condition  prob     SE  df asymp.LCL asymp.UCL
+ Baseline  0.229 0.0699 Inf     0.120     0.392
+ X         0.265 0.0764 Inf     0.143     0.437
+ T         0.275 0.0787 Inf     0.149     0.451
+ X+T       0.315 0.0847 Inf     0.176     0.498
+ E+X+T     0.276 0.0706 Inf     0.160     0.432
+
+Results are averaged over the levels of: judge 
+Confidence level used: 0.95 
+Intervals are back-transformed from the logit scale 
+
+Judge-specific EMMs:
+judge = deepseek:
+ condition  prob     SE  df asymp.LCL asymp.UCL
+ Baseline  0.342 0.1030 Inf    0.1750     0.559
+ X         0.289 0.0942 Inf    0.1423     0.500
+ T         0.490 0.1140 Inf    0.2821     0.702
+ X+T       0.522 0.1140 Inf    0.3082     0.728
+ E+X+T     0.428 0.0949 Inf    0.2595     0.616
+
+judge = gpt:
+ condition  prob     SE  df asymp.LCL asymp.UCL
+ Baseline  0.146 0.0591 Inf    0.0629     0.302
+ X         0.242 0.0846 Inf    0.1145     0.441
+ T         0.130 0.0542 Inf    0.0551     0.277
+ X+T       0.162 0.0642 Inf    0.0715     0.328
+ E+X+T     0.162 0.0546 Inf    0.0811     0.299
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the logit scale 
+
+Planned: E+X+T vs X+T (NLE effect):
+ contrast     odds.ratio    SE  df null z.ratio p.value
+ E+X+T vs X+T      0.828 0.248 Inf    1  -0.629  0.5296
+
+Results are averaged over the levels of: judge 
+Tests are performed on the log odds ratio scale 
+
+Planned: X+T vs Baseline (information effect):
+ contrast        odds.ratio    SE  df null z.ratio p.value
+ X+T vs Baseline       1.55 0.537 Inf    1   1.258  0.2083
+
+Results are averaged over the levels of: judge 
+Tests are performed on the log odds ratio scale 
+
+All pairwise (Holm):
+ contrast           odds.ratio    SE  df null z.ratio p.value
+ Baseline / X            0.825 0.283 Inf    1  -0.562  1.0000
+ Baseline / T            0.785 0.273 Inf    1  -0.696  1.0000
+ Baseline / (X+T)        0.646 0.224 Inf    1  -1.258  1.0000
+ Baseline / (E+X+T)      0.780 0.234 Inf    1  -0.829  1.0000
+ X / T                   0.951 0.328 Inf    1  -0.144  1.0000
+ X / (X+T)               0.783 0.269 Inf    1  -0.711  1.0000
+ X / (E+X+T)             0.946 0.279 Inf    1  -0.188  1.0000
+ T / (X+T)               0.823 0.287 Inf    1  -0.558  1.0000
+ T / (E+X+T)             0.994 0.300 Inf    1  -0.020  1.0000
+ (X+T) / (E+X+T)         1.207 0.362 Inf    1   0.629  1.0000
+
+Results are averaged over the levels of: judge 
+P value adjustment: holm method for 10 tests 
+Tests are performed on the log odds ratio scale 
+
+--- 3. Confidence (CLMM) ---
+  CLMM LRT error: Unable to evaluate models.
+NOTE: Results may be misleading due to involvement in interactions
+
+Omnibus LRT (condition on confidence):
+NULL
+
+CLMM summary:
+Cumulative Link Mixed Model fitted with the Laplace approximation
+
+formula: confidence ~ condition * judge + (1 | instance_idx)
+data:    df
+
+ link  threshold nobs logLik  AIC    niter     max.grad cond.H 
+ logit flexible  625  -316.21 658.42 848(2504) 8.89e-05 1.7e+02
+
+Random effects:
+ Groups       Name        Variance Std.Dev.
+ instance_idx (Intercept) 0.4418   0.6647  
+Number of groups:  instance_idx 60 
+
+Coefficients:
+                        Estimate Std. Error z value Pr(>|z|)    
+conditionX                0.2668     0.4715   0.566    0.571    
+conditionT                2.0973     0.4557   4.603 4.17e-06 ***
+conditionX+T              2.4961     0.4706   5.304 1.13e-07 ***
+conditionE+X+T            3.7049     0.4652   7.964 1.67e-15 ***
+judgegpt                  2.1722     0.4688   4.634 3.59e-06 ***
+conditionX:judgegpt       0.2738     0.6396   0.428    0.669    
+conditionT:judgegpt      -2.7232     0.6373  -4.273 1.93e-05 ***
+conditionX+T:judgegpt     1.6367     1.1428   1.432    0.152    
+conditionE+X+T:judgegpt   0.4712     0.9782   0.482    0.630    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Threshold coefficients:
+    Estimate Std. Error z value
+2|3  -3.2637     0.4956  -6.585
+3|4   1.8191     0.3735   4.871
+4|5  10.8712     1.0622  10.235
+(95 observations deleted due to missingness)
+
+Confidence EMMs:
+ condition emmean    SE  df asymp.LCL asymp.UCL
+ Baseline   -2.06 0.415 Inf    -2.869    -1.243
+ X          -1.65 0.417 Inf    -2.470    -0.835
+ T          -1.32 0.419 Inf    -2.142    -0.499
+ X+T         1.26 0.502 Inf     0.275     2.242
+ E+X+T       1.88 0.409 Inf     1.082     2.687
+
+Results are averaged over the levels of: judge 
+Confidence level used: 0.95 
+
+Confidence: E+X+T vs X+T:
+ contrast     estimate    SE  df z.ratio p.value
+ E+X+T vs X+T    0.626 0.587 Inf   1.067  0.2861
+
+Results are averaged over the levels of: judge 
+
+Confidence pairwise (Holm):
+ contrast           estimate    SE  df z.ratio p.value
+ Baseline - X         -0.404 0.320 Inf  -1.261  0.6218
+ Baseline - T         -0.736 0.315 Inf  -2.336  0.0780
+ Baseline - (X+T)     -3.314 0.577 Inf  -5.740 <0.0001
+ Baseline - (E+X+T)   -3.940 0.503 Inf  -7.837 <0.0001
+ X - T                -0.332 0.312 Inf  -1.066  0.6218
+ X - (X+T)            -2.911 0.574 Inf  -5.074 <0.0001
+ X - (E+X+T)          -3.537 0.497 Inf  -7.111 <0.0001
+ T - (X+T)            -2.579 0.567 Inf  -4.546 <0.0001
+ T - (E+X+T)          -3.205 0.489 Inf  -6.549 <0.0001
+ (X+T) - (E+X+T)      -0.626 0.587 Inf  -1.067  0.6218
+
+Results are averaged over the levels of: judge 
+P value adjustment: holm method for 10 tests 
+
+--- 4. Calibration Analysis ---
+
+  Calibration model: correct ~ confidence_num * condition + judge + (1|instance_idx)
+  Calibration model summary:
+Generalized linear mixed model fit by maximum likelihood (Laplace
+  Approximation) [glmerMod]
+ Family: binomial  ( logit )
+Formula: correct ~ confidence_num * condition + judge + (1 | instance_idx)
+   Data: df
+Control: glmerControl(optimizer = "bobyqa")
+
+      AIC       BIC    logLik -2*log(L)  df.resid 
+    635.5     688.8    -305.8     611.5       613 
+
+Scaled residuals: 
+    Min      1Q  Median      3Q     Max 
+-3.0763 -0.4026 -0.1648  0.4967  6.7915 
+
+Random effects:
+ Groups       Name        Variance Std.Dev.
+ instance_idx (Intercept) 6.199    2.49    
+Number of obs: 625, groups:  instance_idx, 60
+
+Fixed effects:
+                              Estimate Std. Error z value Pr(>|z|)   
+(Intercept)                     4.3501     1.7664   2.463  0.01379 * 
+confidence_num                 -1.5192     0.5222  -2.909  0.00362 **
+conditionX                     -2.9645     2.4919  -1.190  0.23419   
+conditionT                     -3.0584     2.6403  -1.158  0.24673   
+conditionX+T                   -3.1676     2.9756  -1.065  0.28709   
+conditionE+X+T                 -7.4155     3.1692  -2.340  0.01929 * 
+judgegpt                       -0.6775     0.2405  -2.817  0.00485 **
+confidence_num:conditionX       0.9633     0.7275   1.324  0.18549   
+confidence_num:conditionT       1.0981     0.7552   1.454  0.14597   
+confidence_num:conditionX+T     1.1548     0.8119   1.422  0.15495   
+confidence_num:conditionE+X+T   2.2602     0.8490   2.662  0.00777 **
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Correlation of Fixed Effects:
+            (Intr) cnfdn_ cndtnX cndtnT cndX+T cE+X+T jdggpt cnf_:X cnf_:T
+confidnc_nm -0.968                                                        
+conditionX  -0.653  0.647                                                 
+conditionT  -0.626  0.626  0.428                                          
+conditinX+T -0.548  0.542  0.392  0.367                                   
+condtnE+X+T -0.515  0.510  0.373  0.333  0.314                            
+judgegpt     0.126 -0.185  0.051 -0.116  0.044  0.053                     
+cnfdnc_nm:X  0.656 -0.666 -0.988 -0.429 -0.394 -0.374 -0.050              
+cnfdnc_nm:T  0.643 -0.661 -0.439 -0.989 -0.375 -0.342  0.124  0.453       
+cnfdnc_:X+T  0.591 -0.601 -0.420 -0.394 -0.990 -0.335 -0.032  0.433  0.414
+cnfd_:E+X+T  0.567 -0.578 -0.407 -0.367 -0.342 -0.991 -0.035  0.418  0.386
+            c_:X+T
+confidnc_nm       
+conditionX        
+conditionT        
+conditinX+T       
+condtnE+X+T       
+judgegpt          
+cnfdnc_nm:X       
+cnfdnc_nm:T       
+cnfdnc_:X+T       
+cnfd_:E+X+T  0.375
+
+  Somers' D (confidence vs accuracy) per condition:
+  condition    somers_d   n
+1  Baseline -0.30697674 120
+2         X -0.17676408 120
+3         T  0.05043341 120
+4       X+T -0.02807018 120
+5     E+X+T  0.03693853 240
+
+  Empirical calibration (accuracy at each confidence level, per condition):
+   condition confidence_num  accuracy   n
+1   Baseline              2 0.4000000   5
+2   Baseline              3 0.5322581  62
+3   Baseline              4 0.1951220  41
+4   Baseline             NA 0.0000000  12
+5          X              2 1.0000000   1
+6          X              3 0.4918033  61
+7          X              4 0.3333333  45
+8          X             NA 0.0000000  13
+9          T              3 0.4400000  50
+10         T              4 0.4901961  51
+11         T             NA 0.0000000  19
+12       X+T              3 0.5238095  21
+13       X+T              4 0.4470588  85
+14       X+T              5 1.0000000   1
+15       X+T             NA 0.0000000  13
+16     E+X+T              3 0.3888889  18
+17     E+X+T              4 0.4699454 183
+18     E+X+T              5 1.0000000   1
+19     E+X+T             NA 0.0000000  38
+
+  Conditional confidence (descriptive — NOT causal):
+   condition correct mean_conf   n
+1   Baseline       0  3.461538  77
+2   Baseline       1  3.139535  43
+3          X       0  3.491803  74
+4          X       1  3.304348  46
+5          T       0  3.481481  73
+6          T       1  3.531915  47
+7        X+T       0  3.824561  70
+8        X+T       1  3.800000  50
+9      E+X+T       0  3.898148 146
+10     E+X+T       1  3.936170  94
+
+--- 5. Diagnostics ---
+
+  Diagnostics (E1 accuracy GLMM):
+  Convergence: OK
+  Singularity: OK
+  DHARMa uniformity p: 0.179
+  DHARMa dispersion p: 0.640
+
+--- 6. Bayesian + ROPE ---
+
+  Bayesian GLMM (brms)...
+  Posterior ORs:
+               Estimate Est.Error  Q2.5 Q97.5
+Intercept         0.580     1.516 0.252 1.291
+conditionX        1.166     1.398 0.605 2.252
+conditionT        1.238     1.401 0.643 2.400
+conditionXPT      1.486     1.406 0.754 2.907
+conditionEPXPT    1.245     1.344 0.700 2.227
+judgegpt          0.284     1.238 0.187 0.430
+  ROPE [-0.18, 0.18] for conditionX: 37.5% inside
+  ROPE [-0.18, 0.18] for conditionT: 33.6% inside
+  ROPE [-0.18, 0.18] for conditionXPT: 21.1% inside
+  ROPE [-0.18, 0.18] for conditionEPXPT: 34.8% inside
+
+--- 7. Sensitivity ---
+
+  Judge-specific models:
+  Judge deepseek:    (Intercept)     conditionX     conditionT   conditionX+T conditionE+X+T 
+         0.313          0.653          2.927          3.649          1.896 
+  Judge gpt:    (Intercept)     conditionX     conditionT   conditionX+T conditionE+X+T 
+         0.252          1.739          0.888          1.123          1.123 
+
+  Generator effect (NLE conditions only, N=240, 1 conditions):
+  Generator coefficient:
+             Estimate Std. Error z value Pr(>|z|)
+(Intercept)   -0.3496     0.4779 -0.7314   0.4645
+generatorgpt   0.2816     0.3767  0.7476   0.4547
+judgegpt      -1.5138     0.4130 -3.6650   0.0002
+
+  Same-family bias:
+  Same-family OR: 1.000, p: 1.0000
+
+  Random slopes test:
+boundary (singular) fit: see help('isSingular')
+  Singular: YES (confirms intercept-only)
+
+--- 8. Robustness: true_bucket covariate ---
+Model with true_bucket:
+Generalized linear mixed model fit by maximum likelihood (Laplace
+  Approximation) [glmerMod]
+ Family: binomial  ( logit )
+Formula: correct ~ condition * judge + true_bucket + (1 | instance_idx)
+   Data: e1
+Control: glmerControl(optimizer = "bobyqa")
+
+      AIC       BIC    logLik -2*log(L)  df.resid 
+    663.8     727.9    -317.9     635.8       706 
+
+Scaled residuals: 
+    Min      1Q  Median      3Q     Max 
+-2.3868 -0.4003 -0.1766  0.4772  8.5498 
+
+Random effects:
+ Groups       Name        Variance Std.Dev.
+ instance_idx (Intercept) 0.7784   0.8823  
+Number of obs: 720, groups:  instance_idx, 60
+
+Fixed effects:
+                        Estimate Std. Error z value Pr(>|z|)    
+(Intercept)              -1.6175     0.5006  -3.231  0.00123 ** 
+conditionX               -0.2483     0.4986  -0.498  0.61851    
+conditionT                0.6328     0.5051   1.253  0.21028    
+conditionX+T              0.7619     0.5069   1.503  0.13283    
+conditionE+X+T            0.3773     0.4345   0.868  0.38519    
+judgegpt                 -1.1194     0.5057  -2.213  0.02686 *  
+true_bucketmedium         2.8703     0.4400   6.523  6.9e-11 ***
+true_bucketlarge         -0.9226     0.5122  -1.801  0.07169 .  
+true_bucketvery_large    -2.1575     1.2273  -1.758  0.07877 .  
+conditionX:judgegpt       0.8725     0.7081   1.232  0.21793    
+conditionT:judgegpt      -0.7616     0.7164  -1.063  0.28774    
+conditionX+T:judgegpt    -0.6350     0.7144  -0.889  0.37408    
+conditionE+X+T:judgegpt  -0.2504     0.6159  -0.407  0.68437    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Correlation matrix not shown by default, as p = 13 > 12.
+Use print(summary(m_bucket), correlation=TRUE)  or
+    vcov(summary(m_bucket))        if you need it
+
+
+================================================================
+  E1 COMPLETE
+================================================================

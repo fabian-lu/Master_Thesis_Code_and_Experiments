@@ -1,0 +1,413 @@
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+Loading required package: Matrix
+
+Attaching package: ‘Matrix’
+
+The following objects are masked from ‘package:tidyr’:
+
+    expand, pack, unpack
+
+
+Attaching package: ‘ordinal’
+
+The following object is masked from ‘package:dplyr’:
+
+    slice
+
+Welcome to emmeans.
+Caution: You lose important information if you filter this package's results.
+See '? untidy'
+This is DHARMa 0.4.7. For overview type '?DHARMa'. For recent changes, type news(package = 'DHARMa')
+Loading required package: Rcpp
+Loading 'brms' package (version 2.23.0). Useful instructions
+can be found by typing help('brms'). A more detailed introduction
+to the package is available through vignette('brms_overview').
+
+Attaching package: ‘brms’
+
+The following object is masked from ‘package:lme4’:
+
+    ngrps
+
+The following object is masked from ‘package:stats’:
+
+    ar
+
+
+Attaching package: ‘Hmisc’
+
+The following objects are masked from ‘package:dplyr’:
+
+    src, summarize
+
+The following objects are masked from ‘package:base’:
+
+    format.pval, units
+
+Loading experiments...
+  E1: 720 rows
+  E2: 720 rows
+  E3: 360 rows
+  E4: 330 rows
+  E5: 600 rows
+Setup complete.
+
+================================================================
+  EXPERIMENT 5: PLACEBIC NLE CONTROL
+================================================================
+
+--- 1. Descriptive Statistics ---
+# A tibble: 3 × 6
+  condition       n accuracy mean_conf median_conf conf_na
+  <fct>       <int>    <dbl>     <dbl>       <dbl>   <int>
+1 Baseline      120    0.45       3.81           4       0
+2 Real_NLE      240    0.479      3.95           4       0
+3 Placebo_NLE   240    0.458      3.9            4       0
+# A tibble: 6 × 5
+  condition   judge        n accuracy mean_conf
+  <fct>       <fct>    <int>    <dbl>     <dbl>
+1 Baseline    deepseek    60    0.533      3.62
+2 Baseline    gpt         60    0.367      4   
+3 Real_NLE    deepseek   120    0.525      3.9 
+4 Real_NLE    gpt        120    0.433      4   
+5 Placebo_NLE deepseek   120    0.517      3.71
+6 Placebo_NLE gpt        120    0.4        4.09
+
+--- 2. Primary GLMM: Accuracy ---
+NOTE: Results may be misleading due to involvement in interactions
+
+Omnibus LRT:
+Data: df
+Models:
+m_red: correct ~ judge + (1 | instance_idx)
+m_full: correct ~ condition * judge + (1 | instance_idx)
+       npar    AIC    BIC  logLik -2*log(L)  Chisq Df Pr(>Chisq)
+m_red     3 602.74 615.93 -298.37    596.74                     
+m_full    7 609.19 639.97 -297.60    595.19 1.5457  4     0.8185
+
+Model summary:
+Generalized linear mixed model fit by maximum likelihood (Laplace
+  Approximation) [glmerMod]
+ Family: binomial  ( logit )
+Formula: correct ~ condition * judge + (1 | instance_idx)
+   Data: df
+Control: glmerControl(optimizer = "bobyqa")
+
+      AIC       BIC    logLik -2*log(L)  df.resid 
+    609.2     640.0    -297.6     595.2       593 
+
+Scaled residuals: 
+    Min      1Q  Median      3Q     Max 
+-2.2805 -0.4493 -0.1641  0.4385  3.9927 
+
+Random effects:
+ Groups       Name        Variance Std.Dev.
+ instance_idx (Intercept) 5.761    2.4     
+Number of obs: 600, groups:  instance_idx, 60
+
+Fixed effects:
+                              Estimate Std. Error z value Pr(>|z|)   
+(Intercept)                    0.13425    0.47036   0.285  0.77532   
+conditionReal_NLE             -0.06683    0.42493  -0.157  0.87502   
+conditionPlacebo_NLE          -0.13332    0.42473  -0.314  0.75361   
+judgegpt                      -1.30200    0.49738  -2.618  0.00885 **
+conditionReal_NLE:judgegpt     0.58392    0.60157   0.971  0.33172   
+conditionPlacebo_NLE:judgegpt  0.39260    0.60136   0.653  0.51385   
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Correlation of Fixed Effects:
+            (Intr) cnR_NLE cnP_NLE jdggpt cR_NLE:
+cndtnRl_NLE -0.603                               
+cndtnPl_NLE -0.603  0.668                        
+judgegpt    -0.517  0.572   0.573                
+cndtnR_NLE:  0.427 -0.707  -0.473  -0.816        
+cndtnP_NLE:  0.427 -0.472  -0.707  -0.814  0.670 
+
+Marginal EMMs:
+ condition    prob     SE  df asymp.LCL asymp.UCL
+ Baseline    0.374 0.0942 Inf     0.213     0.568
+ Real_NLE    0.428 0.0886 Inf     0.269     0.603
+ Placebo_NLE 0.388 0.0862 Inf     0.238     0.564
+
+Results are averaged over the levels of: judge 
+Confidence level used: 0.95 
+Intervals are back-transformed from the logit scale 
+
+Judge-specific EMMs:
+judge = deepseek:
+ condition    prob     SE  df asymp.LCL asymp.UCL
+ Baseline    0.534 0.1170 Inf     0.313     0.742
+ Real_NLE    0.517 0.1000 Inf     0.328     0.701
+ Placebo_NLE 0.500 0.1000 Inf     0.313     0.687
+
+judge = gpt:
+ condition    prob     SE  df asymp.LCL asymp.UCL
+ Baseline    0.237 0.0861 Inf     0.109     0.442
+ Real_NLE    0.343 0.0906 Inf     0.192     0.534
+ Placebo_NLE 0.287 0.0828 Inf     0.154     0.471
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the logit scale 
+
+Planned contrasts:
+
+  Real vs Baseline:
+ contrast         odds.ratio    SE  df null z.ratio p.value
+ Real vs Baseline       1.25 0.377 Inf    1   0.749  0.4539
+
+Results are averaged over the levels of: judge 
+Tests are performed on the log odds ratio scale 
+
+  Placebo vs Baseline:
+ contrast            odds.ratio   SE  df null z.ratio p.value
+ Placebo vs Baseline       1.07 0.32 Inf    1   0.210  0.8340
+
+Results are averaged over the levels of: judge 
+Tests are performed on the log odds ratio scale 
+
+  Real vs Placebo (CRITICAL — content vs presence):
+ contrast        odds.ratio    SE  df null z.ratio p.value
+ Real vs Placebo       1.18 0.287 Inf    1   0.664  0.5069
+
+Results are averaged over the levels of: judge 
+Tests are performed on the log odds ratio scale 
+
+All pairwise (Holm):
+ contrast               odds.ratio    SE  df null z.ratio p.value
+ Baseline / Real_NLE         0.798 0.240 Inf    1  -0.749  1.0000
+ Baseline / Placebo_NLE      0.939 0.282 Inf    1  -0.210  1.0000
+ Real_NLE / Placebo_NLE      1.176 0.287 Inf    1   0.664  1.0000
+
+Results are averaged over the levels of: judge 
+P value adjustment: holm method for 3 tests 
+Tests are performed on the log odds ratio scale 
+
+--- 3. Confidence (CLMM) ---
+  CLMM LRT error: Unable to evaluate models.
+  CLMM emmeans error: Cannot compute vcov: 
+Hessian is not positive definite
+
+Confidence LRT:
+NULL
+
+CLMM summary:
+Cumulative Link Mixed Model fitted with the Laplace approximation
+
+formula: confidence ~ condition * judge + (1 | instance_idx)
+data:    df
+
+ link  threshold nobs logLik  AIC    niter    max.grad cond.H
+ logit flexible  600  -242.36 500.72 604(711) 5.46e-08 NaN   
+
+Random effects:
+ Groups       Name        Variance  Std.Dev. 
+ instance_idx (Intercept) 7.011e-09 8.373e-05
+Number of groups:  instance_idx 60 
+
+Coefficients:
+                              Estimate Std. Error z value Pr(>|z|)
+conditionReal_NLE               1.6556        NaN     NaN      NaN
+conditionPlacebo_NLE            0.4093        NaN     NaN      NaN
+judgegpt                        3.2180        NaN     NaN      NaN
+conditionReal_NLE:judgegpt     -1.6556        NaN     NaN      NaN
+conditionPlacebo_NLE:judgegpt   1.0829        NaN     NaN      NaN
+
+Threshold coefficients:
+    Estimate Std. Error z value
+3|4  -0.4728        NaN     NaN
+4|5   6.9088        NaN     NaN
+Warning message:
+In summary.clmm(conf5$model) :
+  Variance-covariance matrix of the parameters is not defined
+
+Confidence contrasts:
+  CLMM emmeans failed (likely NaN SEs from near-zero random intercept variance).
+  Falling back to additive model emmeans:
+ contrast               estimate    SE  df z.ratio p.value
+ Baseline - Real_NLE      -1.101 0.317 Inf  -3.479  0.0015
+ Baseline - Placebo_NLE   -0.683 0.305 Inf  -2.237  0.0506
+ Real_NLE - Placebo_NLE    0.419 0.272 Inf   1.538  0.1241
+
+Results are averaged over the levels of: judge 
+P value adjustment: holm method for 3 tests 
+
+--- 4. Calibration ---
+
+  Calibration model: correct ~ confidence_num * condition + judge + (1|instance_idx)
+  Calibration model summary:
+Generalized linear mixed model fit by maximum likelihood (Laplace
+  Approximation) [glmerMod]
+ Family: binomial  ( logit )
+Formula: correct ~ confidence_num * condition + judge + (1 | instance_idx)
+   Data: df
+Control: glmerControl(optimizer = "bobyqa")
+
+      AIC       BIC    logLik -2*log(L)  df.resid 
+    611.3     646.5    -297.7     595.3       592 
+
+Scaled residuals: 
+    Min      1Q  Median      3Q     Max 
+-2.1728 -0.4244 -0.1610  0.4613  3.8747 
+
+Random effects:
+ Groups       Name        Variance Std.Dev.
+ instance_idx (Intercept) 5.809    2.41    
+Number of obs: 600, groups:  instance_idx, 60
+
+Fixed effects:
+                                    Estimate Std. Error z value Pr(>|z|)    
+(Intercept)                           1.1735     2.4752   0.474 0.635421    
+confidence_num                       -0.3346     0.6501  -0.515 0.606795    
+conditionReal_NLE                     1.1745     3.7047   0.317 0.751211    
+conditionPlacebo_NLE                 -0.8775     2.8420  -0.309 0.757489    
+judgegpt                             -0.8542     0.2398  -3.562 0.000367 ***
+confidence_num:conditionReal_NLE     -0.2251     0.9503  -0.237 0.812728    
+confidence_num:conditionPlacebo_NLE   0.2505     0.7402   0.338 0.735028    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Correlation of Fixed Effects:
+            (Intr) cnfdn_ cR_NLE cP_NLE jdggpt c_:R_N
+confidnc_nm -0.986                                   
+cndtnRl_NLE -0.628  0.625                            
+cndtnPl_NLE -0.833  0.830  0.539                     
+judgegpt     0.187 -0.233 -0.069 -0.065              
+cnfd_:R_NLE  0.640 -0.644 -0.996 -0.548  0.074       
+cnfd_:P_NLE  0.835 -0.840 -0.539 -0.994  0.069  0.555
+
+  Somers' D (confidence vs accuracy) per condition:
+    condition     somers_d   n
+1    Baseline -0.055555556 120
+2    Real_NLE -0.004173913 240
+3 Placebo_NLE -0.023286713 240
+
+  Empirical calibration (accuracy at each confidence level, per condition):
+    condition confidence_num  accuracy   n
+1    Baseline              3 0.5217391  23
+2    Baseline              4 0.4329897  97
+3    Real_NLE              3 0.5000000  14
+4    Real_NLE              4 0.4776786 224
+5    Real_NLE              5 0.5000000   2
+6 Placebo_NLE              3 0.3846154  39
+7 Placebo_NLE              4 0.5000000 186
+8 Placebo_NLE              5 0.1333333  15
+
+  Conditional confidence (descriptive — NOT causal):
+    condition correct mean_conf   n
+1    Baseline       0  3.833333  66
+2    Baseline       1  3.777778  54
+3    Real_NLE       0  3.952000 125
+4    Real_NLE       1  3.947826 115
+5 Placebo_NLE       0  3.915385 130
+6 Placebo_NLE       1  3.881818 110
+
+--- 5. Diagnostics ---
+
+  Diagnostics (E5 accuracy GLMM):
+  Convergence: OK
+  Singularity: OK
+  DHARMa uniformity p: 0.605
+  DHARMa dispersion p: 0.496
+
+--- 6. Bayesian + ROPE ---
+
+  Bayesian GLMM (brms)...
+  Posterior ORs:
+                     Estimate Est.Error  Q2.5 Q97.5
+Intercept               0.949     1.551 0.395 2.208
+conditionReal_NLE       1.255     1.360 0.690 2.270
+conditionPlacebo_NLE    1.061     1.354 0.592 1.933
+judgegpt                0.402     1.258 0.255 0.624
+  ROPE [-0.18, 0.18] for conditionReal_NLE: 34.7% inside
+  ROPE [-0.18, 0.18] for conditionPlacebo_NLE: 44.7% inside
+
+  ROPE for Real vs Placebo (the critical equivalence test):
+  Real-Placebo posterior: median OR = 1.185
+  95% CrI: [0.714, 1.938]
+  ROPE [-0.18, 0.18]: 43.1% inside
+
+--- 7. Sensitivity ---
+
+  Judge-specific models:
+  Judge deepseek:          (Intercept)    conditionReal_NLE conditionPlacebo_NLE 
+          794336.356                0.377                0.131 
+  Judge gpt:          (Intercept)    conditionReal_NLE conditionPlacebo_NLE 
+               0.443                1.502                1.228 
+
+  Generator effect (NLE conditions only, N=480, 2 conditions):
+  Generator coefficient:
+                     Estimate Std. Error z value Pr(>|z|)
+(Intercept)           -0.0600     0.3965 -0.1513   0.8797
+conditionPlacebo_NLE  -0.1629     0.2423 -0.6721   0.5015
+generatorgpt           0.3580     0.2432  1.4720   0.1410
+judgegpt              -0.8099     0.2477 -3.2696   0.0011
+
+  Same-family bias:
+  Same-family OR: 1.528, p: 0.0822
+
+  Random slopes test:
+boundary (singular) fit: see help('isSingular')
+  Singular: YES (confirms intercept-only)
+
+true_bucket robustness:
+Generalized linear mixed model fit by maximum likelihood (Laplace
+  Approximation) [glmerMod]
+ Family: binomial  ( logit )
+Formula: correct ~ condition * judge + true_bucket + (1 | instance_idx)
+   Data: e5
+Control: glmerControl(optimizer = "bobyqa")
+
+      AIC       BIC    logLik -2*log(L)  df.resid 
+    543.3     587.2    -261.6     523.3       590 
+
+Scaled residuals: 
+    Min      1Q  Median      3Q     Max 
+-2.3290 -0.4061 -0.1940  0.4294  4.4766 
+
+Random effects:
+ Groups       Name        Variance Std.Dev.
+ instance_idx (Intercept) 0.9295   0.9641  
+Number of obs: 600, groups:  instance_idx, 60
+
+Fixed effects:
+                               Estimate Std. Error z value Pr(>|z|)    
+(Intercept)                   -1.604729   0.501988  -3.197  0.00139 ** 
+conditionReal_NLE             -0.067550   0.450213  -0.150  0.88073    
+conditionPlacebo_NLE          -0.135023   0.450214  -0.300  0.76425    
+judgegpt                      -1.330544   0.524202  -2.538  0.01114 *  
+true_bucketmedium              3.776406   0.468588   8.059 7.68e-16 ***
+true_bucketsmall               0.001858   0.540238   0.003  0.99726    
+true_bucketvery_large          0.282790   0.853649   0.331  0.74044    
+conditionReal_NLE:judgegpt     0.594329   0.633728   0.938  0.34833    
+conditionPlacebo_NLE:judgegpt  0.397779   0.632704   0.629  0.52955    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Correlation of Fixed Effects:
+            (Intr) cnR_NLE cnP_NLE jdggpt tr_bcktm tr_bckts tr_bc_ cR_NLE:
+cndtnRl_NLE -0.595                                                        
+cndtnPl_NLE -0.591  0.667                                                 
+judgegpt    -0.467  0.575   0.577                                         
+tru_bcktmdm -0.588 -0.007  -0.015  -0.111                                 
+tr_bcktsmll -0.471  0.000   0.000  -0.001  0.508                          
+tr_bcktvry_ -0.313 -0.001  -0.001  -0.006  0.349    0.276                 
+cndtnR_NLE:  0.409 -0.711  -0.475  -0.812  0.038    0.000    0.002        
+cndtnP_NLE:  0.414 -0.475  -0.712  -0.810  0.026    0.000    0.002  0.667 
+
+Note: Placebo NLEs were generated using a single random derangement.
+Results may depend on the specific assignment. This is acknowledged as a limitation.
+
+================================================================
+  E5 COMPLETE
+================================================================

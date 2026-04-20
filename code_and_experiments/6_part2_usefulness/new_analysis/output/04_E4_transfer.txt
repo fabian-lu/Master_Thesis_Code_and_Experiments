@@ -1,0 +1,378 @@
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+Loading required package: Matrix
+
+Attaching package: ‘Matrix’
+
+The following objects are masked from ‘package:tidyr’:
+
+    expand, pack, unpack
+
+
+Attaching package: ‘ordinal’
+
+The following object is masked from ‘package:dplyr’:
+
+    slice
+
+Welcome to emmeans.
+Caution: You lose important information if you filter this package's results.
+See '? untidy'
+This is DHARMa 0.4.7. For overview type '?DHARMa'. For recent changes, type news(package = 'DHARMa')
+Loading required package: Rcpp
+Loading 'brms' package (version 2.23.0). Useful instructions
+can be found by typing help('brms'). A more detailed introduction
+to the package is available through vignette('brms_overview').
+
+Attaching package: ‘brms’
+
+The following object is masked from ‘package:lme4’:
+
+    ngrps
+
+The following object is masked from ‘package:stats’:
+
+    ar
+
+
+Attaching package: ‘Hmisc’
+
+The following objects are masked from ‘package:dplyr’:
+
+    src, summarize
+
+The following objects are masked from ‘package:base’:
+
+    format.pval, units
+
+Loading experiments...
+  E1: 720 rows
+  E2: 720 rows
+  E3: 360 rows
+  E4: 330 rows
+  E5: 600 rows
+Setup complete.
+
+================================================================
+  EXPERIMENT 4: MENTAL MODEL TRANSFER
+================================================================
+
+--- 1. Descriptive Statistics ---
+# A tibble: 2 × 6
+  condition     n accuracy mean_conf median_conf conf_na
+  <fct>     <int>    <dbl>     <dbl>       <dbl>   <int>
+1 Baseline    110    0.364      3.57           4       0
+2 E           220    0.405      3.57           4       0
+# A tibble: 4 × 5
+  condition judge        n accuracy mean_conf
+  <fct>     <fct>    <int>    <dbl>     <dbl>
+1 Baseline  deepseek    55    0.309      3.4 
+2 Baseline  gpt         55    0.418      3.75
+3 E         deepseek   110    0.4        3.4 
+4 E         gpt        110    0.409      3.75
+
+True bucket distribution:
+
+     large     medium      small very_large 
+        90        150         72         18 
+
+--- 2. Primary GLMM: Accuracy ---
+NOTE: Results may be misleading due to involvement in interactions
+
+Model summary:
+Generalized linear mixed model fit by maximum likelihood (Laplace
+  Approximation) [glmerMod]
+ Family: binomial  ( logit )
+Formula: correct ~ condition * judge + (1 | instance_idx)
+   Data: df
+Control: glmerControl(optimizer = "bobyqa")
+
+      AIC       BIC    logLik -2*log(L)  df.resid 
+    249.5     268.5    -119.7     239.5       325 
+
+Scaled residuals: 
+    Min      1Q  Median      3Q     Max 
+-2.7255 -0.1279 -0.1194  0.1529  2.1937 
+
+Random effects:
+ Groups       Name        Variance Std.Dev.
+ instance_idx (Intercept) 28.72    5.359   
+Number of obs: 330, groups:  instance_idx, 55
+
+Fixed effects:
+                    Estimate Std. Error z value Pr(>|z|)   
+(Intercept)          -3.3867     1.2568  -2.695  0.00704 **
+conditionE            1.4890     0.7075   2.105  0.03533 * 
+judgegpt              1.7628     0.8038   2.193  0.02831 * 
+conditionE:judgegpt  -1.6250     0.9541  -1.703  0.08855 . 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Correlation of Fixed Effects:
+            (Intr) cndtnE jdggpt
+conditionE  -0.473              
+judgegpt    -0.433  0.651       
+cndtnE:jdgg  0.358 -0.747 -0.837
+
+Marginal EMMs:
+ condition   prob     SE  df asymp.LCL asymp.UCL
+ Baseline  0.0755 0.0797 Inf   0.00864     0.434
+ E         0.1384 0.1290 Inf   0.01900     0.571
+
+Results are averaged over the levels of: judge 
+Confidence level used: 0.95 
+Intervals are back-transformed from the logit scale 
+
+Judge-specific EMMs:
+judge = deepseek:
+ condition   prob     SE  df asymp.LCL asymp.UCL
+ Baseline  0.0327 0.0398 Inf   0.00287     0.284
+ E         0.1304 0.1260 Inf   0.01664     0.571
+
+judge = gpt:
+ condition   prob     SE  df asymp.LCL asymp.UCL
+ Baseline  0.1647 0.1600 Inf   0.01980     0.658
+ E         0.1468 0.1390 Inf   0.01924     0.601
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the logit scale 
+
+Omnibus LRT:
+Data: df
+Models:
+m_red: correct ~ judge + (1 | instance_idx)
+m_full: correct ~ condition * judge + (1 | instance_idx)
+       npar    AIC    BIC  logLik -2*log(L)  Chisq Df Pr(>Chisq)  
+m_red     3 250.35 261.75 -122.17    244.35                       
+m_full    5 249.49 268.49 -119.75    239.49 4.8549  2    0.08826 .
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+--- 3. Confidence (CLMM) ---
+  CLMM LRT error: Unable to evaluate models.
+NOTE: Results may be misleading due to involvement in interactions
+
+Confidence LRT:
+NULL
+
+CLMM summary:
+Cumulative Link Mixed Model fitted with the Laplace approximation
+
+formula: confidence ~ condition * judge + (1 | instance_idx)
+data:    df
+
+ link  threshold nobs logLik  AIC    niter    max.grad cond.H 
+ logit flexible  330  -221.32 456.65 288(866) 4.01e-05 7.7e+01
+
+Random effects:
+ Groups       Name        Variance Std.Dev.
+ instance_idx (Intercept) 0.9256   0.9621  
+Number of groups:  instance_idx 55 
+
+Coefficients:
+                    Estimate Std. Error z value Pr(>|z|)    
+conditionE          -0.01861    0.36596  -0.051 0.959437    
+judgegpt             1.65675    0.45072   3.676 0.000237 ***
+conditionE:judgegpt  0.01834    0.53523   0.034 0.972660    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Threshold coefficients:
+    Estimate Std. Error z value
+2|3  -5.7173     1.0543  -5.423
+3|4   0.4663     0.3287   1.419
+4|5   6.2461     0.7158   8.727
+
+--- 4. Calibration ---
+
+  Calibration model: correct ~ confidence_num * condition + judge + (1|instance_idx)
+  Calibration model summary:
+Generalized linear mixed model fit by maximum likelihood (Laplace
+  Approximation) [glmerMod]
+ Family: binomial  ( logit )
+Formula: correct ~ confidence_num * condition + judge + (1 | instance_idx)
+   Data: df
+Control: glmerControl(optimizer = "bobyqa")
+
+      AIC       BIC    logLik -2*log(L)  df.resid 
+    234.6     257.3    -111.3     222.6       324 
+
+Scaled residuals: 
+     Min       1Q   Median       3Q      Max 
+-2.70416 -0.11383 -0.04631  0.12899  1.71592 
+
+Random effects:
+ Groups       Name        Variance Std.Dev.
+ instance_idx (Intercept) 39.89    6.316   
+Number of obs: 330, groups:  instance_idx, 55
+
+Fixed effects:
+                          Estimate Std. Error z value Pr(>|z|)   
+(Intercept)                 2.9731     3.3832   0.879  0.37953   
+confidence_num             -1.9639     0.9299  -2.112  0.03468 * 
+conditionE                  3.3717     3.6452   0.925  0.35498   
+judgegpt                    1.7988     0.6359   2.829  0.00468 **
+confidence_num:conditionE  -0.7554     1.0331  -0.731  0.46468   
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Correlation of Fixed Effects:
+            (Intr) cnfdn_ cndtnE jdggpt
+confidnc_nm -0.845                     
+conditionE  -0.699  0.678              
+judgegpt     0.154 -0.386  0.082       
+cnfdnc_nm:E  0.694 -0.696 -0.990 -0.064
+
+  Somers' D (confidence vs accuracy) per condition:
+  condition   somers_d   n
+1  Baseline -0.0925000 110
+2         E -0.1425508 220
+
+  Empirical calibration (accuracy at each confidence level, per condition):
+  condition confidence_num  accuracy   n
+1  Baseline              2 1.0000000   1
+2  Baseline              3 0.3913043  46
+3  Baseline              4 0.3387097  62
+4  Baseline              5 0.0000000   1
+5         E              3 0.4791667  96
+6         E              4 0.3524590 122
+7         E              5 0.0000000   2
+
+  Conditional confidence (descriptive — NOT causal):
+  condition correct mean_conf   n
+1  Baseline       0  3.614286  70
+2  Baseline       1  3.500000  40
+3         E       0  3.633588 131
+4         E       1  3.483146  89
+
+--- 5. Diagnostics ---
+
+  Diagnostics (E4 accuracy GLMM):
+  Convergence: OK
+  Singularity: OK
+  DHARMa uniformity p: 0.152
+  DHARMa dispersion p: 0.504
+
+--- 6. Bayesian + ROPE ---
+
+  Bayesian GLMM (brms)...
+  Posterior ORs:
+           Estimate Est.Error  Q2.5 Q97.5
+Intercept     0.106     2.688 0.014 0.668
+conditionE    1.844     1.583 0.742 4.558
+judgegpt      1.891     1.564 0.798 4.647
+  ROPE [-0.18, 0.18] for conditionE: 12.8% inside
+
+--- 7. Sensitivity ---
+
+  Judge-specific models:
+  Judge deepseek: (Intercept)  conditionE 
+      0.000      17.205 
+  Judge gpt: (Intercept)  conditionE 
+      0.000       0.626 
+
+  Generator effect (NLE conditions only, N=220, 1 conditions):
+  Generator coefficient:
+             Estimate Std. Error z value Pr(>|z|)
+(Intercept)   -1.6380     1.0376 -1.5787   0.1144
+generatorgpt  -0.1202     0.4887 -0.2461   0.8056
+judgegpt       0.1202     0.4887  0.2461   0.8056
+
+  Same-family bias:
+  Same-family OR: 0.887, p: 0.8056
+
+  Random slopes test:
+boundary (singular) fit: see help('isSingular')
+  Singular: YES (confirms intercept-only)
+
+--- 8. E4-Specific Analyses ---
+
+Trial order analysis:
+Trial order coefficient:
+                    Estimate Std. Error z value Pr(>|z|)
+(Intercept)          -3.4112     1.2652 -2.6962   0.0070
+conditionE            1.4902     0.7076  2.1060   0.0352
+judgegpt              1.7643     0.8039  2.1947   0.0282
+scale(trial_order)   -0.2858     0.9189 -0.3111   0.7557
+conditionE:judgegpt  -1.6264     0.9542 -1.7045   0.0883
+
+Condition x trial_order interaction:
+                              Estimate Std. Error z value Pr(>|z|)
+(Intercept)                    -2.7954     1.1750 -2.3791   0.0174
+conditionE                      0.5920     0.4782  1.2378   0.2158
+scale(trial_order)              0.2907     0.9643  0.3014   0.7631
+judgegpt                        0.6579     0.4405  1.4933   0.1354
+conditionE:scale(trial_order)  -0.8422     0.4739 -1.7770   0.0756
+
+true_bucket robustness:
+Generalized linear mixed model fit by maximum likelihood (Laplace
+  Approximation) [glmerMod]
+ Family: binomial  ( logit )
+Formula: correct ~ condition * judge + true_bucket + (1 | instance_idx)
+   Data: e4
+Control: glmerControl(optimizer = "bobyqa")
+
+      AIC       BIC    logLik -2*log(L)  df.resid 
+    238.1     268.5    -111.1     222.1       322 
+
+Scaled residuals: 
+     Min       1Q   Median       3Q      Max 
+-3.00616 -0.07431 -0.03326  0.14870  2.07972 
+
+Random effects:
+ Groups       Name        Variance Std.Dev.
+ instance_idx (Intercept) 35.68    5.973   
+Number of obs: 330, groups:  instance_idx, 55
+
+Fixed effects:
+                        Estimate Std. Error z value Pr(>|z|)   
+(Intercept)              -5.9563     1.9616  -3.036  0.00239 **
+conditionE                1.5971     0.7171   2.227  0.02594 * 
+judgegpt                  1.8978     0.8248   2.301  0.02140 * 
+true_bucketmedium         5.8243     2.2823   2.552  0.01071 * 
+true_bucketsmall         -2.0519     3.3519  -0.612  0.54044   
+true_bucketvery_large   -17.1732 11284.4377  -0.002  0.99879   
+conditionE:judgegpt      -1.7468     0.9892  -1.766  0.07741 . 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Correlation of Fixed Effects:
+            (Intr) cndtnE jdggpt tr_bcktm tr_bckts tr_bc_
+conditionE  -0.235                                       
+judgegpt    -0.210  0.621                                
+tru_bcktmdm -0.802  0.000  0.002                         
+tr_bcktsmll -0.545 -0.001 -0.001  0.469                  
+tr_bcktvry_  0.000  0.000  0.000  0.000    0.000         
+cndtnE:jdgg  0.173 -0.729 -0.829 -0.001    0.001    0.000
+optimizer (bobyqa) convergence code: 0 (OK)
+unable to evaluate scaled gradient
+ Hessian is numerically singular: parameters are not uniquely determined
+
+Warning messages:
+1: In checkConv(attr(opt, "derivs"), opt$par, ctrl = control$checkConv,  :
+  unable to evaluate scaled gradient
+2: In checkConv(attr(opt, "derivs"), opt$par, ctrl = control$checkConv,  :
+   Hessian is numerically singular: parameters are not uniquely determined
+3: In vcov.merMod(object, use.hessian = use.hessian) :
+  variance-covariance matrix computed from finite-difference Hessian is
+not positive definite or contains NA values: falling back to var-cov estimated from RX
+4: In vcov.merMod(object, correlation = correlation, sigm = sig) :
+  variance-covariance matrix computed from finite-difference Hessian is
+not positive definite or contains NA values: falling back to var-cov estimated from RX
+
+Note: E4 uses a sliding window with 80% overlap between adjacent training sets.
+This induces temporal autocorrelation beyond the instance random intercept.
+Inferential claims should be interpreted with this caveat.
+
+================================================================
+  E4 COMPLETE
+================================================================

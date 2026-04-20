@@ -5,7 +5,7 @@
 # Design: 2 conditions (X, E+X), 60 instances, N=360
 # ==============================================================================
 
-source("/home/fabian/Desktop/Master_thesis/code_and_experiments/6_part2_usefulness/new_analysis/00_setup.R")
+source("/home/fabian/Desktop/Master_thesis/code_and_experiments/6_part2_usefulness/statistical_analysis/00_setup.R")
 
 cat("\n================================================================\n")
 cat("  EXPERIMENT 3: COUNTERFACTUAL SIMULATABILITY\n")

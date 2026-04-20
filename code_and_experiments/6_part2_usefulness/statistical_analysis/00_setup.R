@@ -19,7 +19,7 @@ library(Hmisc)  # for Somers' D
 
 # --- Paths ---
 BASE_DIR <- "/home/fabian/Desktop/Master_thesis/code_and_experiments/6_part2_usefulness/results"
-OUT_DIR  <- "/home/fabian/Desktop/Master_thesis/code_and_experiments/6_part2_usefulness/new_analysis/output"
+OUT_DIR  <- "/home/fabian/Desktop/Master_thesis/code_and_experiments/6_part2_usefulness/statistical_analysis/output"
 dir.create(OUT_DIR, showWarnings = FALSE, recursive = TRUE)
 dir.create(file.path(OUT_DIR, "plots"), showWarnings = FALSE)
 

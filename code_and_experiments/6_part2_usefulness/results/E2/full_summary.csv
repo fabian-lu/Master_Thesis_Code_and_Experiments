@@ -1,5 +1,4 @@
-poisoning,has_nle,accuracy,n_correct,n_total,mean_confidence
-baseline,False,0.95,114,120,3.983
-baseline,True,0.983,236,240,3.988
-ood,False,0.3,36,120,3.817
-ood,True,0.15,36,240,3.892
+condition,accuracy,n_correct,n_total,ci_lo,ci_hi,ci,has_nle
+Baseline,0.45,54,120,0.3639173508387461,0.5391845658031243,"[36.4%, 53.9%]",False
+Placebo_NLE,0.4583333333333333,110,240,0.3964472786253335,0.5215322147031297,"[39.6%, 52.2%]",True
+Real_NLE,0.4791666666666667,115,240,0.4167912046504396,0.542198542013792,"[41.7%, 54.2%]",True

@@ -6,7 +6,7 @@
 # Note: Sliding window creates overlapping training sets (autocorrelation caveat)
 # ==============================================================================
 
-source("/home/fabian/Desktop/Master_thesis/code_and_experiments/6_part2_usefulness/new_analysis/00_setup.R")
+source("/home/fabian/Desktop/Master_thesis/code_and_experiments/6_part2_usefulness/statistical_analysis/00_setup.R")
 
 cat("\n================================================================\n")
 cat("  EXPERIMENT 4: MENTAL MODEL TRANSFER\n")

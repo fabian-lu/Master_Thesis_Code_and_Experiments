@@ -5,7 +5,7 @@
 # Design: 5 conditions (B, X, T, X+T, E+X+T), 60 instances, N=720
 # ==============================================================================
 
-source("/home/fabian/Desktop/Master_thesis/code_and_experiments/6_part2_usefulness/new_analysis/00_setup.R")
+source("/home/fabian/Desktop/Master_thesis/code_and_experiments/6_part2_usefulness/statistical_analysis/00_setup.R")
 
 cat("\n================================================================\n")
 cat("  EXPERIMENT 1: FORWARD SIMULATABILITY\n")

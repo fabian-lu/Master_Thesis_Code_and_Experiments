@@ -1,67 +1,40 @@
 # ==============================================================================
-# 02_E2_anomaly.R — Experiment 2: Anomaly Detection (Selective Reliance)
+# 02_E2_anomaly.R — Experiment 2: Selective Reliance (Anomaly Detection)
 # ==============================================================================
-# Research questions:
-#   1. Is there a poisoning x NLE interaction on accuracy?
-#      (Does NLE help for baseline but hurt for OOD?)
-#   2. Does NLE presence affect confidence differently for poisoned vs clean?
-#
-# Design: 2x2 factorial (poisoning: baseline/ood × has_nle: True/False)
-#         60 instances, 720 rows
+# RQ-U2: Do NLEs help detect unreliable predictions from OOD inputs?
+# Design: 2x2 factorial (poisoning x NLE), 60 instances, N=720
 # ==============================================================================
 
-source("/home/fabian/Desktop/Second_XAI_Paper/Code/new_experiments/statistical_analysis/00_setup.R")
+source("/home/fabian/Desktop/Master_thesis/code_and_experiments/6_part2_usefulness/new_analysis/00_setup.R")
 
-cat("\n")
+cat("\n================================================================\n")
+cat("  EXPERIMENT 2: SELECTIVE RELIANCE\n")
 cat("================================================================\n")
-cat("  EXPERIMENT 2: ANOMALY DETECTION\n")
-cat("================================================================\n")
+
+e2$poisoning <- factor(e2$poisoning, levels = c("baseline", "ood"))
+e2$has_nle   <- factor(e2$has_nle)
 
 # ==============================================================================
 # 1. Descriptive Statistics
 # ==============================================================================
-
-cat("\n--- Descriptive Statistics ---\n")
-
-desc_e2 <- e2 %>%
+cat("\n--- 1. Descriptive Statistics ---\n")
+desc <- e2 %>%
   group_by(poisoning, has_nle) %>%
-  summarise(
-    n         = n(),
-    accuracy  = mean(correct, na.rm = TRUE),
-    mean_conf = mean(confidence_num, na.rm = TRUE),
-    med_conf  = median(confidence_num, na.rm = TRUE),
-    .groups   = "drop"
-  )
-print(desc_e2)
-
-cat("\n--- By Poisoning × NLE × Judge ---\n")
-desc_e2_judge <- e2 %>%
-  group_by(poisoning, has_nle, judge) %>%
-  summarise(
-    n        = n(),
-    accuracy = mean(correct, na.rm = TRUE),
-    mean_conf = mean(confidence_num, na.rm = TRUE),
-    .groups  = "drop"
-  )
-print(desc_e2_judge)
-
-cat("\n--- Overconfidence Descriptive ---\n")
-overconf_e2 <- e2 %>%
-  mutate(correctness = ifelse(correct == 1, "correct", "incorrect")) %>%
-  group_by(poisoning, has_nle, correctness) %>%
-  summarise(
-    n         = n(),
-    mean_conf = mean(confidence_num, na.rm = TRUE),
-    .groups   = "drop"
-  )
-print(overconf_e2)
+  summarise(n = n(), accuracy = mean(correct), mean_conf = mean(confidence_num), .groups = "drop")
+print(as.data.frame(desc))
+print(descriptives_by_judge(e2 %>% mutate(condition = paste(poisoning, has_nle, sep = "_"))))
 
 # ==============================================================================
-# 2. Primary Analysis: Accuracy (GLMM with interaction)
+# 2. Primary GLMM: poisoning * has_nle * judge (three-way)
 # ==============================================================================
+cat("\n--- 2. Primary GLMM: Accuracy ---\n")
 
-cat("\n--- Primary GLMM: Accuracy (poisoning × has_nle interaction) ---\n")
+# Three-way model (to check judge asymmetry)
+m2_3way <- glmer(correct ~ poisoning * has_nle * judge + (1 | instance_idx),
+                 data = e2, family = binomial,
+                 control = glmerControl(optimizer = "bobyqa"))
 
+# Two-way model (primary)
 m2_full <- glmer(correct ~ poisoning * has_nle + judge + (1 | instance_idx),
                  data = e2, family = binomial,
                  control = glmerControl(optimizer = "bobyqa"))
@@ -70,80 +43,77 @@ m2_no_int <- glmer(correct ~ poisoning + has_nle + judge + (1 | instance_idx),
                    data = e2, family = binomial,
                    control = glmerControl(optimizer = "bobyqa"))
 
-m2_reduced <- glmer(correct ~ judge + (1 | instance_idx),
-                    data = e2, family = binomial,
-                    control = glmerControl(optimizer = "bobyqa"))
+m2_red <- glmer(correct ~ judge + (1 | instance_idx),
+                data = e2, family = binomial,
+                control = glmerControl(optimizer = "bobyqa"))
 
-# Test interaction
-cat("\nLRT: Interaction (poisoning × has_nle):\n")
-lrt_interaction <- anova(m2_no_int, m2_full, test = "Chisq")
-print(lrt_interaction)
+# Three-way interaction test
+cat("\nThree-way interaction (poisoning * has_nle * judge):\n")
+print(anova(m2_full, m2_3way, test = "Chisq"))
 
-# Test main effects
-cat("\nLRT: Main effects (poisoning + has_nle vs null):\n")
-lrt_main <- anova(m2_reduced, m2_no_int, test = "Chisq")
-print(lrt_main)
+# Critical: poisoning x NLE interaction
+cat("\nInteraction LRT (poisoning x has_nle):\n")
+print(anova(m2_no_int, m2_full, test = "Chisq"))
 
-# Full model summary
-cat("\nFull interaction model summary:\n")
+cat("\nFull model summary:\n")
 print(summary(m2_full))
 
-# Odds ratios
-cat("\nOdds Ratios:\n")
-print(extract_ors(m2_full))
+# Simple effects: NLE effect within each poisoning level
+cat("\nSimple effects — NLE effect within Baseline:\n")
+emm2 <- emmeans(m2_full, ~ has_nle | poisoning, type = "response")
+print(pairs(emm2, adjust = "holm"))
+
+cat("\nSimple effects — Poisoning effect within each NLE level:\n")
+emm2b <- emmeans(m2_full, ~ poisoning | has_nle, type = "response")
+print(pairs(emm2b, adjust = "holm"))
 
 # ==============================================================================
-# 3. Simple Effects (NLE effect within each poisoning level)
+# 3. Confidence (CLMM)
 # ==============================================================================
+cat("\n--- 3. Confidence (CLMM) ---\n")
 
-cat("\n--- Simple Effects ---\n")
+c2_full <- clmm(confidence ~ poisoning * has_nle + judge + (1 | instance_idx), data = e2)
+c2_no_int <- clmm(confidence ~ poisoning + has_nle + judge + (1 | instance_idx), data = e2)
 
-# NLE effect within each poisoning level
-cat("\nNLE effect within each poisoning level:\n")
-emm2_nle <- emmeans(m2_full, ~ has_nle | poisoning, type = "response")
-print(summary(pairs(emm2_nle, adjust = "holm")))
-
-# Poisoning effect within each NLE level
-cat("\nPoisoning effect within each NLE level:\n")
-emm2_pois <- emmeans(m2_full, ~ poisoning | has_nle, type = "response")
-print(summary(pairs(emm2_pois, adjust = "holm")))
-
-# Marginal means
-cat("\nEstimated marginal means:\n")
-emm2_all <- emmeans(m2_full, ~ poisoning * has_nle, type = "response")
-print(summary(emm2_all))
-
-# ==============================================================================
-# 4. Confidence Analysis (CLMM with interaction)
-# ==============================================================================
-
-cat("\n--- Confidence Analysis (CLMM) ---\n")
-
-c2_full <- clmm(confidence ~ poisoning * has_nle + judge + (1 | instance_idx),
-                data = e2)
-
-c2_no_int <- clmm(confidence ~ poisoning + has_nle + judge + (1 | instance_idx),
-                  data = e2)
-
-cat("\nLRT: Interaction on confidence:\n")
-lrt_conf_int <- anova(c2_no_int, c2_full)
-print(lrt_conf_int)
-
+cat("\nConfidence interaction LRT:\n")
+print(anova(c2_no_int, c2_full))
 cat("\nCLMM summary:\n")
 print(summary(c2_full))
 
-# Confidence simple effects
-cat("\nConfidence: NLE effect within each poisoning level:\n")
-emm2c <- emmeans(c2_full, ~ has_nle | poisoning)
-print(summary(pairs(emm2c, adjust = "holm")))
+# ==============================================================================
+# 4. Calibration Analysis
+# ==============================================================================
+cat("\n--- 4. Calibration ---\n")
+e2$condition <- paste(e2$poisoning, e2$has_nle, sep = "_")
+cal2 <- run_calibration(e2)
 
 # ==============================================================================
 # 5. Diagnostics
 # ==============================================================================
+cat("\n--- 5. Diagnostics ---\n")
+run_diagnostics(m2_full, "E2 accuracy GLMM")
 
-cat("\n--- Diagnostics ---\n")
-run_glmm_diagnostics(m2_full, "E2 accuracy GLMM")
+# ==============================================================================
+# 6. Bayesian + ROPE
+# ==============================================================================
+cat("\n--- 6. Bayesian + ROPE ---\n")
+bm2 <- run_bayesian_rope(e2,
+  formula_str = "correct ~ poisoning * has_nle + judge + (1 | instance_idx)")
+
+# ==============================================================================
+# 7. Sensitivity
+# ==============================================================================
+cat("\n--- 7. Sensitivity ---\n")
+
+# Judge-specific
+run_judge_specific(e2, "correct ~ poisoning * has_nle + (1 | instance_idx)")
+
+# Generator effects (NLE conditions)
+run_generator_test(e2, rlang::expr(has_nle == TRUE))
+
+# Random slopes
+run_random_slopes(e2, "correct ~ poisoning * has_nle + judge + (has_nle | instance_idx)")
 
 cat("\n================================================================\n")
-cat("  E2 ANALYSIS COMPLETE\n")
+cat("  E2 COMPLETE\n")
 cat("================================================================\n")

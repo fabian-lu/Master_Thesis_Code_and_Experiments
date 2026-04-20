@@ -1,6 +1,9 @@
 # Virtual environment
 .venv/
 
+# Local-only backup (old analyses, zips, personal notes)
+_backup/
+
 # Backup archives
 *.zip
 
@@ -10,10 +13,6 @@ Thesis_latex/build/
 # Thesis LaTeX sources (only main.pdf is tracked)
 Thesis_latex/**
 !Thesis_latex/main.pdf
-
-# Specific analysis files
-code_and_experiments/5_part1_feasibility_quality/analysis.md
-code_and_experiments/6_part2_usefulness/statistical_analysis/takeaway.md
 
 # IDE
 .idea/

@@ -1,162 +1,151 @@
 # ==============================================================================
 # 05_E5_placebo.R — Experiment 5: Placebic NLE Control
 # ==============================================================================
-# Research questions:
-#   1. Any accuracy difference across the 3 conditions?
-#   2. Is Placebo_NLE different from Real_NLE? (content vs presence)
-#   3. Does confidence differ? Do placebic NLEs boost confidence like real ones?
-#
-# Design: 3 conditions (Baseline, Real_NLE, Placebo_NLE), 60 instances, 600 rows
+# RQ-U5: Is confidence inflation driven by NLE content or mere presence?
+# Design: 3 conditions (Baseline, Real NLE, Placebo NLE), 60 instances, N=600
+# Critical test: Real vs Placebo equivalence (ROPE)
 # ==============================================================================
 
-source("/home/fabian/Desktop/Second_XAI_Paper/Code/new_experiments/statistical_analysis/00_setup.R")
+source("/home/fabian/Desktop/Master_thesis/code_and_experiments/6_part2_usefulness/new_analysis/00_setup.R")
 
-cat("\n")
-cat("================================================================\n")
+cat("\n================================================================\n")
 cat("  EXPERIMENT 5: PLACEBIC NLE CONTROL\n")
 cat("================================================================\n")
+
+e5$condition <- factor(e5$condition, levels = c("Baseline", "Real_NLE", "Placebo_NLE"))
 
 # ==============================================================================
 # 1. Descriptive Statistics
 # ==============================================================================
-
-cat("\n--- Descriptive Statistics ---\n")
-desc_e5 <- descriptive_by_condition(e5)
-print(desc_e5)
-
-cat("\n--- By Condition × Judge ---\n")
-print(descriptive_by_condition_judge(e5))
-
-cat("\n--- Overconfidence Descriptive ---\n")
-print(overconfidence_descriptive(e5))
-
-cat("\n--- True Bucket Distribution ---\n")
-print(table(e5$true_bucket))
+cat("\n--- 1. Descriptive Statistics ---\n")
+print(descriptives(e5))
+print(descriptives_by_judge(e5))
 
 # ==============================================================================
-# 2. Primary Analysis: Accuracy (GLMM)
+# 2. Primary GLMM: Accuracy (condition * judge)
 # ==============================================================================
+cat("\n--- 2. Primary GLMM: Accuracy ---\n")
 
-cat("\n--- Primary GLMM: Accuracy ---\n")
+acc5 <- fit_accuracy_model(e5)
 
-m5_full <- glmer(correct ~ condition + judge + (1 | instance_idx),
-                 data = e5, family = binomial,
-                 control = glmerControl(optimizer = "bobyqa"))
+cat("\nOmnibus LRT:\n")
+print(acc5$lrt)
 
-m5_reduced <- glmer(correct ~ judge + (1 | instance_idx),
-                    data = e5, family = binomial,
-                    control = glmerControl(optimizer = "bobyqa"))
-
-# Omnibus LRT
-cat("\nOmnibus LRT (condition effect on accuracy):\n")
-lrt_acc <- anova(m5_reduced, m5_full, test = "Chisq")
-print(lrt_acc)
-
-# Model summary
 cat("\nModel summary:\n")
-print(summary(m5_full))
+print(summary(acc5$model))
 
-# Odds ratios
-cat("\nOdds Ratios:\n")
-print(extract_ors(m5_full))
+cat("\nMarginal EMMs:\n")
+print(summary(acc5$emm_cond))
 
-# ==============================================================================
-# 3. Planned Contrasts (Critical)
-# ==============================================================================
+cat("\nJudge-specific EMMs:\n")
+print(summary(acc5$emm_judge))
 
-cat("\n--- Planned Contrasts ---\n")
+# Critical planned contrasts
+cat("\nPlanned contrasts:\n")
+emm5 <- acc5$emm_cond
+cat("\n  Real vs Baseline:\n")
+print(contrast(emm5, method = list("Real vs Baseline" = c(-1, 1, 0))))
+cat("\n  Placebo vs Baseline:\n")
+print(contrast(emm5, method = list("Placebo vs Baseline" = c(-1, 0, 1))))
+cat("\n  Real vs Placebo (CRITICAL — content vs presence):\n")
+print(contrast(emm5, method = list("Real vs Placebo" = c(0, 1, -1))))
 
-emm5 <- emmeans(m5_full, ~ condition, type = "response")
-cat("\nEstimated Marginal Means (probability scale):\n")
-print(summary(emm5))
-
-# Three planned contrasts with Holm correction
-cat("\nPlanned contrasts (Holm-corrected):\n")
-planned <- contrast(emm5, method = list(
-  "Real_NLE vs Baseline"   = c(-1, 1, 0),
-  "Placebo_NLE vs Baseline" = c(-1, 0, 1),
-  "Placebo_NLE vs Real_NLE" = c(0, -1, 1)  # CRITICAL TEST
-), adjust = "holm")
-print(summary(planned))
+cat("\nAll pairwise (Holm):\n")
+print(pairs(emm5, adjust = "holm"))
 
 # ==============================================================================
-# 4. Confidence Analysis (CLMM)
+# 3. Confidence (CLMM)
 # ==============================================================================
+cat("\n--- 3. Confidence (CLMM) ---\n")
 
-cat("\n--- Confidence Analysis (CLMM) ---\n")
+conf5 <- fit_confidence_model(e5)
 
-c5_full <- clmm(confidence ~ condition + judge + (1 | instance_idx),
-                data = e5)
-
-c5_reduced <- clmm(confidence ~ judge + (1 | instance_idx),
-                   data = e5)
-
-cat("\nOmnibus LRT (condition effect on confidence):\n")
-lrt_conf <- anova(c5_reduced, c5_full)
-print(lrt_conf)
+cat("\nConfidence LRT:\n")
+print(conf5$lrt)
 
 cat("\nCLMM summary:\n")
-print(summary(c5_full))
+print(summary(conf5$model))
 
-# Confidence contrasts
-emm5c <- emmeans(c5_full, ~ condition)
-cat("\nConfidence planned contrasts (Holm-corrected):\n")
-planned_conf <- contrast(emm5c, method = list(
-  "Real_NLE vs Baseline"   = c(-1, 1, 0),
-  "Placebo_NLE vs Baseline" = c(-1, 0, 1),
-  "Placebo_NLE vs Real_NLE" = c(0, -1, 1)
-), adjust = "holm")
-print(summary(planned_conf))
-
-# ==============================================================================
-# 5. Overconfidence Analysis
-# ==============================================================================
-
-cat("\n--- Overconfidence Analysis ---\n")
-
-e5$correctness <- factor(ifelse(e5$correct == 1, "correct", "incorrect"),
-                         levels = c("correct", "incorrect"))
-
-c5_overconf <- clmm(confidence ~ correctness * condition + judge + (1 | instance_idx),
-                    data = e5)
-
-cat("\nOverconfidence interaction model:\n")
-print(summary(c5_overconf))
-
-# Among incorrect only: does confidence differ by condition?
-cat("\nConfidence among INCORRECT responses only:\n")
-e5_wrong <- e5 %>% filter(correct == 0)
-if (nrow(e5_wrong) > 20) {
-  c5_wrong <- clmm(confidence ~ condition + judge + (1 | instance_idx),
-                   data = e5_wrong)
-  print(summary(c5_wrong))
+cat("\nConfidence contrasts:\n")
+emm5_conf <- conf5$emm_cond
+if (!is.null(emm5_conf)) {
+  cat("\n  Real vs Baseline:\n")
+  print(contrast(emm5_conf, method = list("Real vs Baseline" = c(-1, 1, 0))))
+  cat("\n  Placebo vs Baseline:\n")
+  print(contrast(emm5_conf, method = list("Placebo vs Baseline" = c(-1, 0, 1))))
+  cat("\n  Real vs Placebo:\n")
+  print(contrast(emm5_conf, method = list("Real vs Placebo" = c(0, 1, -1))))
 } else {
-  cat("Too few incorrect responses to model.\n")
+  cat("  CLMM emmeans failed (likely NaN SEs from near-zero random intercept variance).\n")
+  cat("  Falling back to additive model emmeans:\n")
+  emm5_conf_add <- tryCatch(emmeans(conf5$model_add, ~ condition), error = function(e) NULL)
+  if (!is.null(emm5_conf_add)) {
+    print(pairs(emm5_conf_add, adjust = "holm"))
+  } else {
+    cat("  Additive emmeans also failed.\n")
+  }
 }
 
 # ==============================================================================
-# 6. Robustness: Control for true_bucket
+# 4. Calibration
 # ==============================================================================
-
-cat("\n--- Robustness: Controlling for true_bucket ---\n")
-
-e5$true_bucket <- factor(e5$true_bucket,
-                         levels = c("small", "medium", "large", "very_large"))
-
-m5_bucket <- glmer(correct ~ condition + true_bucket + judge + (1 | instance_idx),
-                   data = e5, family = binomial,
-                   control = glmerControl(optimizer = "bobyqa"))
-
-cat("\nModel with true_bucket covariate:\n")
-print(summary(m5_bucket))
+cat("\n--- 4. Calibration ---\n")
+cal5 <- run_calibration(e5)
 
 # ==============================================================================
-# 7. Diagnostics
+# 5. Diagnostics
 # ==============================================================================
+cat("\n--- 5. Diagnostics ---\n")
+run_diagnostics(acc5$model, "E5 accuracy GLMM")
 
-cat("\n--- Diagnostics ---\n")
-run_glmm_diagnostics(m5_full, "E5 accuracy GLMM")
+# ==============================================================================
+# 6. Bayesian + ROPE (especially Real vs Placebo)
+# ==============================================================================
+cat("\n--- 6. Bayesian + ROPE ---\n")
+bm5 <- run_bayesian_rope(e5)
+
+# Extra: ROPE specifically for Real vs Placebo contrast
+if (!is.null(bm5)) {
+  cat("\n  ROPE for Real vs Placebo (the critical equivalence test):\n")
+  post <- as.data.frame(bm5)
+  # Real_NLE coefficient - Placebo_NLE coefficient
+  real_col <- grep("Real", names(post), value = TRUE)
+  plac_col <- grep("Placebo", names(post), value = TRUE)
+  if (length(real_col) > 0 & length(plac_col) > 0) {
+    diff_post <- post[[real_col[1]]] - post[[plac_col[1]]]
+    rope <- c(-0.18, 0.18)
+    in_rope <- mean(diff_post >= rope[1] & diff_post <= rope[2]) * 100
+    cat(sprintf("  Real-Placebo posterior: median OR = %.3f\n", exp(median(diff_post))))
+    cat(sprintf("  95%% CrI: [%.3f, %.3f]\n", exp(quantile(diff_post, 0.025)),
+                exp(quantile(diff_post, 0.975))))
+    cat(sprintf("  ROPE [%.2f, %.2f]: %.1f%% inside\n", rope[1], rope[2], in_rope))
+  }
+}
+
+# ==============================================================================
+# 7. Sensitivity
+# ==============================================================================
+cat("\n--- 7. Sensitivity ---\n")
+
+run_judge_specific(e5, "correct ~ condition + (1 | instance_idx)")
+run_generator_test(e5, rlang::expr(condition != "Baseline"))
+run_random_slopes(e5, "correct ~ condition * judge + (condition | instance_idx)")
+
+# E5-specific: true_bucket covariate
+if ("true_bucket" %in% names(e5)) {
+  cat("\ntrue_bucket robustness:\n")
+  e5$true_bucket <- factor(e5$true_bucket)
+  tryCatch({
+    m5_bucket <- glmer(correct ~ condition * judge + true_bucket + (1 | instance_idx),
+                       data = e5, family = binomial,
+                       control = glmerControl(optimizer = "bobyqa"))
+    print(summary(m5_bucket))
+  }, error = function(e) cat(sprintf("Error: %s\n", e$message)))
+}
+
+cat("\nNote: Placebo NLEs were generated using a single random derangement.\n")
+cat("Results may depend on the specific assignment. This is acknowledged as a limitation.\n")
 
 cat("\n================================================================\n")
-cat("  E5 ANALYSIS COMPLETE\n")
+cat("  E5 COMPLETE\n")
 cat("================================================================\n")

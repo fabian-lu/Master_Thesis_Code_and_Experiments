@@ -1,129 +1,143 @@
 # ==============================================================================
 # 04_E4_transfer.R — Experiment 4: Mental Model Transfer
 # ==============================================================================
-# Research questions:
-#   1. Does training with NLEs improve transfer accuracy (tested WITHOUT NLE)?
-#   2. Confidence effect?
-#
-# Design: 2 conditions (Baseline, E), 55 instances (idx 5-59), 330 rows
-#         Sliding window: first 5 instances used as training context
+# RQ-U4: Does NLE exposure during training build transferable mental models?
+# Design: 2 conditions (Baseline, NLE training), 55 instances, N=330
+# Note: Sliding window creates overlapping training sets (autocorrelation caveat)
 # ==============================================================================
 
-source("/home/fabian/Desktop/Second_XAI_Paper/Code/new_experiments/statistical_analysis/00_setup.R")
+source("/home/fabian/Desktop/Master_thesis/code_and_experiments/6_part2_usefulness/new_analysis/00_setup.R")
 
-cat("\n")
-cat("================================================================\n")
+cat("\n================================================================\n")
 cat("  EXPERIMENT 4: MENTAL MODEL TRANSFER\n")
 cat("================================================================\n")
+
+e4$condition <- factor(e4$condition)
 
 # ==============================================================================
 # 1. Descriptive Statistics
 # ==============================================================================
+cat("\n--- 1. Descriptive Statistics ---\n")
+print(descriptives(e4))
+print(descriptives_by_judge(e4))
 
-cat("\n--- Descriptive Statistics ---\n")
-desc_e4 <- descriptive_by_condition(e4)
-print(desc_e4)
-
-cat("\n--- By Condition × Judge ---\n")
-print(descriptive_by_condition_judge(e4))
-
-cat("\n--- Overconfidence Descriptive ---\n")
-print(overconfidence_descriptive(e4))
-
-cat("\n--- True Bucket Distribution ---\n")
-print(table(e4$true_bucket))
-
-cat("\n--- Trial Order Range ---\n")
-cat(sprintf("trial_order range: %d to %d\n", min(e4$trial_order), max(e4$trial_order)))
+if ("true_bucket" %in% names(e4)) {
+  cat("\nTrue bucket distribution:\n")
+  print(table(e4$true_bucket))
+}
 
 # ==============================================================================
-# 2. Primary Analysis: Accuracy (GLMM)
+# 2. Primary GLMM: Accuracy (condition * judge)
 # ==============================================================================
+cat("\n--- 2. Primary GLMM: Accuracy ---\n")
 
-cat("\n--- Primary GLMM: Accuracy ---\n")
+acc4 <- fit_accuracy_model(e4)
 
-m4 <- glmer(correct ~ condition + judge + (1 | instance_idx),
-            data = e4, family = binomial,
-            control = glmerControl(optimizer = "bobyqa"))
+cat("\nModel summary:\n")
+print(summary(acc4$model))
 
-cat("\nModel summary (condition coefficient = E vs Baseline test):\n")
-print(summary(m4))
+cat("\nMarginal EMMs:\n")
+print(summary(acc4$emm_cond))
 
-# Odds ratios
-cat("\nOdds Ratios:\n")
-print(extract_ors(m4))
+cat("\nJudge-specific EMMs:\n")
+print(summary(acc4$emm_judge))
 
-# Marginal means
-emm4 <- emmeans(m4, ~ condition, type = "response")
-cat("\nEstimated marginal means (probability scale):\n")
-print(summary(emm4))
-
-cat("\nContrast E vs Baseline:\n")
-print(summary(pairs(emm4)))
+cat("\nOmnibus LRT:\n")
+print(acc4$lrt)
 
 # ==============================================================================
-# 3. Confidence Analysis (CLMM)
+# 3. Confidence (CLMM)
 # ==============================================================================
+cat("\n--- 3. Confidence (CLMM) ---\n")
 
-cat("\n--- Confidence Analysis (CLMM) ---\n")
-
-c4 <- clmm(confidence ~ condition + judge + (1 | instance_idx),
-           data = e4)
-
+conf4 <- fit_confidence_model(e4)
+cat("\nConfidence LRT:\n")
+print(conf4$lrt)
 cat("\nCLMM summary:\n")
-print(summary(c4))
-
-emm4c <- emmeans(c4, ~ condition)
-cat("\nConfidence contrast E vs Baseline:\n")
-print(summary(pairs(emm4c)))
+print(summary(conf4$model))
 
 # ==============================================================================
-# 4. Sensitivity: Trial Order (Learning Over Time)
+# 4. Calibration
 # ==============================================================================
-
-cat("\n--- Sensitivity: Trial Order ---\n")
-
-m4_order <- glmer(correct ~ condition + scale(trial_order) + judge + (1 | instance_idx),
-                  data = e4, family = binomial,
-                  control = glmerControl(optimizer = "bobyqa"))
-
-cat("\nModel with trial_order covariate:\n")
-print(summary(m4_order))
-
-cat("\nCompare: with vs without trial_order:\n")
-print(anova(m4, m4_order, test = "Chisq"))
-
-# Check if trial_order interacts with condition (learning rate differs?)
-m4_order_int <- glmer(correct ~ condition * scale(trial_order) + judge + (1 | instance_idx),
-                      data = e4, family = binomial,
-                      control = glmerControl(optimizer = "bobyqa"))
-
-cat("\nCondition × trial_order interaction:\n")
-print(anova(m4_order, m4_order_int, test = "Chisq"))
+cat("\n--- 4. Calibration ---\n")
+cal4 <- run_calibration(e4)
 
 # ==============================================================================
-# 5. Robustness: Control for true_bucket
+# 5. Diagnostics
 # ==============================================================================
-
-cat("\n--- Robustness: Controlling for true_bucket ---\n")
-
-e4$true_bucket <- factor(e4$true_bucket,
-                         levels = c("small", "medium", "large", "very_large"))
-
-m4_bucket <- glmer(correct ~ condition + true_bucket + judge + (1 | instance_idx),
-                   data = e4, family = binomial,
-                   control = glmerControl(optimizer = "bobyqa"))
-
-cat("\nModel with true_bucket covariate:\n")
-print(summary(m4_bucket))
+cat("\n--- 5. Diagnostics ---\n")
+run_diagnostics(acc4$model, "E4 accuracy GLMM")
 
 # ==============================================================================
-# 6. Diagnostics
+# 6. Bayesian + ROPE
 # ==============================================================================
+cat("\n--- 6. Bayesian + ROPE ---\n")
+bm4 <- run_bayesian_rope(e4)
 
-cat("\n--- Diagnostics ---\n")
-run_glmm_diagnostics(m4, "E4 accuracy GLMM")
+# ==============================================================================
+# 7. Sensitivity
+# ==============================================================================
+cat("\n--- 7. Sensitivity ---\n")
+
+run_judge_specific(e4, "correct ~ condition + (1 | instance_idx)")
+run_generator_test(e4, rlang::expr(condition != "Baseline"))
+run_random_slopes(e4, "correct ~ condition * judge + (condition | instance_idx)")
+
+# ==============================================================================
+# 8. E4-Specific: Instance difficulty + Trial order
+# ==============================================================================
+cat("\n--- 8. E4-Specific Analyses ---\n")
+
+# Instance difficulty covariate (absolute prediction error)
+if ("abs_error" %in% names(e4) | all(c("predicted_value", "true_value") %in% names(e4))) {
+  if (!"abs_error" %in% names(e4)) {
+    e4$abs_error <- abs(as.numeric(e4$predicted_value) - as.numeric(e4$true_value))
+  }
+  cat("\nModel with difficulty covariate (abs_error):\n")
+  tryCatch({
+    m4_diff <- glmer(correct ~ condition * judge + scale(abs_error) + (1 | instance_idx),
+                     data = e4, family = binomial,
+                     control = glmerControl(optimizer = "bobyqa"))
+    print(summary(m4_diff))
+  }, error = function(e) cat(sprintf("Error: %s\n", e$message)))
+}
+
+# Trial order (test position)
+cat("\nTrial order analysis:\n")
+e4$trial_order <- as.numeric(as.character(e4$instance_idx))
+tryCatch({
+  m4_order <- glmer(correct ~ condition * judge + scale(trial_order) + (1 | instance_idx),
+                    data = e4, family = binomial,
+                    control = glmerControl(optimizer = "bobyqa"))
+  cat("Trial order coefficient:\n")
+  print(round(summary(m4_order)$coefficients, 4))
+}, error = function(e) cat(sprintf("Error: %s\n", e$message)))
+
+# Condition x trial_order interaction
+cat("\nCondition x trial_order interaction:\n")
+tryCatch({
+  m4_order_int <- glmer(correct ~ condition * scale(trial_order) + judge + (1 | instance_idx),
+                        data = e4, family = binomial,
+                        control = glmerControl(optimizer = "bobyqa"))
+  print(round(summary(m4_order_int)$coefficients, 4))
+}, error = function(e) cat(sprintf("Error: %s\n", e$message)))
+
+# true_bucket robustness
+if ("true_bucket" %in% names(e4)) {
+  cat("\ntrue_bucket robustness:\n")
+  e4$true_bucket <- factor(e4$true_bucket)
+  tryCatch({
+    m4_bucket <- glmer(correct ~ condition * judge + true_bucket + (1 | instance_idx),
+                       data = e4, family = binomial,
+                       control = glmerControl(optimizer = "bobyqa"))
+    print(summary(m4_bucket))
+  }, error = function(e) cat(sprintf("Error (likely separation): %s\n", e$message)))
+}
+
+cat("\nNote: E4 uses a sliding window with 80% overlap between adjacent training sets.\n")
+cat("This induces temporal autocorrelation beyond the instance random intercept.\n")
+cat("Inferential claims should be interpreted with this caveat.\n")
 
 cat("\n================================================================\n")
-cat("  E4 ANALYSIS COMPLETE\n")
+cat("  E4 COMPLETE\n")
 cat("================================================================\n")

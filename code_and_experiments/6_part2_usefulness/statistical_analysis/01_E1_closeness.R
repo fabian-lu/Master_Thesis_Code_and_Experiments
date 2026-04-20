@@ -1,179 +1,124 @@
 # ==============================================================================
-# 01_E1_closeness.R — Experiment 1: Closeness Task
+# 01_E1_closeness.R — Experiment 1: Forward Simulatability (Closeness Task)
 # ==============================================================================
-# Research questions:
-#   1. Any difference in accuracy across the 5 conditions?
-#   2. Does E+X+T vs X+T specifically change accuracy? (NLE effect)
-#   3. Does condition affect confidence?
-#   4. Overconfidence effect? (higher confidence when wrong, especially with NLEs)
-#
-# Design: 5 conditions (Baseline, X, T, X+T, E+X+T), 60 instances, 720 rows
+# RQ-U1: Do NLEs improve ability to classify prediction error magnitude?
+# Design: 5 conditions (B, X, T, X+T, E+X+T), 60 instances, N=720
 # ==============================================================================
 
-source("/home/fabian/Desktop/Second_XAI_Paper/Code/new_experiments/statistical_analysis/00_setup.R")
+source("/home/fabian/Desktop/Master_thesis/code_and_experiments/6_part2_usefulness/new_analysis/00_setup.R")
 
-cat("\n")
+cat("\n================================================================\n")
+cat("  EXPERIMENT 1: FORWARD SIMULATABILITY\n")
 cat("================================================================\n")
-cat("  EXPERIMENT 1: CLOSENESS TASK\n")
-cat("================================================================\n")
+
+e1$condition <- factor(e1$condition, levels = c("Baseline", "X", "T", "X+T", "E+X+T"))
 
 # ==============================================================================
 # 1. Descriptive Statistics
 # ==============================================================================
+cat("\n--- 1. Descriptive Statistics ---\n")
+print(descriptives(e1))
+print(descriptives_by_judge(e1))
 
-cat("\n--- Descriptive Statistics ---\n")
-desc_cond <- descriptive_by_condition(e1)
-print(desc_cond)
-
-cat("\n--- By Condition × Judge ---\n")
-desc_cond_judge <- descriptive_by_condition_judge(e1)
-print(desc_cond_judge)
-
-cat("\n--- Overconfidence Descriptive ---\n")
-overconf <- overconfidence_descriptive(e1)
-print(overconf)
-
-cat("\n--- True Bucket Distribution ---\n")
+cat("\nTrue bucket distribution:\n")
 print(table(e1$true_bucket))
 
 # ==============================================================================
-# 2. Primary Analysis: Accuracy (GLMM)
+# 2. Primary GLMM for Accuracy (condition * judge)
 # ==============================================================================
+cat("\n--- 2. Primary GLMM: Accuracy ---\n")
 
-cat("\n--- Primary GLMM: Accuracy ---\n")
+acc <- fit_accuracy_model(e1)
 
-m1_full <- glmer(correct ~ condition + judge + (1 | instance_idx),
-                 data = e1, family = binomial,
-                 control = glmerControl(optimizer = "bobyqa"))
+cat("\nOmnibus LRT (condition):\n")
+print(acc$lrt)
 
-m1_reduced <- glmer(correct ~ judge + (1 | instance_idx),
-                    data = e1, family = binomial,
-                    control = glmerControl(optimizer = "bobyqa"))
-
-# Omnibus LRT for condition effect
-cat("\nOmnibus LRT (condition effect on accuracy):\n")
-lrt_acc <- anova(m1_reduced, m1_full, test = "Chisq")
-print(lrt_acc)
-
-# Model summary
 cat("\nModel summary:\n")
-print(summary(m1_full))
+print(summary(acc$model))
 
-# Odds ratios
-cat("\nOdds Ratios:\n")
-ors <- extract_ors(m1_full)
-print(ors)
+cat("\nMarginal condition EMMs (averaged over judges):\n")
+print(summary(acc$emm_cond))
 
-# ==============================================================================
-# 3. Planned Contrasts
-# ==============================================================================
+cat("\nJudge-specific EMMs:\n")
+print(summary(acc$emm_judge))
 
-cat("\n--- Planned Contrasts ---\n")
+# Planned contrasts
+cat("\nPlanned: E+X+T vs X+T (NLE effect):\n")
+print(contrast(acc$emm_cond, method = list("E+X+T vs X+T" = c(0, 0, 0, -1, 1))))
 
-emm1 <- emmeans(m1_full, ~ condition, type = "response")
-cat("\nEstimated Marginal Means (probability scale):\n")
-print(summary(emm1))
+cat("\nPlanned: X+T vs Baseline (information effect):\n")
+print(contrast(acc$emm_cond, method = list("X+T vs Baseline" = c(-1, 0, 0, 1, 0))))
 
-# Critical contrast: E+X+T vs X+T (NLE effect)
-cat("\nPlanned contrast: E+X+T vs X+T (NLE effect):\n")
-nle_contrast <- contrast(emm1, method = list(
-  "E+X+T vs X+T" = c(0, 0, 0, -1, 1)
-), adjust = "none")
-print(summary(nle_contrast))
-
-# Additional planned: X+T vs Baseline (information effect)
-cat("\nPlanned contrast: X+T vs Baseline (information effect):\n")
-info_contrast <- contrast(emm1, method = list(
-  "X+T vs Baseline" = c(-1, 0, 0, 1, 0)
-), adjust = "none")
-print(summary(info_contrast))
-
-# All pairwise with Holm
-cat("\nAll pairwise comparisons (Holm-corrected):\n")
-pairwise <- pairs(emm1, adjust = "holm")
-print(summary(pairwise))
+cat("\nAll pairwise (Holm):\n")
+print(pairs(acc$emm_cond, adjust = "holm"))
 
 # ==============================================================================
-# 4. Confidence Analysis (CLMM)
+# 3. Primary CLMM for Confidence (condition * judge)
 # ==============================================================================
+cat("\n--- 3. Confidence (CLMM) ---\n")
 
-cat("\n--- Confidence Analysis (CLMM) ---\n")
+conf <- fit_confidence_model(e1)
 
-c1_full <- clmm(confidence ~ condition + judge + (1 | instance_idx),
-                data = e1)
-
-c1_reduced <- clmm(confidence ~ judge + (1 | instance_idx),
-                   data = e1)
-
-cat("\nOmnibus LRT (condition effect on confidence):\n")
-lrt_conf <- anova(c1_reduced, c1_full)
-print(lrt_conf)
+cat("\nOmnibus LRT (condition on confidence):\n")
+print(conf$lrt)
 
 cat("\nCLMM summary:\n")
-print(summary(c1_full))
+print(summary(conf$model))
 
-# Confidence contrasts
-emm1_conf <- emmeans(c1_full, ~ condition)
+cat("\nConfidence EMMs:\n")
+print(summary(conf$emm_cond))
+
 cat("\nConfidence: E+X+T vs X+T:\n")
-print(summary(contrast(emm1_conf, method = list(
-  "E+X+T vs X+T" = c(0, 0, 0, -1, 1)
-), adjust = "none")))
+print(contrast(conf$emm_cond, method = list("E+X+T vs X+T" = c(0, 0, 0, -1, 1))))
 
-cat("\nConfidence: all pairwise (Holm):\n")
-print(summary(pairs(emm1_conf, adjust = "holm")))
+cat("\nConfidence pairwise (Holm):\n")
+print(pairs(conf$emm_cond, adjust = "holm"))
 
 # ==============================================================================
-# 5. Overconfidence Analysis
+# 4. Calibration Analysis (replaces overconfidence interaction)
 # ==============================================================================
-
-cat("\n--- Overconfidence Analysis ---\n")
-
-e1$correctness <- factor(ifelse(e1$correct == 1, "correct", "incorrect"),
-                         levels = c("correct", "incorrect"))
-
-c1_overconf <- clmm(confidence ~ correctness * condition + judge + (1 | instance_idx),
-                    data = e1)
-
-cat("\nOverconfidence model summary:\n")
-print(summary(c1_overconf))
-
-# Test: among INCORRECT responses, does confidence differ by condition?
-cat("\nConfidence among INCORRECT responses only:\n")
-e1_wrong <- e1 %>% filter(correct == 0)
-if (nrow(e1_wrong) > 20) {
-  c1_wrong <- clmm(confidence ~ condition + judge + (1 | instance_idx),
-                   data = e1_wrong)
-  print(summary(c1_wrong))
-} else {
-  cat("Too few incorrect responses to model.\n")
-}
+cat("\n--- 4. Calibration Analysis ---\n")
+cal <- run_calibration(e1)
 
 # ==============================================================================
-# 6. Robustness: Control for true_bucket
+# 5. Diagnostics
 # ==============================================================================
-
-cat("\n--- Robustness: Controlling for true_bucket ---\n")
-
-e1$true_bucket <- factor(e1$true_bucket,
-                         levels = c("small", "medium", "large", "very_large"))
-
-m1_bucket <- glmer(correct ~ condition + true_bucket + judge + (1 | instance_idx),
-                   data = e1, family = binomial,
-                   control = glmerControl(optimizer = "bobyqa"))
-
-cat("\nModel with true_bucket covariate:\n")
-print(summary(m1_bucket))
-
-cat("\nCompare: with vs without true_bucket:\n")
-print(anova(m1_full, m1_bucket, test = "Chisq"))
+cat("\n--- 5. Diagnostics ---\n")
+run_diagnostics(acc$model, "E1 accuracy GLMM")
 
 # ==============================================================================
-# 7. Diagnostics
+# 6. Bayesian GLMM with ROPE
 # ==============================================================================
+cat("\n--- 6. Bayesian + ROPE ---\n")
+bm1 <- run_bayesian_rope(e1)
 
-cat("\n--- Diagnostics ---\n")
-run_glmm_diagnostics(m1_full, "E1 accuracy GLMM")
+# ==============================================================================
+# 7. Sensitivity Analyses
+# ==============================================================================
+cat("\n--- 7. Sensitivity ---\n")
+
+# Judge-specific
+run_judge_specific(e1, "correct ~ condition + (1 | instance_idx)")
+
+# Generator effects (E+X+T condition only)
+run_generator_test(e1, rlang::expr(condition == "E+X+T"))
+
+# Random slopes
+run_random_slopes(e1, "correct ~ condition * judge + (condition | instance_idx)")
+
+# ==============================================================================
+# 8. E1-Specific: true_bucket covariate
+# ==============================================================================
+cat("\n--- 8. Robustness: true_bucket covariate ---\n")
+e1$true_bucket <- factor(e1$true_bucket, levels = c("small", "medium", "large", "very_large"))
+tryCatch({
+  m_bucket <- glmer(correct ~ condition * judge + true_bucket + (1 | instance_idx),
+                    data = e1, family = binomial,
+                    control = glmerControl(optimizer = "bobyqa"))
+  cat("Model with true_bucket:\n")
+  print(summary(m_bucket))
+}, error = function(e) cat(sprintf("true_bucket model error: %s\n", e$message)))
 
 cat("\n================================================================\n")
-cat("  E1 ANALYSIS COMPLETE\n")
+cat("  E1 COMPLETE\n")
 cat("================================================================\n")

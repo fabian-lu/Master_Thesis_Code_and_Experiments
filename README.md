@@ -2,18 +2,7 @@
 
 **Evaluation of the Feasibility, Quality, and Usefulness of LLM-Generated Narratives for XAI Outputs**
 
-M.Sc. Applied Statistics thesis, University of Göttingen (2026).
-Author: Fabian Lukassen.
-First supervisor: Prof. Dr. Thomas Kneib.
-Second supervisor: Prof. Dr. Benjamin Säfken (TU Clausthal).
-
 This repository contains the compiled thesis and all code and data required to reproduce the two empirical studies it reports.
-
----
-
-## The thesis in one paragraph
-
-Explainable AI (XAI) methods such as SHAP and LIME produce numerical feature attributions that non-experts cannot read directly. Large language models (LLMs) promise a fix: translate those attributions into plain-text narratives (NLEs). This thesis evaluates that pipeline along three dimensions — feasibility, quality, and usefulness. Part 1 runs a blocked factorial experiment (4 ML models × 3 XAI conditions × 3 LLMs × 8 prompting strategies → 660 NLEs) and finds that the pipeline reliably produces high-quality NLEs, with LLM choice driving most of the variance and XAI method mattering little. Part 2 fixes the best pipeline configuration and runs five downstream experiments (forward simulatability, counterfactual reasoning, mental-model transfer, selective reliance, and a placebic control; 2,636 judgments). High-quality NLEs do not improve accuracy on any task; they inflate confidence regardless of correctness; and in the out-of-distribution setting they halve users' ability to detect unreliable predictions. This *Quality–Usefulness Gap* is the central finding.
 
 ---
 
@@ -29,7 +18,7 @@ Explainable AI (XAI) methods such as SHAP and LIME produce numerical feature att
 │   ├── processed/                        Weekly-aggregated train/test splits
 │   ├── serialized_models/                Trained XGBoost, Random Forest, MLP (.joblib)
 │   ├── model_predictions/                Per-model predictions on the test set + metrics
-│   ├── xai/                              LIME contributions (SHAP recomputed in-notebook)
+│   ├── xai/                              LIME/SHAP contributions
 │   └── nle/                              Generated NLEs (zero-shot + LLM-specific caches)
 │
 └── code_and_experiments/               Code organised by thesis chapter
